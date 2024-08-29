@@ -12,6 +12,11 @@ export default {
         './resources/js/**/*.vue',
     ],
 
+    daisyui: {
+        themes: ["light"],
+    },
+
+
     theme: {
         extend: {
             fontFamily: {
@@ -20,5 +25,5 @@ export default {
         },
     },
 
-    plugins: [forms, typography],
+    plugins: [forms, typography, require('daisyui')],
 };

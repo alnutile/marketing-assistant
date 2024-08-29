@@ -29,7 +29,7 @@ Route::middleware([
             Route::get('/campaigns/create', 'create')->name('campaigns.create');
             Route::post('/campaigns', 'store')->name('campaigns.store');
             Route::get('/campaigns/{campaign}', 'show')->name('campaigns.show');
-            Route::get('/campaigns/{campaign}/edit', 'show')->name('campaigns.edit');
+            Route::get('/campaigns/{campaign}/edit', 'edit')->name('campaigns.edit');
             Route::put('/campaigns/{campaign}', 'update')->name('campaigns.update');
             Route::delete('/campaigns/{campaign}', 'destroy')->name('campaigns.destroy');
         }

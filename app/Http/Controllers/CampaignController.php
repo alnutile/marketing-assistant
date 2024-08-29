@@ -48,15 +48,14 @@ DEFAULT_CONTENT;
 
 
         return inertia('Campaigns/Create', [
-            'statuses' => StatusEnum::selectOptions(),
             'content_start' => $defaultContent,
+            'statuses' => StatusEnum::selectOptions(),
             'productServices' => ProductServiceEnum::selectOptions(),
         ]);
     }
 
     public function store()
     {
-        put_fixture("campaign_put_request.json", request()->all());
         $validated = request()->validate([
             'name' => 'required',
             'start_date' => 'required',
@@ -84,6 +83,8 @@ DEFAULT_CONTENT;
     public function edit(Campaign $campaign)
     {
         return inertia('Campaigns/Edit', [
+            'statuses' => StatusEnum::selectOptions(),
+            'productServices' => ProductServiceEnum::selectOptions(),
             'campaign' => new CampaignResource($campaign),
         ]);
     }
@@ -103,7 +104,8 @@ DEFAULT_CONTENT;
 
         $campaign->update($validated);
 
-        return redirect()->route('campaigns.show', $campaign);
+        request()->session()->flash('flash.banner', 'Updated');
+        return back();
     }
 
     public function destroy(Campaign $campaign)

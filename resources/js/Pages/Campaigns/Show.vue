@@ -19,9 +19,19 @@ const props = defineProps({
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    Campaign info here
+                    <div class="flex justify-between p-4">
+                        <div>
+                            Campaign info here
+                        </div>
+
+                        <Link
+                            :href="route('campaigns.edit', campaign.data.id)"
+                            class="btn btn-primary rounded-none">Edit</Link>
+                    </div>
+                </div>
+                <div>
+
                 </div>
             </div>
         </div>

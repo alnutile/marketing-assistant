@@ -1,0 +1,10 @@
+{
+    "name": "PHP and LLMs Technical Book",
+    "start_date": "2024-08-30",
+    "end_date": "2024-10-23",
+    "status": "draft",
+    "content": "## Unique Selling Proposition (USP)\nThis is a book on using LLMs in your PHP application with practical real world examples of solutions. This book is unique and there are not many if any books or trainings on LLMs and PHP\n\n## Key Messages\n- Practical Examples\n- Integration of different LLMs into your application\n- This tool is not going away how can you add it to your tool box as a PHP developer\n\n\n## Success Metrics\n- 5000 Books sold \n\n\n## Additional Notes\nThis is my second book for Laravel which is the main foundation for this book.\nI have been doing it for 2-3 years building this platform.\nThere is an open-source tool I made called larallama.io which is a great strategy to any Laravel RAG automation system.",
+    "product_or_service": "digital_product",
+    "target_audience": "target audience is PHP developers of any range. The book is a deep dive so it will tackle some complex php topics. Laravel exerience is a plus",
+    "budget": "3500"
+}

@@ -1,5 +1,7 @@
 <script setup>
-import {Link} from "@inertiajs/vue3";
+import {Head, Link} from "@inertiajs/vue3";
+import AppLayout from "@/Layouts/AppLayout.vue";
+import Welcome from "@/Components/Welcome.vue";
 
 const props = defineProps({
     campaigns: Object
@@ -9,18 +11,58 @@ const props = defineProps({
 </script>
 
 <template>
+    <AppLayout title="Campaigns">
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Campaigns
+            </h2>
+        </template>
 
-    <div>
-        <h2>
-            Campaigns
-        </h2>
-        <div>
-            <Link>Create</Link>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    <div class="flex justify-end gap-4 p-4">
+                        <Link :href="route('campaigns.create')" class="btn btn-primary rounded-none">Create</Link>
+                    </div>
+                    <div class="p-4">
+                        <div class="overflow-x-auto">
+                            <div v-if="campaigns.data.length == 0">
+                                <div class="text-center">
+                                    <div class="mb-4">
+                                        No Campaigns Yet!
+                                    </div>
+                                    <Link
+                                        :href="route('campaigns.create')"
+                                        class="btn btn-primary rounded-none">Create</Link>
+                                </div>
+                            </div>
+                            <table class="table" v-else>
+                                <!-- head -->
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>View</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- row 1 -->
+                                <tr class="bg-base-200" v-for="campaign in campaigns.data" :key="campaign.id">
+                                    <th>{{ campaign.id }}</th>
+                                    <td>{{ campaign.name }}</td>
+                                    <td>
+                                        <Link :href="route('campaigns.show', campaign.id)">view</Link>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            Nice Table here...
-        </div>
-    </div>
+    </AppLayout>
 </template>
 
 <style scoped>

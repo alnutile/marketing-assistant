@@ -12,6 +12,7 @@ class CampaignController extends Controller
 {
     public function index()
     {
+
         $campaigns = CampaignResource::collection(
             Campaign::user(auth()->user()->id)->paginate()
         );
@@ -23,14 +24,39 @@ class CampaignController extends Controller
 
     public function create()
     {
+        $defaultContent = <<<'DEFAULT_CONTENT'
+## Unique Selling Proposition (USP)
+[What makes your product/service unique? Why should your target audience choose you over competitors?]
+
+## Key Messages
+- [Message 1]
+- [Message 2]
+- [Message 3]
+
+
+## Success Metrics
+- [Metric 1]: [Target]
+- [Metric 2]: [Target]
+- [Metric 3]: [Target]
+
+
+## Additional Notes
+[Any other important information or considerations for this campaign]
+
+
+DEFAULT_CONTENT;
+
+
         return inertia('Campaigns/Create', [
             'statuses' => StatusEnum::selectOptions(),
+            'content_start' => $defaultContent,
             'productServices' => ProductServiceEnum::selectOptions(),
         ]);
     }
 
     public function store()
     {
+        put_fixture("campaign_put_request.json", request()->all());
         $validated = request()->validate([
             'name' => 'required',
             'start_date' => 'required',

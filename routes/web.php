@@ -20,7 +20,7 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return redirect()->route('campaigns.index');
     })->name('dashboard');
 
     Route::controller(\App\Http\Controllers\CampaignController::class)->group(

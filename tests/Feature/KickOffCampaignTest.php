@@ -27,6 +27,5 @@ class KickOffCampaignTest extends TestCase
 
         (new KickOffCampaign)->handle($campaign);
 
-
     }
 }

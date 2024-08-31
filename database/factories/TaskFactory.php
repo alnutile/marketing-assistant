@@ -21,7 +21,7 @@ class TaskFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'details' => $this->faker->paragraph(),
-            'completed' => false,
+            'completed_at' => $this->faker->date(),
             'due_date' => $this->faker->date(),
             'assistant' => false,
             'campaign_id' => Campaign::factory(),

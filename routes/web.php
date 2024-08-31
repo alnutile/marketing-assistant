@@ -22,6 +22,13 @@ Route::middleware([
         }
     );
 
+    Route::controller(\App\Http\Controllers\TaskController::class)->group(
+        function () {
+            Route::get('/tasks/{campaign}', 'index')->name('tasks.index');
+            Route::post('/tasks/{task}/complete', 'markAsComplete')->name('tasks.complete');
+        }
+    );
+
     Route::controller(\App\Http\Controllers\CampaignController::class)->group(
         function () {
             Route::get('/campaigns', 'index')->name('campaigns.index');

@@ -34,6 +34,11 @@ class Campaign extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
+
     public function scopeUser(Builder $query, int $userId): Builder
     {
         return $query->where('user_id', $userId);

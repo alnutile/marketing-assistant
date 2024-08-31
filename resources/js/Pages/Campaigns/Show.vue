@@ -5,6 +5,7 @@ import {ref} from "vue";
 import Kickoff from "@/Pages/Campaigns/Components/Kickoff.vue";
 import InputError from "@/Components/InputError.vue";
 import Clipboard from "@/Components/Clipboard.vue";
+import Index from "@/Pages/Tasks/Index.vue";
 
 const props = defineProps({
     campaign: Object,
@@ -70,7 +71,7 @@ const chat = () => {
 
                     <div class="grid grid-cols-1 sm:grid-cols-12 p-4">
                         <div class="col-span-8">
-                            <div>
+                            <div v-auto-animate>
                                 <template v-for="message in messages.data">
 
                                     <div class="border border-gray-300 rounded-md p-4 mb-4 overflow-scroll ">
@@ -111,6 +112,17 @@ const chat = () => {
                                     </button>
                                 </div>
                             </form>
+
+                            <div>
+                                <h2 class="font-bold flex justify-start gap-2 items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                    </svg>
+
+                                    Tasks</h2>
+
+                                <Index :campaign="campaign.data"/>
+                            </div>
                         </div>
                     </div>
                 </div>

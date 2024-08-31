@@ -16,6 +16,8 @@ class KickOffCampaign
 
         $campaign->messages()->delete();
 
+        $campaign->tasks()->delete();
+
         $campaignContext = $campaign->getContext();
 
         $prompt = CampaignKickOffPrompt::getPrompt($campaignContext);

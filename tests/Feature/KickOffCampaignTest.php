@@ -6,8 +6,6 @@ use App\Domains\Campaigns\KickOffCampaign;
 use App\Models\Campaign;
 use App\Models\User;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
-use App\Services\LlmServices\LlmDriverFacade;
-use App\Services\LlmServices\Responses\CompletionResponse;
 use Tests\TestCase;
 
 class KickOffCampaignTest extends TestCase

@@ -27,12 +27,12 @@ class TaskTest extends TestCase
     {
         Task::factory()->create(
             [
-                'completed_at' => null
+                'completed_at' => null,
             ]
         );
 
         Task::factory()->create([
-            'completed_at' => now()
+            'completed_at' => now(),
         ]);
 
         $this->assertCount(1, Task::notCompleted()->get());

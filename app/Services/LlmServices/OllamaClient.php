@@ -7,7 +7,6 @@ use App\Services\LlmServices\Responses\CompletionResponse;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Laravel\Pennant\Feature;
 
 class OllamaClient extends BaseClient
 {

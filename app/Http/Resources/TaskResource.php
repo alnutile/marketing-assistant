@@ -20,7 +20,7 @@ class TaskResource extends JsonResource
             'details' => $this->details,
             'completed_at' => $this->completed_at?->format('Y-m-d'),
             'due_date' => $this->due_date?->format('Y-m-d'),
-            'assistant' => $this->assistant ? "Assistant" : null,
+            'assistant' => $this->assistant ? 'Assistant' : null,
             'user' => ($this->user_id) ? $this->user->name : null,
         ];
     }

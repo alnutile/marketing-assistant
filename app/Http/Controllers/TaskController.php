@@ -11,16 +11,17 @@ class TaskController extends Controller
 {
     public function index(Campaign $campaign)
     {
-        $tasks = TaskResource::collection($campaign->tasks()->orderBy("due_date", "asc")->notCompleted()->get());
+        $tasks = TaskResource::collection($campaign->tasks()->orderBy('due_date', 'asc')->notCompleted()->get());
+
         return response()->json([
-            "tasks" => $tasks
+            'tasks' => $tasks,
         ]);
     }
 
     public function markAsComplete(Request $request, Task $task)
     {
         $task->update([
-            'completed_at' => now()
+            'completed_at' => now(),
         ]);
 
         request()->session()->flash('flash.banner', 'Completed');

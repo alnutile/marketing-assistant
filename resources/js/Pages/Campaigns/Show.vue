@@ -106,7 +106,7 @@ const chat = () => {
                                 <div class="flex justify-end mt-2">
                                     <button
                                         :disabled="form.processing"
-                                        class="btn btn-outline rounded-none" @click="chat">
+                                        class="btn btn-sm btn-secondary rounded-none" @click="chat">
                                         <span v-if="!form.processing">Chat</span>
                                         <span v-else class="loading loading-dots loading-lg"></span>
                                     </button>

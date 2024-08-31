@@ -10,10 +10,12 @@ const props = defineProps({
 })
 
 const getTasks = () => {
+    getting_tasks.value = true
     axios.get(route('tasks.index', {
         campaign: props.campaign.id
     })).then(response => {
         tasks.value = response.data.tasks
+        getting_tasks.value = false
     })
 }
 
@@ -33,11 +35,23 @@ const completeTask = (task) => {
         }
     })
 }
+
+const getting_tasks = ref(false)
 </script>
 
 <template>
 
     <div v-auto-animate>
+        <div class="flex justify-end gap-2 items-center">
+            <button type="button"
+                    class="btn btn-outline rounded-none btn-sm"
+                    @click="getTasks" :disabled="getting_tasks">
+                    <span v-if="!getting_tasks">Refresh</span>
+                    <span v-else class="loading loading-dots loading-sm"></span>
+
+            </button>
+        </div>
+
         <template v-for="task in tasks" :key="task.id">
             <div class="p-2 border border-gray-300 rounded-md my-2">
                 <div class="text-gray-600 text-md flex justify-between items-center">

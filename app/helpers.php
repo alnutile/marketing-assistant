@@ -21,6 +21,15 @@ if (! function_exists('put_fixture')) {
     }
 }
 
+if (! function_exists('get_copy')) {
+    function get_copy($file_name, $decode = true)
+    {
+        $path = str($file_name)->replace('.', '/')->prepend('copy/')->append('.md')->toString();
+
+        return str(File::get(storage_path($path)))->markdown();
+    }
+}
+
 if (! function_exists('get_fixture')) {
     function get_fixture($file_name, $decode = true)
     {

@@ -6,8 +6,12 @@ class CampaignKickOffPrompt
 {
     public static function getPrompt(string $campaignInfo): string
     {
+        $now = now()->toISOString();
+
         return <<<PROMPT
 You are an AI assistant specialized in digital marketing campaigns. Your primary goals are:
+
+Today's date is $now
 
 1. Analyze and understand the user's campaign objectives.
 2. Provide strategic insights and recommendations to optimize campaign performance.
@@ -26,6 +30,7 @@ When responding:
 
 Remember: Your role is to be a knowledgeable, strategic partner in the user's marketing efforts, helping them achieve their campaign objectives effectively and efficiently.
 
+If there are Tools to use but not need to use them and just reply to the prompt.
 <campaign info below>
 { $campaignInfo }
 PROMPT;

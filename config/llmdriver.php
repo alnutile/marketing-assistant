@@ -40,7 +40,7 @@ return [
             'max_tokens' => env('CLAUDE_MAX_TOKENS', 4096),
             'models' => [
                 //@see https://www.anthropic.com/news/claude-3-family
-                'completion_model' => env('CLAUDE_COMPLETION_MODEL', 'claude-3-haiku-20240307'),
+                'completion_model' => env('CLAUDE_COMPLETION_MODEL', 'claude-3-5-sonnet-20240620'), //claude-3-5-sonnet-20240620 claude-3-haiku-20240307 claude-3-opus-20240229
             ],
         ],
         'groq' => [

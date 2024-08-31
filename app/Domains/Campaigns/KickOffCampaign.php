@@ -3,7 +3,7 @@
 namespace App\Domains\Campaigns;
 
 use App\Models\Campaign;
-use App\Services\LlmServices\LlmDriverFacade;
+use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
 use App\Services\LlmServices\RoleEnum;
 
 class KickOffCampaign
@@ -20,20 +20,7 @@ class KickOffCampaign
 
         $prompt = CampaignKickOffPrompt::getPrompt($campaignContext);
 
-        $campaign->addInput(
-            $prompt,
-            RoleEnum::User,
-            CampaignSystemPrompt::handle(),
-            auth()->user());
-
-        $response = LlmDriverFacade::driver(config('llmdriver.driver'))
-            ->completion($prompt);
-
-        $campaign->addInput(
-            $response->content,
-            RoleEnum::Assistant,
-            CampaignSystemPrompt::handle()
-        );
+        Orchestrate::handle($campaign, $prompt);
 
         $campaign->updateQuietly([
             'chat_status' => ChatStatusEnum::Complete,

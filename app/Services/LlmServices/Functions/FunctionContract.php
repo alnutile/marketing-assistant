@@ -2,7 +2,7 @@
 
 namespace App\Services\LlmServices\Functions;
 
-use App\Models\Message;
+use App\Models\Campaign;
 
 abstract class FunctionContract
 {
@@ -13,7 +13,8 @@ abstract class FunctionContract
     protected string $type = 'object';
 
     abstract public function handle(
-        Message $message,
+        Campaign $campaign,
+        array $args = []
     ): FunctionResponse;
 
     public function getFunction(): FunctionDto

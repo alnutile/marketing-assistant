@@ -32,7 +32,7 @@ class MessageInDto extends Data
     {
         return MessageInDto::from(
             [
-                'content' => $message->body,
+                'content' => $message->content,
                 'role' => $message->role->value,
                 'is_ai' => false,
                 'show' => true,
@@ -44,10 +44,11 @@ class MessageInDto extends Data
     {
         return MessageInDto::from(
             [
-                'content' => $message->body,
+                'content' => $message->content,
                 'role' => $message->role->value,
                 'tool_id' => $message->tool_id,
                 'tool' => $message->tool_name,
+                'args' => $message->tool_args,
                 'is_ai' => true,
                 'show' => true,
             ]

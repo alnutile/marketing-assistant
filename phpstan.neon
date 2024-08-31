@@ -14,5 +14,5 @@ parameters:
     excludePaths:
         - vendor
         - app/Actions/*
-        #- app/Http/Resources/*
+        - app/Http/Resources/*
 

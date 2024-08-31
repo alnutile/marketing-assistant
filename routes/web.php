@@ -1,16 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect()->route('campaigns.index');
 });
 
 Route::middleware([
@@ -23,6 +16,12 @@ Route::middleware([
         return redirect()->route('campaigns.index');
     })->name('dashboard');
 
+    Route::controller(\App\Http\Controllers\ChatController::class)->group(
+        function () {
+            Route::post('/chat/{campaign}', 'chat')->name('chat.chat');
+        }
+    );
+
     Route::controller(\App\Http\Controllers\CampaignController::class)->group(
         function () {
             Route::get('/campaigns', 'index')->name('campaigns.index');
@@ -32,6 +31,7 @@ Route::middleware([
             Route::get('/campaigns/{campaign}/edit', 'edit')->name('campaigns.edit');
             Route::put('/campaigns/{campaign}', 'update')->name('campaigns.update');
             Route::delete('/campaigns/{campaign}', 'destroy')->name('campaigns.destroy');
+            Route::post('/campaigns/{campaign}', 'kickOff')->name('campaigns.kickoff');
         }
     );
 });

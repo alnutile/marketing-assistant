@@ -56,7 +56,7 @@ class CampaignControllerTest extends TestCase
                 'start_date' => '2023-01-01',
                 'end_date' => '2023-01-01',
                 'content' => 'Test Description',
-                'status' => StatusEnum::DRAFT->value,
+                'status' => StatusEnum::Draft->value,
                 'product_or_service' => ProductServiceEnum::PhysicalProduct->value,
                 'target_audience' => 'Test Audience',
                 'budget' => '1000',

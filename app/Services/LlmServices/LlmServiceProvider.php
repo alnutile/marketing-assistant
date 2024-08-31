@@ -2,7 +2,7 @@
 
 namespace App\Services\LlmServices;
 
-use App\Services\LlmServices\Functions\CreateEventTool;
+use App\Services\LlmServices\Functions\CreateTasksTool;
 use Illuminate\Support\ServiceProvider;
 
 class LlmServiceProvider extends ServiceProvider
@@ -24,8 +24,8 @@ class LlmServiceProvider extends ServiceProvider
             return new LlmDriverClient;
         });
 
-        $this->app->bind('create_event_tool', function () {
-            return new CreateEventTool;
+        $this->app->bind('create_tasks_tool', function () {
+            return new CreateTasksTool;
         });
 
     }

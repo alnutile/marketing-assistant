@@ -6,7 +6,10 @@ use App\Domains\Campaigns\ChatStatusEnum;
 use App\Domains\Campaigns\ProductServiceEnum;
 use App\Domains\Campaigns\StatusEnum;
 use App\Http\Resources\CampaignResource;
+use App\Http\Resources\CampaignResourceShow;
+use App\Http\Resources\MessageResource;
 use App\Models\Campaign;
+use Facades\App\Domains\Campaigns\KickOffCampaign;
 
 class CampaignController extends Controller
 {
@@ -18,6 +21,7 @@ class CampaignController extends Controller
         );
 
         return inertia('Campaigns/Index', [
+            'copy' => get_copy('campaigns.index'),
             'campaigns' => $campaigns,
         ]);
     }
@@ -39,13 +43,18 @@ class CampaignController extends Controller
 - [Metric 2]: [Target]
 - [Metric 3]: [Target]
 
+## Social Media
+
+  * Twitter
+  * LinkedIn
+  * Facebook
+  * Medium
 
 ## Additional Notes
 [Any other important information or considerations for this campaign]
 
 
 DEFAULT_CONTENT;
-
 
         return inertia('Campaigns/Create', [
             'content_start' => $defaultContent,
@@ -76,7 +85,10 @@ DEFAULT_CONTENT;
     public function show(Campaign $campaign)
     {
         return inertia('Campaigns/Show', [
-            'campaign' => new CampaignResource($campaign),
+            'campaign' => new CampaignResourceShow($campaign),
+            'messages' => MessageResource::collection($campaign->messages()
+                ->notSystem()
+                ->latest()->get()),
         ]);
     }
 
@@ -105,6 +117,7 @@ DEFAULT_CONTENT;
         $campaign->update($validated);
 
         request()->session()->flash('flash.banner', 'Updated');
+
         return back();
     }
 
@@ -113,5 +126,13 @@ DEFAULT_CONTENT;
         $campaign->delete();
 
         return redirect()->route('campaigns.index');
+    }
+
+    public function kickOff(Campaign $campaign)
+    {
+        KickOffCampaign::handle($campaign);
+        request()->session()->flash('flash.banner', 'Done!');
+
+        return back();
     }
 }

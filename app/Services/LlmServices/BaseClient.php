@@ -2,7 +2,7 @@
 
 namespace App\Services\LlmServices;
 
-use App\Services\LlmServices\Functions\CreateEventTool;
+use App\Services\LlmServices\Functions\CreateTasksTool;
 use App\Services\LlmServices\Functions\FunctionContract;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\CompletionResponse;
@@ -14,6 +14,8 @@ abstract class BaseClient
     protected string $driver = 'mock';
 
     protected ?string $format = null;
+
+    protected ?string $system = null;
 
     public function setFormat(string $format): self
     {
@@ -79,7 +81,7 @@ abstract class BaseClient
     {
         $functions = collect(
             [
-                // new CreateEventTool,
+                new CreateTasksTool,
             ]
         );
 

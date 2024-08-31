@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Domains\Campaigns\KickOffCampaign;
 use App\Models\Campaign;
 use App\Models\User;
+use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\Responses\CompletionResponse;
 use Tests\TestCase;
@@ -22,19 +23,10 @@ class KickOffCampaignTest extends TestCase
 
         $this->actingAs($user);
 
-        LlmDriverFacade::shouldReceive('driver->completion')
-            ->once()
-            ->andReturn(
-                CompletionResponse::from([
-                    'content' => 'Hello world! um just reply with hello back',
-                ])
-            );
-
-        $this->assertDatabaseCount('messages', 0);
+        Orchestrate::shouldReceive('handle')->once();
 
         (new KickOffCampaign)->handle($campaign);
 
-        $this->assertDatabaseCount('messages', 3);
 
     }
 }

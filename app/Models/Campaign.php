@@ -7,7 +7,6 @@ use App\Domains\Campaigns\ProductServiceEnum;
 use App\Domains\Campaigns\StatusEnum;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\RoleEnum;
-use Filament\Forms;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,73 +37,6 @@ class Campaign extends Model
     public function scopeUser(Builder $query, int $userId): Builder
     {
         return $query->where('user_id', $userId);
-    }
-
-    protected static function getForm(): array
-    {
-        $defaultContent = <<<'DEFAULT_CONTENT'
-## Unique Selling Proposition (USP)
-[What makes your product/service unique? Why should your target audience choose you over competitors?]
-
-## Key Messages
-- [Message 1]
-- [Message 2]
-- [Message 3]
-
-
-## Success Metrics
-- [Metric 1]: [Target]
-- [Metric 2]: [Target]
-- [Metric 3]: [Target]
-
-
-## Additional Notes
-[Any other important information or considerations for this campaign]
-
-
-DEFAULT_CONTENT;
-
-        return [
-            Forms\Components\Section::make('Campaign')
-                ->description('Manage a Campaign')
-                ->columns(2)
-                ->schema([
-                    Forms\Components\TextInput::make('name')
-                        ->required()
-                        ->maxLength(255),
-                    Forms\Components\MarkdownEditor::make('description')
-                        ->helperText('A brief description of the campaignA brief description of the campaign')
-                        ->default($defaultContent)
-                        ->columnSpanFull(),
-                ]),
-            Forms\Components\Section::make('Details')
-                ->description('Settings')
-                ->columns(1)
-                ->schema([
-                    Forms\Components\DatePicker::make('start_date'),
-                    Forms\Components\DatePicker::make('end_date'),
-                    Forms\Components\Select::make('users')
-                        ->multiple()
-                        ->preload()
-                        ->relationship(name: 'users', titleAttribute: 'name'),
-                    Forms\Components\Select::make('status')
-                        ->required()
-                        ->options(StatusEnum::class)
-                        ->default(StatusEnum::DRAFT),
-                    Forms\Components\Select::make('product_or_service')
-                        ->required()
-                        ->options(ProductServiceEnum::class)
-                        ->native(false)
-                        ->default(ProductServiceEnum::ConsultingService),
-                    Forms\Components\MarkdownEditor::make('target_audience')
-                        ->columnSpanFull(),
-                    Forms\Components\TextInput::make('budget')
-                        ->prefixIcon('heroicon-m-currency-dollar')
-                        ->prefixIconColor('success')
-                        ->helperText('Budget in USD 1000 or 2500 etc')
-                        ->numeric(),
-                ]),
-        ];
     }
 
     public function getContext(): string
@@ -147,13 +79,24 @@ CAMPAIGN_CONTEXT;
         }
     }
 
-    public function addInput(string $message,
+    public function addInput(
+        string $message,
         RoleEnum $role = RoleEnum::User,
+        ?string $tool_id = '',
+        ?string $tool_name = '',
+        ?array $tool_args = [],
         ?string $systemPrompt = null,
         ?User $user = null): Message
     {
 
-        return DB::transaction(function () use ($message, $role, $systemPrompt, $user) {
+        return DB::transaction(function () use (
+            $message,
+            $role,
+            $tool_id,
+            $tool_name,
+            $tool_args,
+            $systemPrompt,
+            $user) {
 
             if ($systemPrompt) {
                 $this->createSystemMessageIfNeeded($systemPrompt);
@@ -166,6 +109,9 @@ CAMPAIGN_CONTEXT;
                     'user_id' => $user?->id,
                     'created_at' => now(),
                     'updated_at' => now(),
+                    'tool_id' => $tool_id,
+                    'tool_name' => $tool_name,
+                    'tool_args' => $tool_args,
                 ]);
         });
 
@@ -192,7 +138,7 @@ CAMPAIGN_CONTEXT;
                 'content' => $message->content,
                 'tool_id' => $message->tool_id,
                 'tool' => $message->tool_name,
-                'args' => $message->args ?? [],
+                'args' => $message->tool_args ?? [],
             ];
 
             $dto = new MessageInDto(

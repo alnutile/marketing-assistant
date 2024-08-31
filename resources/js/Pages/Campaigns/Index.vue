@@ -4,7 +4,8 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 
 const props = defineProps({
-    campaigns: Object
+    campaigns: Object,
+    copy: String
 })
 
 
@@ -21,9 +22,15 @@ const props = defineProps({
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
+
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="flex justify-end gap-4 p-4">
-                        <Link :href="route('campaigns.create')" class="btn btn-primary rounded-none">Create</Link>
+                    <div class="flex justify-between items-start">
+                        <div class="prose p-4" v-html="copy">
+
+                        </div>
+                        <div class="flex justify-end gap-4 p-4">
+                            <Link :href="route('campaigns.create')" class="btn btn-primary rounded-none">Create</Link>
+                        </div>
                     </div>
                     <div class="p-4">
                         <div class="overflow-x-auto">

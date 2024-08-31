@@ -2,31 +2,24 @@
 
 namespace App\Services\LlmServices\Orchestration;
 
-use App\Models\Chat;
-use App\Models\Message;
+use App\Models\Campaign;
 use App\Services\LlmServices\LlmDriverFacade;
-use App\Services\LlmServices\Messages\RoleEnum;
-use App\Services\LlmServices\Requests\MessageInDto;
+use App\Services\LlmServices\RoleEnum;
 use Illuminate\Support\Facades\Log;
 
 class Orchestrate
 {
-    public function handle(Chat $chat, string $prompt): Message
+    public function handle(Campaign $campaign, string $prompt): void
     {
-        $chat->addInput(
+        $campaign->addInput(
             message: $prompt,
-            role: RoleEnum::User
-        );
+            role: RoleEnum::User,
+            user: auth()->user());
 
-        $messageInDto = MessageInDto::from([
-            'content' => $prompt,
-            'role' => 'user',
-        ]);
+        $messages = $campaign->getMessageThread();
 
-        $response = LlmDriverFacade::driver($chat->getDriver())
-            ->chat([
-                $messageInDto,
-            ]);
+        $response = LlmDriverFacade::driver(config('llmdriver.driver'))
+            ->chat($messages);
 
         if (! empty($response->tool_calls)) {
             Log::info('Orchestration Tools Found', [
@@ -41,42 +34,44 @@ class Orchestrate
                     'tool_count' => count($response->tool_calls),
                 ]);
 
-                $message = $chat->addInput(
-                    message: $response->content ?? 'Calling Tools', //@NOTE ollama, openai blank but claude needs this :(
-                    role: RoleEnum::Assistant,
-                    tool: $tool_call->name,
+                $tool = app()->make($tool_call->name);
+                $tool->handle($campaign, $tool_call->arguments);
+
+                $campaign->addInput(
+                    message: sprintf('Tool %s complete', $tool_call->name),
+                    role: RoleEnum::Tool,
                     tool_id: $tool_call->id,
-                    args: $tool_call->arguments,
+                    tool_name: $tool_call->name,
+                    tool_args: $tool_call->arguments,
                 );
 
-                $tool = app()->make($tool_call->name);
-                $results = $tool->handle($message);
-                $message->updateQuietly([
-                    'role' => RoleEnum::Tool,
-                    'body' => $results->content,
-                ]);
                 $count++;
             }
 
-            $messages = $chat->getChatResponse();
+            Log::info('Tools Complete doing final chat');
 
-            $response = LlmDriverFacade::driver($chat->getDriver())
+            $messages = $campaign->getMessageThread();
+
+            /**
+             * @NOTE
+             * I have to continue to pass in tools once used above
+             * Since Claude needs them.
+             */
+            $response = LlmDriverFacade::driver(config('llmdriver.driver'))
                 ->chat($messages);
 
-            return $chat->addInput(
+            $campaign->addInput(
                 message: $response->content,
                 role: RoleEnum::Assistant,
             );
 
         } else {
-            Log::info('No Tools found just gonna chat');
-            $assistantMessage = $chat->addInput(
-                message: $response->content ?? 'Calling Tools',
+            //hmm
+            Log::info('[LaraChain] - No Tools found just gonna chat');
+            $campaign->addInput(
+                message: $response->content ?? 'Calling Tools', //ollama, openai blank but claude needs this :(
                 role: RoleEnum::Assistant
             );
-
-            return $assistantMessage;
         }
-
     }
 }

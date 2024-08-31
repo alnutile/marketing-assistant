@@ -25,7 +25,7 @@ class CampaignFactory extends Factory
             'start_date' => $this->faker->date(),
             'user_id' => User::factory(),
             'end_date' => $this->faker->date(),
-            'status' => StatusEnum::DRAFT,
+            'status' => StatusEnum::Draft,
             'chat_status' => ChatStatusEnum::Complete,
             'content' => $this->faker->paragraph(),
             'product_or_service' => ProductServiceEnum::PhysicalProduct,

@@ -20,8 +20,6 @@ class ClaudeClient extends BaseClient
 
     protected string $driver = 'claude';
 
-    protected string $system = '';
-
     public function setSystem(string $system): self
     {
         $this->system = $system;
@@ -98,7 +96,9 @@ class ClaudeClient extends BaseClient
             'anthropic-beta' => 'tools-2024-04-04',
             'anthropic-version' => $this->version,
             'content-type' => 'application/json',
-        ])->baseUrl($api_url);
+        ])
+            ->timeout(120)
+            ->baseUrl($api_url);
     }
 
     public function getFunctions(): array
@@ -116,8 +116,6 @@ class ClaudeClient extends BaseClient
         return collect($functions)->map(function ($function) {
             $properties = [];
             $required = [];
-
-            $type = data_get($function, 'parameters.type', 'object');
 
             foreach (data_get($function, 'parameters.properties', []) as $property) {
                 $name = data_get($property, 'name');
@@ -176,7 +174,6 @@ class ClaudeClient extends BaseClient
         /**
          * Claude needs to not start with a system message
          */
-        /** @phpstan-ignore-next-line */
         $messages = collect($messages)
             ->filter(function ($item) {
                 if ($item->role === 'system') {
@@ -187,6 +184,7 @@ class ClaudeClient extends BaseClient
 
                 return true;
             })
+            /** @phpstan-ignore-next-line */
             ->transform(function (MessageInDto $item) {
 
                 $item->content = str($item->content)->replaceEnd("\n", '')->trim()->toString();

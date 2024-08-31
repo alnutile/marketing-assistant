@@ -27,7 +27,6 @@ class OllamaClient extends BaseClient
         $response = $this->getClient()->post('/chat', [
             'model' => $this->getConfig('ollama')['models']['completion_model'],
             'messages' => $messages,
-            'format' => 'json',
             'stream' => false,
         ]);
 
@@ -76,10 +75,6 @@ class OllamaClient extends BaseClient
     {
         $functions = LlmDriverFacade::getFunctions();
 
-        if (! Feature::active('ollama-functions')) {
-            return [];
-        }
-
         return collect($functions)->map(function ($function) {
             $function = $function->toArray();
             $properties = [];
@@ -125,13 +120,6 @@ class OllamaClient extends BaseClient
             return $message->toArray();
         });
 
-        if (in_array('llama3', [
-            $this->getConfig('ollama')['models']['completion_model']])) {
-            Log::info('[LaraChain] LlmDriver::OllamaClient::remapMessages');
-            $messages = collect($messages)->reverse();
-        }
-
         return $messages->values()->toArray();
-
     }
 }

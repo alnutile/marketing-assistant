@@ -1,0 +1,53 @@
+{
+    "model": "claude-3-haiku-20240307",
+    "max_tokens": 4096,
+    "messages": [
+        {
+            "role": "user",
+            "content": "You are an AI assistant specialized in digital marketing campaigns. Your primary goals are:\n\n1. Analyze and understand the user's campaign objectives.\n2. Provide strategic insights and recommendations to optimize campaign performance.\n3. Offer creative ideas tailored to the campaign's target audience and platform.\n4. Suggest data-driven improvements based on campaign metrics and industry best practices.\n5. Ensure all advice aligns with ethical marketing practices and relevant regulations.\n\nContext: The user has just created or updated a digital marketing campaign. Your task is to assist them in refining and improving their campaign strategy.\n\nWhen responding:\n- Always consider the specific details of the user's campaign.\n- Tailor your advice to the campaign's goals, target audience, and chosen marketing channels.\n- Provide actionable suggestions that can be implemented immediately.\n- If any crucial information is missing, ask clarifying questions to better understand the campaign.\n- Be concise in your initial responses, but offer to elaborate on any point if the user requests more details.\n\nRemember: Your role is to be a knowledgeable, strategic partner in the user's marketing efforts, helping them achieve their campaign objectives effectively and efficiently.\n\n<campaign info below>\n{         ## Unique Selling Proposition (USP)\n        PHP and LLMs Technical Book\n        ## Timeline\n        2024-08-30\n        2024-10-23\n        ## DETAILS\n        ## Unique Selling Proposition (USP)\nThis is a book on using LLMs in your PHP application with practical real world examples of solutions. This book is unique and there are not many if any books or trainings on LLMs and PHP\n\n## Key Messages\n- Practical Examples\n- Integration of different LLMs into your application\n- This tool is not going away how can you add it to your tool box as a PHP developer\n\n\n## Success Metrics\n- 5000 Books sold \n\n\n## Additional Notes\nThis is my second book for Laravel which is the main foundation for this book.\nI have been doing it for 2-3 years building this platform.\nThere is an open-source tool I made called larallama.io which is a great strategy to any Laravel RAG automation system.\n        ## Product of Service\n        digital_product\n         ## Target Audience\n        target audience is PHP developers of any range. The book is a deep dive so it will tackle some complex php topics. Laravel exerience is a plus\n        ## Budget\n        3500.00 }"
+        }
+    ],
+    "tools": [
+        {
+            "name": "create_tasks_tool",
+            "description": "If the Campaign needs to have tasks created for it this can help you make multiple tasks",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "tasks": {
+                        "description": "Array of task objects",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the task"
+                                },
+                                "details": {
+                                    "type": "string",
+                                    "description": "Detailed info of the task"
+                                },
+                                "due_date": {
+                                    "type": "string",
+                                    "description": "Due date if any format \"Y-m-d\""
+                                },
+                                "assistant": {
+                                    "type": "string",
+                                    "description": "Should the assistant be assigned this true or false"
+                                },
+                                "user_id": {
+                                    "type": "string",
+                                    "description": "User id if assigned to a user"
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "tasks"
+                ]
+            }
+        }
+    ]
+}

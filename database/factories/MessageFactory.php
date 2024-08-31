@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Campaign;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Message>
@@ -23,6 +24,19 @@ class MessageFactory extends Factory
             'role' => $this->faker->randomElement(['assistant', 'user']),
             'user_id' => User::factory(),
             'campaign_id' => Campaign::factory(),
+            'tool_id' => Str::random(32),
+            'tool_name' => 'create_tasks_tool',
+            'tool_args' => [
+                'tasks' => [
+                    [
+                        'name' => $this->faker->name(),
+                        'details' => $this->faker->paragraph(),
+                        'completed' => false,
+                        'due_date' => $this->faker->date(),
+                        'assistant' => false,
+                    ],
+                ],
+            ],
         ];
     }
 }

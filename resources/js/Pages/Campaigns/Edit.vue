@@ -7,8 +7,6 @@ import ActionMessage from "@/Components/ActionMessage.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
-import {p} from "../../../../public/build/assets/app-C-jvVWCI.js";
-import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 const props = defineProps({
     campaign: Object,

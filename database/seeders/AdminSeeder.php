@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'name' => 'Admin',
+            'name' => 'Alfred',
             'email' => env('ADMIN_EMAIL'),
             'password' => bcrypt(env('ADMIN_PASSWORD'))]);
 

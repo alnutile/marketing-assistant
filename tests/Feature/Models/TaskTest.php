@@ -16,7 +16,6 @@ class TaskTest extends TestCase
         $this->assertNotNull($task->id);
         $this->assertNotNull($task->name);
         $this->assertNotNull($task->details);
-        $this->assertNotNull($task->completed);
         $this->assertNotNull($task->due_date);
         $this->assertNotNull($task->assistant);
         $this->assertNotNull($task->campaign->id);

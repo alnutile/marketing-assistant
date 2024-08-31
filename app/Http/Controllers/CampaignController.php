@@ -77,6 +77,7 @@ DEFAULT_CONTENT;
         ]);
 
         $validated['chat_status'] = ChatStatusEnum::Pending->value;
+        $validated['user_id'] = auth()->user()->id;
         $campaign = Campaign::create($validated);
 
         return redirect()->route('campaigns.show', $campaign);

@@ -72,6 +72,8 @@ class CampaignControllerTest extends TestCase
             $campaign->chat_status->value
         );
 
+        $this->assertNotNull($campaign->user_id);
+
     }
 
     public function test_show(): void

@@ -26,7 +26,7 @@ if (! function_exists('get_copy')) {
     {
         $path = str($file_name)->replace('.', '/')->prepend('copy/')->append('.md')->toString();
 
-        return str(File::get(storage_path($path)))->markdown();
+        return str(File::get(base_path($path)))->markdown();
     }
 }
 

@@ -17,7 +17,14 @@ class CampaignController extends Controller
     {
 
         $campaigns = CampaignResource::collection(
-            Campaign::whereUserId(auth()->user()->id)->paginate()
+            Campaign::whereIn(
+                'team_id',
+                auth()->user()
+                    ->teams
+                    ->pluck('id')
+                    ->values()
+                    ->toArray()
+            )->paginate()
         );
 
         return inertia('Campaigns/Index', [
@@ -78,6 +85,7 @@ DEFAULT_CONTENT;
 
         $validated['chat_status'] = ChatStatusEnum::Pending->value;
         $validated['user_id'] = auth()->user()->id;
+        $validated['team_id'] = auth()->user()->current_team_id;
         $campaign = Campaign::create($validated);
 
         return redirect()->route('campaigns.show', $campaign);

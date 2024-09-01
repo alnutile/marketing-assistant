@@ -26,6 +26,7 @@ class CampaignTest extends TestCase
         $this->assertNotNull($campaign->budget);
 
         $this->assertNotNull($campaign->users->first()->id);
+        $this->assertNotNull($campaign->team->id);
     }
 
     public function test_add_input(): void

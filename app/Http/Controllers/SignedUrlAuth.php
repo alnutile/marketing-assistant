@@ -46,7 +46,7 @@ class SignedUrlAuth extends Controller
             $loginToken->consumed_at = now();
             $loginToken->save();
 
-            Auth::login($loginToken->user);
+            Auth::login($loginToken->user, remember: true);
 
             return redirect()->intended(config('magic-login.redirect'));
         } catch (ModelNotFoundException $e) {

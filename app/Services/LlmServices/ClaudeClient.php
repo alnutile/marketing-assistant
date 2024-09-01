@@ -47,6 +47,8 @@ class ClaudeClient extends BaseClient
 
         $payload = $this->modifyPayload($payload);
 
+        put_fixture('claude_chat_payload_debug.json', $payload);
+
         $results = $this->getClient()->post('/messages', $payload);
 
         if (! $results->ok()) {
@@ -205,11 +207,6 @@ class ClaudeClient extends BaseClient
                 $toolId = data_get($item, 'tool_id', 'toolu_'.Str::random(32));
                 $tool = data_get($item, 'tool', 'unknown_tool');
                 $args = data_get($item, 'args', '{}');
-                Log::info('Claude Tool Found', [
-                    'tool' => $tool,
-                    'tool_id' => $toolId,
-                    'args' => $args,
-                ]);
 
                 $content = $item['content'];
 

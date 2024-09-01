@@ -18,6 +18,7 @@ class Orchestrate
 
         $messages = $campaign->getMessageThread();
 
+
         $response = LlmDriverFacade::driver(config('llmdriver.driver'))
             ->chat($messages);
 
@@ -66,7 +67,6 @@ class Orchestrate
             );
 
         } else {
-            //hmm
             Log::info('[LaraChain] - No Tools found just gonna chat');
             $campaign->addInput(
                 message: $response->content ?? 'Calling Tools', //ollama, openai blank but claude needs this :(

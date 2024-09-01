@@ -97,7 +97,7 @@ DEFAULT_CONTENT;
             'campaign' => new CampaignResourceShow($campaign),
             'messages' => MessageResource::collection($campaign->messages()
                 ->notSystem()
-                ->latest()->get()),
+                ->latest()->paginate(3)),
         ]);
     }
 

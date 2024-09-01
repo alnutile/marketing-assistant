@@ -64,7 +64,7 @@ const getting_tasks = ref(false)
                 </div>
 
                 <div class="flex justify-start gap-2 items-center">
-                    <span class="badge badge-ghost text-xs">{{ task.due_date }} </span>
+                    <span class="badge badge-ghost text-xs whitespace-nowrap inline-block">{{ task.due_date }}</span>
                     <span
                         v-if="task.user"
                         class="badge badge-accent text-xs">{{ task.user }} </span>

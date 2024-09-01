@@ -6,6 +6,7 @@ import Kickoff from "@/Pages/Campaigns/Components/Kickoff.vue";
 import InputError from "@/Components/InputError.vue";
 import Clipboard from "@/Components/Clipboard.vue";
 import Index from "@/Pages/Tasks/Index.vue";
+import Pagination from "@/Components/Pagination.vue";
 
 const props = defineProps({
     campaign: Object,
@@ -54,7 +55,7 @@ const sendDailyReport = () => {
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="flex justify-between p-4">
                         <div>
-                            <div class="flex justify-between gap-2">
+                            <div class="hidden sm:flex justify-between gap-2 ">
                                 <span class="badge badge-accent">
                                     status: {{ campaign.data.status_formatted }}
                                 </span>
@@ -70,7 +71,6 @@ const sendDailyReport = () => {
                                 <span class="badge badge-ghost">
                                     end: {{ campaign.data.end_date }}
                                  </span>
-
                             </div>
                         </div>
 
@@ -98,7 +98,9 @@ const sendDailyReport = () => {
                                 <template v-for="message in messages.data">
                                     <div class="border border-gray-300 rounded-md p-4 mb-4 overflow-scroll ">
                                         <div class="flex justify-end gap-2 items-center -mb-6">
-                                            <span class="badge badge-ghost text-xs">{{ message.updated_at }}</span> <Clipboard :content="message.content_raw"/>
+                                            <span class="badge badge-ghost text-xs">{{ message.updated_at }}</span>
+                                            <span class="badge badge-outline text-xs">{{ message.id }}</span>
+                                            <Clipboard :content="message.content_raw"/>
                                         </div>
                                         <div  class="font-bold flex justify-start gap-2 items-center" v-if="message.role != 'user'">
                                             <div class="avatar placeholder">
@@ -125,6 +127,11 @@ const sendDailyReport = () => {
                                         </div>
                                     </div>
                                 </template>
+
+                                <div>
+                                    <Pagination :meta="messages" />
+                                </div>
+
                             </div>
                         </div>
                         <div class="col-span-4 ml-2">

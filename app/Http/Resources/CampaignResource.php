@@ -27,6 +27,7 @@ class CampaignResource extends JsonResource
             'product_or_service' => $this->product_or_service->value,
             'target_audience' => $this->target_audience,
             'budget' => $this->budget,
+            'team' => new TeamResource($this->team),
             'user' => ($this->user_id) ? new UserResource($this->user) : null,
         ];
     }

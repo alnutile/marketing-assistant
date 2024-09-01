@@ -22,7 +22,6 @@ const props = defineProps({
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="flex justify-between items-start">
                         <div class="prose p-4" v-html="copy">
@@ -51,25 +50,27 @@ const props = defineProps({
                                     <th></th>
                                     <th>Who</th>
                                     <th>Name</th>
+                                    <th>Team</th>
                                     <th>View</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <!-- row 1 -->
                                 <tr class="bg-base-200" v-for="campaign in campaigns.data" :key="campaign.id">
-                                    <th>{{ campaign.id }}</th>
-                                    <th>
+                                    <td>{{ campaign.id }}</td>
+                                    <td>
                                         <div class="avatar">
                                             <div class="w-8 rounded-full">
                                                 <img :src="campaign.user?.profile_photo_url" />
                                             </div>
                                         </div>
-                                    </th>
+                                    </td>
                                     <td>
-                                        <div class="flex items-center gap-2">
+                                        {{ campaign.name }}
+                                    </td>
 
-                                            <div>{{ campaign.name }}</div>
-                                        </div>
+                                    <td>
+                                        {{ campaign.team?.name }}
                                     </td>
                                     <td>
                                         <Link

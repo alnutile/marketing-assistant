@@ -39,7 +39,18 @@ class FixTeams extends Command
                 'current_team_id' => $team->id,
             ]);
 
-            $team->users()->attach($user, ['role' => 'admin']);
+            if (! $team->hasUser($user)) {
+                $team->users()->attach($user, ['role' => 'admin']);
+            } else {
+                // User is already in the team, you might want to update their role instead
+                $team->users()->updateExistingPivot($user->id, ['role' => 'admin']);
+            }
+
+            foreach ($user->campaigns as $campaign) {
+                $campaign->update([
+                    'team_id' => $team->id,
+                ]);
+            }
         }
     }
 }

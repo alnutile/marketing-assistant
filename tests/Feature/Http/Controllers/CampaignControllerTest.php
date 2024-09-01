@@ -6,6 +6,7 @@ use App\Domains\Campaigns\ChatStatusEnum;
 use App\Domains\Campaigns\ProductServiceEnum;
 use App\Domains\Campaigns\StatusEnum;
 use App\Models\Campaign;
+use App\Models\Team;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
@@ -50,6 +51,13 @@ class CampaignControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
+        $team = Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $user->current_team_id = $team->id;
+        $user->updateQuietly();
+
         $this->actingAs($user)->post(
             route('campaigns.store'), [
                 'name' => 'Test Campaign',
@@ -73,6 +81,7 @@ class CampaignControllerTest extends TestCase
         );
 
         $this->assertNotNull($campaign->user_id);
+        $this->assertNotNull($campaign->team_id);
 
     }
 

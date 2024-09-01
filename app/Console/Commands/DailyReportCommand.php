@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Domains\Campaigns\DailyReportService;
 use Illuminate\Console\Command;
 
 class DailyReportCommand extends Command
@@ -25,6 +26,6 @@ class DailyReportCommand extends Command
      */
     public function handle()
     {
-
+        (new DailyReportService)->handle();
     }
 }

@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use App\Models\Campaign;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -38,11 +37,11 @@ class DailyReport extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('Daily Report')
-                    ->markdown('mail.daily_report', [
-                        'message' => $this->message,
-                        'url' => route('campaigns.show', $this->campaign),
-                    ]);
+            ->subject('Daily Report')
+            ->markdown('mail.daily_report', [
+                'message' => $this->message,
+                'url' => route('campaigns.show', $this->campaign),
+            ]);
     }
 
     /**

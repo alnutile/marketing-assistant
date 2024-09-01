@@ -39,7 +39,6 @@ class Campaign extends Model
         return $this->belongsTo(User::class);
     }
 
-
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('end_date', '>=', now())

@@ -6,10 +6,10 @@ use App\Models\Campaign;
 
 class CampaignDailyReportPrompt
 {
-
     public static function getPrompt(
         Campaign $campaign,
-        ?string $tasks = ''): string {
+        ?string $tasks = ''): string
+    {
 
         $now = now()->toISOString();
 

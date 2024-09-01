@@ -12,15 +12,15 @@ use Illuminate\Support\Facades\Notification;
 
 class DailyReportService
 {
-
-    public function handle() : void
+    public function handle(): void
     {
-        foreach(Campaign::active()->get() as $campaign) {
+        foreach (Campaign::active()->get() as $campaign) {
             $tasks = Task::where('campaign_id', $campaign->id)
                 ->notCompleted()
                 ->where('due_date', '>=', now()->addDays(7))
                 ->get()
-                ->transform(function ($item) {
+                /** @phpstan-ignore-next-line */
+                ->transform(function (Task $item) {
                     return sprintf(
                         'Task: %s %s %s',
                         $item->name,
@@ -53,7 +53,6 @@ class DailyReportService
             ]);
 
             Notification::send($campaign->user, new DailyReport($results->content, $campaign));
-
         }
     }
 }

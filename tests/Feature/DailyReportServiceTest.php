@@ -9,8 +9,6 @@ use App\Models\User;
 use App\Notifications\DailyReport;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\Responses\CompletionResponse;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
@@ -44,7 +42,7 @@ class DailyReportServiceTest extends TestCase
             'campaign_id' => $campaign->id,
         ]);
 
-        (new DailyReportService())->handle();
+        (new DailyReportService)->handle();
 
         Notification::assertSentTo($user, DailyReport::class);
 

@@ -2,6 +2,7 @@
 
 namespace App\Services\LlmServices;
 
+use App\Domains\Campaigns\CampaignSystemPrompt;
 use App\Services\LlmServices\Functions\FunctionDto;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\ClaudeCompletionResponse;
@@ -43,15 +44,12 @@ class ClaudeClient extends BaseClient
             'model' => $model,
             'max_tokens' => $maxTokens,
             'messages' => $messages,
+            'system' => CampaignSystemPrompt::handle(),
         ];
 
         $payload = $this->modifyPayload($payload);
 
         put_fixture('claude_chat_payload_debug.json', $payload);
-
-        Log::info('Claude Chat Payload', [
-            'payload' => $payload,
-        ]);
 
         $results = $this->getClient()->post('/messages', $payload);
 

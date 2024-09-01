@@ -10,7 +10,7 @@ class CreateTasksTool extends FunctionContract
 {
     protected string $name = 'create_tasks_tool';
 
-    protected string $description = 'If the Campaign needs to have tasks created for it this can help you make multiple tasks';
+    protected string $description = 'If the Campaign needs to have tasks created or the users prompt requires it you can use this tool to make multiple tasks';
 
     public function handle(
         Campaign $campaign,

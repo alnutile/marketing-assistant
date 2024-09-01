@@ -18,7 +18,6 @@ class Orchestrate
 
         $messages = $campaign->getMessageThread();
 
-
         $response = LlmDriverFacade::driver(config('llmdriver.driver'))
             ->chat($messages);
 

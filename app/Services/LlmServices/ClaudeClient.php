@@ -49,6 +49,10 @@ class ClaudeClient extends BaseClient
 
         put_fixture('claude_chat_payload_debug.json', $payload);
 
+        Log::info('Claude Chat Payload', [
+            'payload' => $payload,
+        ]);
+
         $results = $this->getClient()->post('/messages', $payload);
 
         if (! $results->ok()) {

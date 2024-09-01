@@ -12,7 +12,7 @@ trait SendMagicTrait
 {
     public function sendMagic(User $user, string $email)
     {
-        $loginToken = new LoginToken();
+        $loginToken = new LoginToken;
         $loginToken->token = Uuid::uuid4()->toString();
         $loginToken->user_id = $user->id;
         $loginToken->expires_at = now()->addMinutes(30);

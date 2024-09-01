@@ -34,6 +34,18 @@ class Campaign extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('end_date', '>=', now())
+            ->orWhere('end_date', null);
+    }
+
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);

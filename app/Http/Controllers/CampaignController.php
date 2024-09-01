@@ -17,7 +17,7 @@ class CampaignController extends Controller
     {
 
         $campaigns = CampaignResource::collection(
-            Campaign::user(auth()->user()->id)->paginate()
+            Campaign::whereUserId(auth()->user()->id)->paginate()
         );
 
         return inertia('Campaigns/Index', [

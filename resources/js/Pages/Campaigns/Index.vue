@@ -49,6 +49,7 @@ const props = defineProps({
                                 <thead>
                                 <tr>
                                     <th></th>
+                                    <th>Who</th>
                                     <th>Name</th>
                                     <th>View</th>
                                 </tr>
@@ -57,9 +58,23 @@ const props = defineProps({
                                 <!-- row 1 -->
                                 <tr class="bg-base-200" v-for="campaign in campaigns.data" :key="campaign.id">
                                     <th>{{ campaign.id }}</th>
-                                    <td>{{ campaign.name }}</td>
+                                    <th>
+                                        <div class="avatar">
+                                            <div class="w-8 rounded-full">
+                                                <img :src="campaign.user?.profile_photo_url" />
+                                            </div>
+                                        </div>
+                                    </th>
                                     <td>
-                                        <Link :href="route('campaigns.show', campaign.id)">view</Link>
+                                        <div class="flex items-center gap-2">
+
+                                            <div>{{ campaign.name }}</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <Link
+                                            class="link"
+                                            :href="route('campaigns.show', campaign.id)">view</Link>
                                     </td>
                                 </tr>
                                 </tbody>

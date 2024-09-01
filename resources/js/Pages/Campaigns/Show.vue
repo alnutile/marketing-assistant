@@ -32,7 +32,10 @@ const chat = () => {
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 🚀 Campaign: {{ campaign.data.name}}
+
+
             </h2>
+
         </template>
 
         <div class="py-12">
@@ -73,16 +76,27 @@ const chat = () => {
                         <div class="col-span-8">
                             <div v-auto-animate>
                                 <template v-for="message in messages.data">
-
                                     <div class="border border-gray-300 rounded-md p-4 mb-4 overflow-scroll ">
-                                        <div class="flex justify-end gap-2 items-center">
-                                            <Clipboard :content="message.content_raw"/>
+                                        <div class="flex justify-end gap-2 items-center -mb-6">
+                                            <span class="badge badge-ghost text-xs">{{ message.updated_at }}</span> <Clipboard :content="message.content_raw"/>
                                         </div>
-                                        <div  class="font-bold" v-if="message.role != 'user'">
-                                            Assistant <span class="badge badge-ghost text-xs">{{ message.updated_at }}</span>
+                                        <div  class="font-bold flex justify-start gap-2 items-center" v-if="message.role != 'user'">
+                                            <div class="avatar placeholder">
+                                                <div class="w-8 rounded-full bg-neutral text-neutral-content">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                        <div v-else class="font-bold">
-                                            User: {{ message.user?.name }}  <span class="badge badge-ghost text-xs">{{ message.updated_at }}</span>
+                                        <div v-else class="font-bold flex justify-start gap-2 items-center">
+                                            <div class="avatar">
+                                                <div class="w-8 rounded-full">
+                                                    <img :src="message.user?.profile_photo_url" />
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div class="prose" v-html="message.content"></div>
 

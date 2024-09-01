@@ -19,24 +19,7 @@ class ChatController extends Controller
             'chat_status' => \App\Domains\Campaigns\ChatStatusEnum::InProgress->value,
         ]);
 
-        //        $campaign->addInput(
-        //            message: $validated['input'],
-        //            role: RoleEnum::User,
-        //            user: auth()->user(),
-        //        );
-
         Orchestrate::handle($campaign, $validated['input']);
-
-        //        $messages = $campaign->getMessageThread();
-        //
-        //        $response = LlmDriverFacade::driver(config('llmdriver.driver'))
-        //            ->chat($messages);
-        //
-        //        $campaign->addInput(
-        //            message: $response->content,
-        //            role: RoleEnum::Assistant,
-        //            user: auth()->user(),
-        //        );
 
         $campaign->update([
             'chat_status' => \App\Domains\Campaigns\ChatStatusEnum::Complete->value,

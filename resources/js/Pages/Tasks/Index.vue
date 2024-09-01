@@ -1,12 +1,13 @@
 <script setup>
 
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import {useForm} from "@inertiajs/vue3";
 
 const tasks = ref([])
 
 const props = defineProps({
-    campaign: Object
+    campaign: Object,
+    chatCompleted: Boolean
 })
 
 const getTasks = () => {
@@ -19,11 +20,14 @@ const getTasks = () => {
     })
 }
 
+
 onMounted(() => {
     getTasks()
 })
 
 const completeTaskForm = useForm({})
+
+
 
 const completeTask = (task) => {
     completeTaskForm.post(route('tasks.complete', {
@@ -36,12 +40,21 @@ const completeTask = (task) => {
     })
 }
 
+
 const getting_tasks = ref(false)
+
+watch(() => props.chatCompleted, (newValue) => {
+    if (newValue) {
+        getTasks()  // Call your method to fetch new tasks
+    }
+})
+
 </script>
 
 <template>
 
     <div v-auto-animate>
+
         <div class="flex justify-end gap-2 items-center">
             <button type="button"
                     class="btn btn-outline rounded-none btn-sm"

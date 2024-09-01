@@ -1,5 +1,5 @@
 <script setup>
-import {Link, useForm} from "@inertiajs/vue3";
+import {Link, router, useForm} from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import {ref} from "vue";
 import Kickoff from "@/Pages/Campaigns/Components/Kickoff.vue";
@@ -17,12 +17,23 @@ const form = useForm({
     input: ''
 })
 
+const chatCompleted = ref(false)
+
 const chat = () => {
     form.post(route('chat.chat', {
         campaign: props.campaign.data.id
     }), {
         errorBag: 'chat',
         preserveScroll: true,
+        onStart: () => {
+            chatCompleted.value = false
+        },
+        onSuccess: () => {
+            form.reset('input')
+        },
+        onFinish: () => {
+            chatCompleted.value = true  // Set this to true when chat is completed
+        }
     });
 }
 
@@ -162,7 +173,9 @@ const sendDailyReport = () => {
 
                                     Tasks</h2>
 
-                                <Index :campaign="campaign.data"/>
+                                <Index
+                                    :chat-completed="chatCompleted"
+                                    :campaign="campaign.data"/>
                             </div>
                         </div>
                     </div>

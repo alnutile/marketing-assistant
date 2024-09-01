@@ -6,6 +6,15 @@ Route::get('/', function () {
     return redirect()->route('campaigns.index');
 });
 
+Route::get('/team-invitations/{invitation}',
+    [\App\Http\Controllers\TeamInviteAcceptController::class, 'accept'])
+    ->middleware('signed')
+    ->name('team-invitations.accept');
+
+Route::get('/login/signed/{token}', [\App\Http\Controllers\SignedUrlAuth::class,
+    'signInWithToken'])
+    ->name('signed_url.login');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

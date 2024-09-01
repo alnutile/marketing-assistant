@@ -25,6 +25,17 @@ const chat = () => {
     });
 }
 
+const dailyReportForm = useForm({})
+
+const sendDailyReport = () => {
+    dailyReportForm.post(route('daily-report.send', {
+        campaign: props.campaign.data.id
+    }), {
+        errorBag: 'dailyReport',
+        preserveScroll: true,
+    });
+}
+
 </script>
 
 <template>
@@ -68,6 +79,15 @@ const chat = () => {
                             <Link
                                 :href="route('campaigns.edit', campaign.data.id)"
                                 class="btn btn-primary rounded-none">Edit</Link>
+                            <button @click="sendDailyReport"
+                                    type="button"
+                                    :disabled="dailyReportForm.processing"
+                                    class="btn btn-outline rounded-none">
+                                <span v-if="!dailyReportForm.processing">
+                                    Send Daily Report
+                                </span>
+                                <span v-else class="loading loading-dots loading-sm"></span>
+                            </button>
                         </div>
                     </div>
 

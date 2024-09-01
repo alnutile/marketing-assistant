@@ -22,6 +22,8 @@ Route::middleware([
         }
     );
 
+    Route::post('/daily-report/{campaign}', \App\Http\Controllers\DailyReportSendController::class)->name('daily-report.send');
+
     Route::controller(\App\Http\Controllers\TaskController::class)->group(
         function () {
             Route::get('/tasks/{campaign}', 'index')->name('tasks.index');

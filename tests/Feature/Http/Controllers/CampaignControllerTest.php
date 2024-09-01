@@ -20,11 +20,24 @@ class CampaignControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        Campaign::factory(3)->create([
+        $team = Team::factory()->create([
             'user_id' => $user->id,
         ]);
 
-        Campaign::factory()->create();
+        $team->users()->attach($user, ['role' => 'admin']);
+
+        $user->current_team_id = $team->id;
+        $user->updateQuietly();
+
+        Campaign::factory(3)->create([
+            'user_id' => $user->id,
+            'team_id' => $team->id,
+        ]);
+
+        $teamNot = Team::factory()->create();
+        Campaign::factory()->create([
+            'team_id' => $teamNot->id,
+        ]);
 
         $this->actingAs($user)->get(
             route('campaigns.index')

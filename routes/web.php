@@ -43,4 +43,5 @@ Route::middleware([
             Route::post('/campaigns/{campaign}', 'kickOff')->name('campaigns.kickoff');
         }
     );
+
 });

@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Domains\Campaigns\ChatStatusEnum;
 use App\Domains\Campaigns\ProductServiceEnum;
 use App\Domains\Campaigns\StatusEnum;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -26,6 +27,7 @@ class CampaignFactory extends Factory
             'user_id' => User::factory(),
             'end_date' => $this->faker->date(),
             'status' => StatusEnum::Draft,
+            'team_id' => Team::factory(),
             'chat_status' => ChatStatusEnum::Complete,
             'content' => $this->faker->paragraph(),
             'product_or_service' => ProductServiceEnum::PhysicalProduct,

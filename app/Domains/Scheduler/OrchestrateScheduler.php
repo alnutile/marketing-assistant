@@ -6,8 +6,8 @@ use App\Models\Project;
 
 class OrchestrateScheduler
 {
-
-    public function handle(Project $project) {
+    public function handle(Project $project)
+    {
         //see about completed tasks
         //see about past tasks
         //see about goals

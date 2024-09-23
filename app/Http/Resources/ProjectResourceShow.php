@@ -24,7 +24,7 @@ class ProjectResourceShow extends JsonResource
             'chat_status' => $this->chat_status->value,
             'chat_status_formatted' => str($this->chat_status->name)->headline(),
             'content' => $this->content,
-            'product_or_service' => $this->product_or_service->value,
+            'product_or_service' => $this->product_or_service?->value,
             'target_audience' => $this->target_audience,
             'system_prompt' => $this->system_prompt,
             'scheduler_prompt' => $this->scheduler_prompt,

@@ -9,7 +9,7 @@ import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 
 const props = defineProps({
-    campaign: Object,
+    project: Object,
     productServices: Array,
     statuses: Array,
     content_start: String,
@@ -17,19 +17,19 @@ const props = defineProps({
 
 
 const form = useForm({
-    name: props.campaign.data.name,
-    start_date: props.campaign.data.start_date,
-    end_date: props.campaign.data.end_date,
-    status: props.campaign.data.status,
-    content: props.campaign.data.content,
-    product_or_service: props.campaign.data.product_or_service,
-    target_audience: props.campaign.data.target_audience,
-    budget: props.campaign.data.budget,
+    name: props.project.data.name,
+    start_date: props.project.data.start_date,
+    end_date: props.project.data.end_date,
+    status: props.project.data.status,
+    content: props.project.data.content,
+    product_or_service: props.project.data.product_or_service,
+    target_audience: props.project.data.target_audience,
+    budget: props.project.data.budget,
 });
 
 const save = () => {
     form.put(route('projects.update', {
-        campaign: props.campaign.data.id
+        project: props.project.data.id
     }), {
         errorBag: 'saveCampaign',
         preserveScroll: true,
@@ -40,15 +40,15 @@ const save = () => {
 </script>
 
 <template>
-<AppLayout title="Campaigns">
+<AppLayout title="Project">
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
     <FormSection @submitted="save">>
         <template #title>
-            Campaign Create
+            Project Create
         </template>
 
         <template #description>
-            Info here about kicking off your campaign....
+            Info here about kicking off your project....
         </template>
 
         <template #form>
@@ -167,7 +167,7 @@ const save = () => {
 
                 <a
                     :href="route('projects.show', {
-                    campaign: campaign.data.id
+                    project: project.data.id
                 })"
                     class="btn btn-secondary">
                     View

@@ -9,7 +9,7 @@ import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 
 const props = defineProps({
-    campaign: Object,
+    project: Object,
     productServices: Array,
     statuses: Array,
     content_start: String,
@@ -38,15 +38,15 @@ const save = () => {
 </script>
 
 <template>
-<AppLayout title="Campaigns">
+<AppLayout title="Projects">
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
     <FormSection @submitted="save">>
         <template #title>
-            Campaign Create
+            Project Create
         </template>
 
         <template #description>
-            Info here about kicking off your campaign....
+            Info here about kicking off your project....
         </template>
 
         <template #form>

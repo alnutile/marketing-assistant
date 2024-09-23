@@ -4,7 +4,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Welcome from "@/Components/Welcome.vue";
 
 const props = defineProps({
-    campaigns: Object,
+    projects: Object,
     copy: String
 })
 
@@ -12,10 +12,10 @@ const props = defineProps({
 </script>
 
 <template>
-    <AppLayout title="Campaigns">
+    <AppLayout title="Projects">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Campaigns
+                Projects
             </h2>
         </template>
 
@@ -33,10 +33,10 @@ const props = defineProps({
                     </div>
                     <div class="p-4">
                         <div class="overflow-x-auto">
-                            <div v-if="campaigns.data.length == 0">
+                            <div v-if="projects.data.length == 0">
                                 <div class="text-center">
                                     <div class="mb-4">
-                                        No Campaigns Yet!
+                                        No Projects Yet!
                                     </div>
                                     <Link
                                         :href="route('projects.create')"
@@ -56,26 +56,26 @@ const props = defineProps({
                                 </thead>
                                 <tbody>
                                 <!-- row 1 -->
-                                <tr class="bg-base-200" v-for="campaign in campaigns.data" :key="campaign.id">
-                                    <td>{{ campaign.id }}</td>
+                                <tr class="bg-base-200" v-for="campaign in projects.data" :key="project.id">
+                                    <td>{{ project.id }}</td>
                                     <td>
                                         <div class="avatar">
                                             <div class="w-8 rounded-full">
-                                                <img :src="campaign.user?.profile_photo_url" />
+                                                <img :src="project.user?.profile_photo_url" />
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        {{ campaign.name }}
+                                        {{ project.name }}
                                     </td>
 
                                     <td>
-                                        {{ campaign.team?.name }}
+                                        {{ project.team?.name }}
                                     </td>
                                     <td>
                                         <Link
                                             class="link"
-                                            :href="route('projects.show', campaign.id)">view</Link>
+                                            :href="route('projects.show', project.id)">view</Link>
                                     </td>
                                 </tr>
                                 </tbody>

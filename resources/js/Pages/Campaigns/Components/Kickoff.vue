@@ -6,15 +6,15 @@ import {useForm} from "@inertiajs/vue3";
 const kickOffRunning = ref(true)
 
 const props = defineProps({
-    campaign: Object
+    project: Object
 })
 
 const form = useForm({})
 
 const kickoff = () => {
     kickOffRunning.value = true;
-    form.post(route("campaigns.kickoff", {
-        campaign: props.campaign.id
+    form.post(route("projects.kickoff", {
+        project: props.project.id
     }), {
         preserveScroll: true,
         preserveState: false,

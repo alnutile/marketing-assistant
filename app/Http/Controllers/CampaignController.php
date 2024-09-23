@@ -29,7 +29,7 @@ class CampaignController extends Controller
 
         return inertia('Campaigns/Index', [
             'copy' => get_copy('projects.index'),
-            'campaigns' => $projects,
+            'projects' => $projects,
         ]);
     }
 
@@ -58,7 +58,7 @@ class CampaignController extends Controller
   * Medium
 
 ## Additional Notes
-[Any other important information or considerations for this campaign]
+[Any other important information or considerations for this project]
 
 
 DEFAULT_CONTENT;
@@ -94,7 +94,7 @@ DEFAULT_CONTENT;
     public function show(Project $project)
     {
         return inertia('Campaigns/Show', [
-            'campaign' => new ProjectResourceShow($project),
+            'project' => new ProjectResourceShow($project),
             'messages' => MessageResource::collection($project->messages()
                 ->notSystem()
                 ->latest()->paginate(3)),
@@ -106,7 +106,7 @@ DEFAULT_CONTENT;
         return inertia('Campaigns/Edit', [
             'statuses' => StatusEnum::selectOptions(),
             'productServices' => ProductServiceEnum::selectOptions(),
-            'campaign' => new ProjectResource($project),
+            'project' => new ProjectResource($project),
         ]);
     }
 

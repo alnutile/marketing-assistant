@@ -9,7 +9,7 @@ import Index from "@/Pages/Tasks/Index.vue";
 import Pagination from "@/Components/Pagination.vue";
 
 const props = defineProps({
-    campaign: Object,
+    project: Object,
     messages: Object
 })
 
@@ -21,7 +21,7 @@ const chatCompleted = ref(false)
 
 const chat = () => {
     form.post(route('chat.chat', {
-        campaign: props.campaign.data.id
+        project: props.project.data.id
     }), {
         errorBag: 'chat',
         preserveScroll: true,
@@ -41,7 +41,7 @@ const dailyReportForm = useForm({})
 
 const sendDailyReport = () => {
     dailyReportForm.post(route('daily-report.send', {
-        campaign: props.campaign.data.id
+        project: props.project.data.id
     }), {
         errorBag: 'dailyReport',
         preserveScroll: true,
@@ -51,12 +51,10 @@ const sendDailyReport = () => {
 </script>
 
 <template>
-    <AppLayout title="Campaign">
+    <AppLayout title="Project">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                🚀 Campaign: {{ campaign.data.name}}
-
-
+                🚀 Project: {{ project.data.name}}
             </h2>
 
         </template>
@@ -68,27 +66,27 @@ const sendDailyReport = () => {
                         <div>
                             <div class="hidden sm:flex justify-between gap-2 ">
                                 <span class="badge badge-accent">
-                                    status: {{ campaign.data.status_formatted }}
+                                    status: {{ project.data.status_formatted }}
                                 </span>
 
                                 <span class="badge badge-neutral">
-                                    ai: {{ campaign.data.chat_status_formatted }}
+                                    ai: {{ project.data.chat_status_formatted }}
                                  </span>
 
                                 <span class="badge badge-secondary">
-                                    start: {{ campaign.data.start_date }}
+                                    start: {{ project.data.start_date }}
                                  </span>
 
                                 <span class="badge badge-ghost">
-                                    end: {{ campaign.data.end_date }}
+                                    end: {{ project.data.end_date }}
                                  </span>
                             </div>
                         </div>
 
                         <div class="flex justify-end gap-2 items-center">
-                            <Kickoff :campaign="campaign.data"/>
+                            <Kickoff :project="project.data"/>
                             <Link
-                                :href="route('projects.edit', campaign.data.id)"
+                                :href="route('projects.edit', project.data.id)"
                                 class="btn btn-primary rounded-none">Edit</Link>
                             <button @click="sendDailyReport"
                                     type="button"
@@ -175,7 +173,7 @@ const sendDailyReport = () => {
 
                                 <Index
                                     :chat-completed="chatCompleted"
-                                    :campaign="campaign.data"/>
+                                    :project="project.data"/>
                             </div>
                         </div>
                     </div>

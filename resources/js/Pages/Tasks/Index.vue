@@ -6,14 +6,14 @@ import {useForm} from "@inertiajs/vue3";
 const tasks = ref([])
 
 const props = defineProps({
-    campaign: Object,
+    project: Object,
     chatCompleted: Boolean
 })
 
 const getTasks = () => {
     getting_tasks.value = true
     axios.get(route('tasks.index', {
-        campaign: props.campaign.id
+        project: props.project.id
     })).then(response => {
         tasks.value = response.data.tasks
         getting_tasks.value = false

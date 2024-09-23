@@ -14,7 +14,7 @@ class CreateTasksTool extends FunctionContract
 
     public function handle(
         Project $campaign,
-        array   $args = []): FunctionResponse
+        array $args = []): FunctionResponse
     {
         Log::info('TaskTool called');
 

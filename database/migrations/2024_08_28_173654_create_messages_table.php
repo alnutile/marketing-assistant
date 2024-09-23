@@ -16,7 +16,7 @@ return new class extends Migration
             $table->longText('content');
             $table->string('role')->default('user');
             $table->foreignIdFor(\App\Models\User::class)->constrained();
-            $table->foreignId("campaign_id")->constrained();
+            $table->foreignId('campaign_id')->constrained();
             $table->timestamps();
         });
     }

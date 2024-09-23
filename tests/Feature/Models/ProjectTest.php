@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Models;
 
-use App\Models\Project;
 use App\Models\Message;
+use App\Models\Project;
 use App\Services\LlmServices\RoleEnum;
 use Tests\TestCase;
 

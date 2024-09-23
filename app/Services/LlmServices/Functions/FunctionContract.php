@@ -14,7 +14,7 @@ abstract class FunctionContract
 
     abstract public function handle(
         Project $campaign,
-        array   $args = []
+        array $args = []
     ): FunctionResponse;
 
     public function getFunction(): FunctionDto

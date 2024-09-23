@@ -46,8 +46,8 @@ class FixTeams extends Command
                 $team->users()->updateExistingPivot($user->id, ['role' => 'admin']);
             }
 
-            foreach ($user->campaigns as $campaign) {
-                $campaign->update([
+            foreach ($user->projects as $project) {
+                $project->update([
                     'team_id' => $team->id,
                 ]);
             }

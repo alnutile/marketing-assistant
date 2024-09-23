@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('details');
             $table->boolean('completed')->default(false);
-            $table->foreignId("campaign_id")->constrained();
+            $table->foreignId('campaign_id')->constrained();
             $table->foreignIdFor(\App\Models\User::class)->constrained()->nullable();
             $table->date('due_date')->nullable();
             $table->boolean('assistant')->default(false);

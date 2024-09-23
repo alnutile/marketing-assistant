@@ -43,7 +43,7 @@ class CampaignControllerTest extends TestCase
             route('projects.index')
         )->assertStatus(200)
             ->assertInertia(fn (Assert $assert) => $assert
-                ->has('campaigns.data', 3)
+                ->has('projects.data', 3)
             );
     }
 
@@ -112,7 +112,7 @@ class CampaignControllerTest extends TestCase
             ])
         )->assertStatus(200)
             ->assertInertia(fn (Assert $assert) => $assert
-                ->has('campaign.data')
+                ->has('project.data')
             );
     }
 
@@ -128,7 +128,7 @@ class CampaignControllerTest extends TestCase
             route('projects.edit', $project)
         )->assertStatus(200)
             ->assertInertia(fn (Assert $assert) => $assert
-                ->has('campaign.data')
+                ->has('project.data')
             );
     }
 

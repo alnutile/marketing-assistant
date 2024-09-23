@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\Orchestration\Orchestrate;
 use App\Services\LlmServices\Responses\CompletionResponse;
@@ -17,7 +17,7 @@ class OrchestrateTest extends TestCase
     {
         $response = get_fixture('claude_chat_response.json', false);
 
-        $campaign = Campaign::factory()->create();
+        $project = Project::factory()->create();
 
         $this->assertDatabaseCount('messages', 0);
         $this->assertDatabaseCount('tasks', 0);
@@ -28,7 +28,7 @@ class OrchestrateTest extends TestCase
                 CompletionResponse::from($response)
             );
 
-        (new Orchestrate)->handle($campaign, 'Test Prompt');
+        (new Orchestrate)->handle($project, 'Test Prompt');
 
         $this->assertDatabaseCount('messages', 3);
         $this->assertDatabaseCount('tasks', 5);

@@ -18,6 +18,6 @@ class TeamInviteAcceptController extends Controller
 
         $invitation->delete();
 
-        return to_route('campaigns.index');
+        return to_route('projects.index');
     }
 }

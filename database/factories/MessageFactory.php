@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -23,7 +23,7 @@ class MessageFactory extends Factory
             'content' => $this->faker->paragraph(),
             'role' => $this->faker->randomElement(['assistant', 'user']),
             'user_id' => User::factory(),
-            'campaign_id' => Campaign::factory(),
+            'project_id' => Project::factory(),
             'tool_id' => Str::random(32),
             'tool_name' => 'create_tasks_tool',
             'tool_args' => [

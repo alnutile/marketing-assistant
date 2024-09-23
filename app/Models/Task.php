@@ -18,9 +18,9 @@ class Task extends Model
         'due_date' => 'date',
     ];
 
-    public function campaign(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Campaign::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

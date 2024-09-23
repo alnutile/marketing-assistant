@@ -2,7 +2,7 @@
 
 namespace App\Domains\Campaigns;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\Task;
 use App\Notifications\DailyReport;
 use App\Services\LlmServices\LlmDriverFacade;
@@ -14,14 +14,14 @@ class DailyReportService
 {
     public function handle(): void
     {
-        foreach (Campaign::active()->get() as $campaign) {
+        foreach (Project::active()->get() as $campaign) {
             $this->sendReport($campaign);
         }
     }
 
-    public function sendReport(Campaign $campaign)
+    public function sendReport(Project $campaign)
     {
-        $tasks = Task::where('campaign_id', $campaign->id)
+        $tasks = Task::where('project_id', $campaign->id)
             ->notCompleted()
             ->where('due_date', '>=', now()->addDays(7))
             ->get()

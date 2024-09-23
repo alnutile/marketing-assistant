@@ -21,7 +21,7 @@ class MessageResource extends JsonResource
             'updated_at' => $this->updated_at->diffForHumans(),
             'role' => $this->role->value,
             'user' => new UserResource($this->user),
-            'campaign_id' => $this->campaign_id,
+            'project_id' => $this->project_id,
         ];
     }
 }

@@ -17,7 +17,7 @@ const props = defineProps({
 
 
 const form = useForm({
-    name: 'You Campaign Name',
+    name: 'You Project Name',
     start_date: '',
     end_date: '',
     status: 'draft',
@@ -28,7 +28,7 @@ const form = useForm({
 });
 
 const save = () => {
-    form.post(route('campaigns.store'), {
+    form.post(route('projects.store'), {
         errorBag: 'saveCampaign',
         preserveScroll: true,
     });

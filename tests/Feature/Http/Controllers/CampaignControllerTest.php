@@ -5,7 +5,7 @@ namespace Tests\Feature\Http\Controllers;
 use App\Domains\Campaigns\ChatStatusEnum;
 use App\Domains\Campaigns\ProductServiceEnum;
 use App\Domains\Campaigns\StatusEnum;
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\Team;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -29,18 +29,18 @@ class CampaignControllerTest extends TestCase
         $user->current_team_id = $team->id;
         $user->updateQuietly();
 
-        Campaign::factory(3)->create([
+        Project::factory(3)->create([
             'user_id' => $user->id,
             'team_id' => $team->id,
         ]);
 
         $teamNot = Team::factory()->create();
-        Campaign::factory()->create([
+        Project::factory()->create([
             'team_id' => $teamNot->id,
         ]);
 
         $this->actingAs($user)->get(
-            route('campaigns.index')
+            route('projects.index')
         )->assertStatus(200)
             ->assertInertia(fn (Assert $assert) => $assert
                 ->has('campaigns.data', 3)
@@ -52,7 +52,7 @@ class CampaignControllerTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)->get(
-            route('campaigns.create')
+            route('projects.create')
         )->assertStatus(200)
             ->assertInertia(fn (Assert $assert) => $assert
                 ->has('statuses')
@@ -72,8 +72,8 @@ class CampaignControllerTest extends TestCase
         $user->updateQuietly();
 
         $this->actingAs($user)->post(
-            route('campaigns.store'), [
-                'name' => 'Test Campaign',
+            route('projects.store'), [
+                'name' => 'Test Project',
                 'start_date' => '2023-01-01',
                 'end_date' => '2023-01-01',
                 'content' => 'Test Description',
@@ -86,15 +86,15 @@ class CampaignControllerTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertStatus(302);
 
-        $campaign = Campaign::first();
+        $project = Project::first();
 
         $this->assertEquals(
             ChatStatusEnum::Pending->value,
-            $campaign->chat_status->value
+            $project->chat_status->value
         );
 
-        $this->assertNotNull($campaign->user_id);
-        $this->assertNotNull($campaign->team_id);
+        $this->assertNotNull($project->user_id);
+        $this->assertNotNull($project->team_id);
 
     }
 
@@ -102,12 +102,14 @@ class CampaignControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $campaign = Campaign::factory()->create([
+        $project = Project::factory()->create([
             'user_id' => $user->id,
         ]);
 
         $this->actingAs($user)->get(
-            route('campaigns.show', $campaign)
+            route('projects.show', [
+                'project' => $project->id,
+            ])
         )->assertStatus(200)
             ->assertInertia(fn (Assert $assert) => $assert
                 ->has('campaign.data')
@@ -118,12 +120,12 @@ class CampaignControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $campaign = Campaign::factory()->create([
+        $project = Project::factory()->create([
             'user_id' => $user->id,
         ]);
 
         $this->actingAs($user)->get(
-            route('campaigns.edit', $campaign)
+            route('projects.edit', $project)
         )->assertStatus(200)
             ->assertInertia(fn (Assert $assert) => $assert
                 ->has('campaign.data')
@@ -134,12 +136,12 @@ class CampaignControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $campaign = Campaign::factory()->create([
+        $project = Project::factory()->create([
             'user_id' => $user->id,
         ]);
 
         $this->actingAs($user)->put(
-            route('campaigns.update', $campaign)
+            route('projects.update', $project)
         )->assertStatus(302);
     }
 
@@ -147,14 +149,14 @@ class CampaignControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $campaign = Campaign::factory()->create([
+        $project = Project::factory()->create([
             'user_id' => $user->id,
         ]);
 
         $this->actingAs($user)->delete(
-            route('campaigns.destroy', $campaign)
+            route('projects.destroy', $project)
         )->assertStatus(302);
 
-        $this->assertDatabaseCount('campaigns', 0);
+        $this->assertDatabaseCount('projects', 0);
     }
 }

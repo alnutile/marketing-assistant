@@ -28,7 +28,7 @@ const form = useForm({
 });
 
 const save = () => {
-    form.put(route('campaigns.update', {
+    form.put(route('projects.update', {
         campaign: props.campaign.data.id
     }), {
         errorBag: 'saveCampaign',
@@ -166,7 +166,7 @@ const save = () => {
                 </PrimaryButton>
 
                 <a
-                    :href="route('campaigns.show', {
+                    :href="route('projects.show', {
                     campaign: campaign.data.id
                 })"
                     class="btn btn-secondary">

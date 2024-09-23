@@ -28,8 +28,8 @@ class Message extends Model
         return $query->where('role', '!=', RoleEnum::System->value);
     }
 
-    public function campaign(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Campaign::class);
+        return $this->belongsTo(Project::class);
     }
 }

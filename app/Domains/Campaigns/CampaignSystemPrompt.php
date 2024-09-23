@@ -9,7 +9,7 @@ class CampaignSystemPrompt
         return <<<'PROMPT'
 You are assisting with a digital marketing campaign. Before responding to any query, consider the following:
 
-1. Campaign Objective: The primary goal of the campaign (e.g., brand awareness, lead generation, sales).
+1. Project Objective: The primary goal of the campaign (e.g., brand awareness, lead generation, sales).
 2. Target Audience: The specific demographic, psychographic, and behavioral characteristics of the intended audience.
 3. Marketing Channels: The platforms and methods being used (e.g., social media, email, PPC, content marketing).
 4. Budget: The financial resources allocated to the campaign.

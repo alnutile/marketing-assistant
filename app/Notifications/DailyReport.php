@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -15,8 +15,8 @@ class DailyReport extends Notification
      * Create a new notification instance.
      */
     public function __construct(
-        public string $message,
-        public Campaign $campaign)
+        public string  $message,
+        public Project $campaign)
     {
         //
     }
@@ -40,7 +40,7 @@ class DailyReport extends Notification
             ->subject('Daily Report')
             ->markdown('mail.daily_report', [
                 'message' => $this->message,
-                'url' => route('campaigns.show', $this->campaign),
+                'url' => route('projects.show', $this->campaign),
             ]);
     }
 

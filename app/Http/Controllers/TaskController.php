@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TaskResource;
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index(Campaign $campaign)
+    public function index(Project $project)
     {
-        $tasks = TaskResource::collection($campaign->tasks()->orderBy('due_date', 'asc')->notCompleted()->get());
+        $tasks = TaskResource::collection($project->tasks()->orderBy('due_date', 'asc')->notCompleted()->get());
 
         return response()->json([
             'tasks' => $tasks,

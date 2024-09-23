@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('campaigns.index');
+    return redirect()->route('projects.index');
 });
 
 Route::get('/team-invitations/{invitation}',
@@ -22,34 +22,34 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/dashboard', function () {
-        return redirect()->route('campaigns.index');
+        return redirect()->route('projects.index');
     })->name('dashboard');
 
     Route::controller(\App\Http\Controllers\ChatController::class)->group(
         function () {
-            Route::post('/chat/{campaign}', 'chat')->name('chat.chat');
+            Route::post('/chat/{project}', 'chat')->name('chat.chat');
         }
     );
 
-    Route::post('/daily-report/{campaign}', \App\Http\Controllers\DailyReportSendController::class)->name('daily-report.send');
+    Route::post('/daily-report/{project}', \App\Http\Controllers\DailyReportSendController::class)->name('daily-report.send');
 
     Route::controller(\App\Http\Controllers\TaskController::class)->group(
         function () {
-            Route::get('/tasks/{campaign}', 'index')->name('tasks.index');
+            Route::get('/tasks/{project}', 'index')->name('tasks.index');
             Route::post('/tasks/{task}/complete', 'markAsComplete')->name('tasks.complete');
         }
     );
 
     Route::controller(\App\Http\Controllers\CampaignController::class)->group(
         function () {
-            Route::get('/campaigns', 'index')->name('campaigns.index');
-            Route::get('/campaigns/create', 'create')->name('campaigns.create');
-            Route::post('/campaigns', 'store')->name('campaigns.store');
-            Route::get('/campaigns/{campaign}', 'show')->name('campaigns.show');
-            Route::get('/campaigns/{campaign}/edit', 'edit')->name('campaigns.edit');
-            Route::put('/campaigns/{campaign}', 'update')->name('campaigns.update');
-            Route::delete('/campaigns/{campaign}', 'destroy')->name('campaigns.destroy');
-            Route::post('/campaigns/{campaign}', 'kickOff')->name('campaigns.kickoff');
+            Route::get('/projects', 'index')->name('projects.index');
+            Route::get('/projects/create', 'create')->name('projects.create');
+            Route::post('/projects', 'store')->name('projects.store');
+            Route::get('/projects/{project}', 'show')->name('projects.show');
+            Route::get('/projects/{project}/edit', 'edit')->name('projects.edit');
+            Route::put('/projects/{project}', 'update')->name('projects.update');
+            Route::delete('/projects/{project}', 'destroy')->name('projects.destroy');
+            Route::post('/projects/{project}', 'kickOff')->name('projects.kickoff');
         }
     );
 

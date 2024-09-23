@@ -88,7 +88,7 @@ const sendDailyReport = () => {
                         <div class="flex justify-end gap-2 items-center">
                             <Kickoff :campaign="campaign.data"/>
                             <Link
-                                :href="route('campaigns.edit', campaign.data.id)"
+                                :href="route('projects.edit', campaign.data.id)"
                                 class="btn btn-primary rounded-none">Edit</Link>
                             <button @click="sendDailyReport"
                                     type="button"

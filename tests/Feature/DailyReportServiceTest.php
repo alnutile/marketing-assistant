@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Domains\Campaigns\DailyReportService;
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
 use App\Notifications\DailyReport;
@@ -32,14 +32,14 @@ class DailyReportServiceTest extends TestCase
                 ])
             );
 
-        $campaign = Campaign::factory()->create([
+        $project = Project::factory()->create([
             'user_id' => $user->id,
             'end_date' => now()->addDays(7),
         ]);
 
         Task::factory()->create([
             'user_id' => $user->id,
-            'campaign_id' => $campaign->id,
+            'project_id' => $project->id,
         ]);
 
         (new DailyReportService)->handle();

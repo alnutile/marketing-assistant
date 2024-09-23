@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Domains\Campaigns\KickOffCampaign;
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\User;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
 use Tests\TestCase;
@@ -15,7 +15,7 @@ class KickOffCampaignTest extends TestCase
      */
     public function test_kickoff(): void
     {
-        $campaign = Campaign::factory()->create();
+        $project = Project::factory()->create();
 
         $user = User::factory()->create();
 
@@ -23,7 +23,7 @@ class KickOffCampaignTest extends TestCase
 
         Orchestrate::shouldReceive('handle')->once();
 
-        (new KickOffCampaign)->handle($campaign);
+        (new KickOffCampaign)->handle($project);
 
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
 use Tests\TestCase;
@@ -16,17 +16,17 @@ class TaskControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $campaign = Campaign::factory()->create([
+        $project = Project::factory()->create([
             'user_id' => $user->id,
         ]);
 
         $task = Task::factory()->create([
-            'campaign_id' => $campaign->id,
+            'project_id' => $project->id,
         ]);
 
         $this->actingAs($user)->get(
             route('tasks.index', [
-                'campaign' => $campaign->id,
+                'project' => $project->id,
             ])
         )->assertStatus(200);
     }

@@ -2,12 +2,12 @@
 
 namespace App\Domains\Campaigns;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
 
 class KickOffCampaign
 {
-    public function handle(Campaign $campaign)
+    public function handle(Project $campaign)
     {
         $campaign->updateQuietly([
             'chat_status' => ChatStatusEnum::InProgress,

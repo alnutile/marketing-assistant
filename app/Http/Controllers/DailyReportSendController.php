@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use Facades\App\Domains\Campaigns\DailyReportService;
 
 class DailyReportSendController extends Controller
 {
-    public function __invoke(Campaign $campaign)
+    public function __invoke(Project $project)
     {
-        DailyReportService::sendReport($campaign);
+        DailyReportService::sendReport($project);
         \request()->session()->flash('flash.banner', 'Sent!');
 
         return back();

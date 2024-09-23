@@ -66,8 +66,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function campaigns(): HasMany
+    public function projects(): HasMany
     {
-        return $this->hasMany(Campaign::class);
+        return $this->hasMany(Project::class);
     }
 }

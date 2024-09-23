@@ -2,12 +2,12 @@
 
 namespace App\Domains\Campaigns;
 
-use App\Models\Campaign;
+use App\Models\Project;
 
 class CampaignDailyReportPrompt
 {
     public static function getPrompt(
-        Campaign $campaign,
+        Project $campaign,
         ?string $tasks = ''): string
     {
 

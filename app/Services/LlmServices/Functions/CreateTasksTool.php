@@ -2,7 +2,7 @@
 
 namespace App\Services\LlmServices\Functions;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Support\Facades\Log;
 
@@ -10,11 +10,11 @@ class CreateTasksTool extends FunctionContract
 {
     protected string $name = 'create_tasks_tool';
 
-    protected string $description = 'If the Campaign needs to have tasks created or the users prompt requires it you can use this tool to make multiple tasks';
+    protected string $description = 'If the Project needs to have tasks created or the users prompt requires it you can use this tool to make multiple tasks';
 
     public function handle(
-        Campaign $campaign,
-        array $args = []): FunctionResponse
+        Project $campaign,
+        array   $args = []): FunctionResponse
     {
         Log::info('TaskTool called');
 
@@ -27,7 +27,7 @@ class CreateTasksTool extends FunctionContract
 
             Task::updateOrCreate([
                 'name' => $name,
-                'campaign_id' => $campaign->id,
+                'project_id' => $campaign->id,
             ],
                 [
                     'details' => $details,

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,7 +24,7 @@ class TaskFactory extends Factory
             'completed_at' => $this->faker->date(),
             'due_date' => $this->faker->date(),
             'assistant' => false,
-            'campaign_id' => Campaign::factory(),
+            'project_id' => Project::factory(),
             'user_id' => User::factory(),
         ];
     }

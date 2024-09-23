@@ -17,7 +17,7 @@ class MessageTest extends TestCase
         $this->assertNotNull($message->content);
         $this->assertNotNull($message->role);
         $this->assertNotNull($message->user->id);
-        $this->assertNotNull($message->campaign->id);
+        $this->assertNotNull($message->project->id);
         $this->assertNotNull($message->tool_args);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Models\User;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\Responses\CompletionResponse;
@@ -24,7 +24,7 @@ class ChatControllerTest extends TestCase
                 ])
             );
 
-        $campaign = Campaign::factory()
+        $project = Project::factory()
             ->hasAttached(User::factory(2))
             ->create();
 
@@ -32,13 +32,13 @@ class ChatControllerTest extends TestCase
 
         $this->actingAs($user)
             ->post(route('chat.chat', [
-                'campaign' => $campaign->id,
+                'project' => $project->id,
             ]), [
                 'input' => 'Hello World',
             ])
             ->assertSessionHasNoErrors()
             ->assertStatus(302);
 
-        $this->assertNotNull($campaign->messages->first()->id);
+        $this->assertNotNull($project->messages->first()->id);
     }
 }

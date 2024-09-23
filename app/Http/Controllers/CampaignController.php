@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Domains\Campaigns\ChatStatusEnum;
 use App\Domains\Campaigns\ProductServiceEnum;
 use App\Domains\Campaigns\StatusEnum;
-use App\Http\Resources\CampaignResource;
-use App\Http\Resources\CampaignResourceShow;
+use App\Http\Resources\ProjectResource;
+use App\Http\Resources\ProjectResourceShow;
 use App\Http\Resources\MessageResource;
-use App\Models\Campaign;
+use App\Models\Project;
 use Facades\App\Domains\Campaigns\KickOffCampaign;
 
 class CampaignController extends Controller
@@ -16,8 +16,8 @@ class CampaignController extends Controller
     public function index()
     {
 
-        $campaigns = CampaignResource::collection(
-            Campaign::whereIn(
+        $projects = ProjectResource::collection(
+            Project::whereIn(
                 'team_id',
                 auth()->user()
                     ->teams
@@ -28,8 +28,8 @@ class CampaignController extends Controller
         );
 
         return inertia('Campaigns/Index', [
-            'copy' => get_copy('campaigns.index'),
-            'campaigns' => $campaigns,
+            'copy' => get_copy('projects.index'),
+            'campaigns' => $projects,
         ]);
     }
 
@@ -86,31 +86,31 @@ DEFAULT_CONTENT;
         $validated['chat_status'] = ChatStatusEnum::Pending->value;
         $validated['user_id'] = auth()->user()->id;
         $validated['team_id'] = auth()->user()->current_team_id;
-        $campaign = Campaign::create($validated);
+        $project = Project::create($validated);
 
-        return redirect()->route('campaigns.show', $campaign);
+        return redirect()->route('projects.show', $project);
     }
 
-    public function show(Campaign $campaign)
+    public function show(Project $project)
     {
         return inertia('Campaigns/Show', [
-            'campaign' => new CampaignResourceShow($campaign),
-            'messages' => MessageResource::collection($campaign->messages()
+            'campaign' => new ProjectResourceShow($project),
+            'messages' => MessageResource::collection($project->messages()
                 ->notSystem()
                 ->latest()->paginate(3)),
         ]);
     }
 
-    public function edit(Campaign $campaign)
+    public function edit(Project $project)
     {
         return inertia('Campaigns/Edit', [
             'statuses' => StatusEnum::selectOptions(),
             'productServices' => ProductServiceEnum::selectOptions(),
-            'campaign' => new CampaignResource($campaign),
+            'campaign' => new ProjectResource($project),
         ]);
     }
 
-    public function update(Campaign $campaign)
+    public function update(Project $project)
     {
         $validated = request()->validate([
             'name' => 'required',
@@ -123,23 +123,23 @@ DEFAULT_CONTENT;
             'budget' => 'required',
         ]);
 
-        $campaign->update($validated);
+        $project->update($validated);
 
         request()->session()->flash('flash.banner', 'Updated');
 
         return back();
     }
 
-    public function destroy(Campaign $campaign)
+    public function destroy(Project $project)
     {
-        $campaign->delete();
+        $project->delete();
 
-        return redirect()->route('campaigns.index');
+        return redirect()->route('projects.index');
     }
 
-    public function kickOff(Campaign $campaign)
+    public function kickOff(Project $project)
     {
-        KickOffCampaign::handle($campaign);
+        KickOffCampaign::handle($project);
         request()->session()->flash('flash.banner', 'Done!');
 
         return back();

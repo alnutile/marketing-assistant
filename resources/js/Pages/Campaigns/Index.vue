@@ -28,7 +28,7 @@ const props = defineProps({
 
                         </div>
                         <div class="flex justify-end gap-4 p-4">
-                            <Link :href="route('campaigns.create')" class="btn btn-primary rounded-none">Create</Link>
+                            <Link :href="route('projects.create')" class="btn btn-primary rounded-none">Create</Link>
                         </div>
                     </div>
                     <div class="p-4">
@@ -39,7 +39,7 @@ const props = defineProps({
                                         No Campaigns Yet!
                                     </div>
                                     <Link
-                                        :href="route('campaigns.create')"
+                                        :href="route('projects.create')"
                                         class="btn btn-primary rounded-none">Create</Link>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ const props = defineProps({
                                     <td>
                                         <Link
                                             class="link"
-                                            :href="route('campaigns.show', campaign.id)">view</Link>
+                                            :href="route('projects.show', campaign.id)">view</Link>
                                     </td>
                                 </tr>
                                 </tbody>

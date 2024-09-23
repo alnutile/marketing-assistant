@@ -2,14 +2,14 @@
 
 namespace App\Services\LlmServices\Orchestration;
 
-use App\Models\Campaign;
+use App\Models\Project;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\RoleEnum;
 use Illuminate\Support\Facades\Log;
 
 class Orchestrate
 {
-    public function handle(Campaign $campaign, string $prompt): void
+    public function handle(Project $campaign, string $prompt): void
     {
         $campaign->addInput(
             message: $prompt,

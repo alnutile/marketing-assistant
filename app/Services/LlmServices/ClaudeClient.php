@@ -9,6 +9,7 @@ use App\Services\LlmServices\Responses\ClaudeCompletionResponse;
 use App\Services\LlmServices\Responses\CompletionResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -31,7 +32,7 @@ class ClaudeClient extends BaseClient
     /**
      * @param  MessageInDto[]  $messages
      */
-    public function chat(array $messages): CompletionResponse
+    public function chat(array|Collection $messages): CompletionResponse
     {
         $model = $this->getConfig('claude')['models']['completion_model'];
         $maxTokens = $this->getConfig('claude')['max_tokens'];
@@ -115,7 +116,7 @@ class ClaudeClient extends BaseClient
     /**
      * @param  FunctionDto[]  $functions
      */
-    public function remapFunctions(array $functions): array
+    public function remapFunctions(array|Collection $functions): array
     {
         return collect($functions)->map(function ($function) {
             $properties = [];
@@ -173,14 +174,14 @@ class ClaudeClient extends BaseClient
      *
      * @param  MessageInDto[]  $messages
      */
-    public function remapMessages(array $messages, bool $userLast = false): array
+    public function remapMessages(array|Collection $messages, bool $userLast = true): array
     {
         /**
          * Claude needs to not start with a system message
          */
         $messages = collect($messages)
             ->filter(function ($item) {
-                if ($item->role === 'system') {
+                if ($item->role === 'system' || $item->role === RoleEnum::System) {
                     $this->system = $item->content;
 
                     return false;
@@ -278,6 +279,9 @@ class ClaudeClient extends BaseClient
 
         }
 
+        /**
+         * HMM why would I not want user last
+         */
         if ($userLast) {
             $last = Arr::last($newMessagesArray);
 
@@ -288,6 +292,8 @@ class ClaudeClient extends BaseClient
                 ];
             }
         }
+
+        put_fixture("claude_messages_after_v2.json", $newMessagesArray);
 
         return $newMessagesArray;
     }

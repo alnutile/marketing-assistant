@@ -23,7 +23,6 @@ class CreateTasksTool extends FunctionContract
             $details = data_get($taskArg, 'details', null);
             $due_date = data_get($taskArg, 'due_date', null);
             $assistant = data_get($taskArg, 'assistant', false);
-            $user_id = data_get($taskArg, 'user_id', null);
 
             Task::updateOrCreate([
                 'name' => $name,
@@ -32,8 +31,7 @@ class CreateTasksTool extends FunctionContract
                 [
                     'details' => $details,
                     'due_date' => $due_date,
-                    'assistant' => $assistant,
-                    'user_id' => $user_id,
+                    'assistant' => $assistant
                 ]);
         }
 

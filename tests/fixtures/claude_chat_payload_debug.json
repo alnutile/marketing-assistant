@@ -4,62 +4,18 @@
     "messages": [
         {
             "role": "user",
-            "content": "You are an AI assistant specialized in digital marketing campaigns. Your primary goals are:\n\nToday's date is 2024-09-23T00:48:02.321485Z\n\n1. Analyze and understand the user's campaign objectives.\n2. Provide strategic insights and recommendations to optimize campaign performance.\n3. Offer creative ideas tailored to the campaign's target audience and platform.\n4. Suggest data-driven improvements based on campaign metrics and industry best practices.\n5. Ensure all advice aligns with ethical marketing practices and relevant regulations.\n6. If there are tasks them make sure to use the create task tool to make them\n\nContext: The user has just created or updated a digital marketing campaign. Your task is to assist them in refining and improving their campaign strategy.\n\nWhen responding:\n- Always consider the specific details of the user's campaign.\n- Tailor your advice to the campaign's goals, target audience, and chosen marketing channels.\n- Provide actionable suggestions that can be implemented immediately.\n- If any crucial information is missing, ask clarifying questions to better understand the campaign.\n- Be concise in your initial responses, but offer to elaborate on any point if the user requests more details.\n\nRemember: Your role is to be a knowledgeable, strategic partner in the user's marketing efforts, helping them achieve their campaign objectives effectively and efficiently.\n\nIf there are Tools to use but not need to use them and just reply to the prompt.\n<campaign info below>\n{         ## Unique Selling Proposition (USP)\n        Meal Plan\n        ## Timeline\n        2024-09-10\n        2024-10-02\n        ## DETAILS\n        You are a home meal cooking assistant that will help us plan meals based on recipes and data we send you. Ideally we will not have too many repeat meals a week so keep that in mind as you go. We like to shop on Sundays and cook a lot that day to use for lunch during the week. Using the Task tool you can make tasks for the days and meals needed to cook on those days\n        ## Product of Service\n        personal_brand\n         ## Target Audience\n        Help me make a weekly meal plan, with breakfast, lunch, dinner\nIdeally there are left overs for lunch so those recipes should be enough for 2 and that \n\nThen as the weeks go on ideally meals will change based on our feedback and not repeating all the time\n\nOut meal plan ideally is based on the following core ingredients\nfresh vegetables ideally seasonal.\nWe live in Massachusetts [TIME_OF_YEAR]\n\nCarrots, potatoes, cauliflower, broccoli, mushrooms peppers and anything like that really.\n\nChicken breast, thighs etc. \n\nTofu \n\nstir-fry is great, Dumplings, pesto etc.\n\nTacos nights a great with fish, pickled onions.\n\nSo as you can see mixes of fresh cooked foods.\n\nBreakfast can be\n        ## Budget\n        3000.00 }"
+            "content": "Get a list of tasks done today\nIf more tasks are need please make them\nSend team notice about any tasks made today and done today with a sense of how they are doing"
         },
         {
             "role": "assistant",
-            "content": [
-                {
-                    "type": "text",
-                    "text": "<thinking>Tool create_tasks_tool complete<\/thinking>"
-                },
-                {
-                    "type": "tool_use",
-                    "id": "toolu_01X9UhQMfxoHMm3PBJkTeZnw",
-                    "name": "create_tasks_tool",
-                    "input": {
-                        "tasks": [
-                            {
-                                "name": "Sunday Meal Planning and Shopping",
-                                "details": "Plan meals for the week and create a shopping list based on seasonal ingredients and preferences.",
-                                "due_date": "2024-09-29",
-                                "assistant": "true"
-                            },
-                            {
-                                "name": "Sunday Meal Prep",
-                                "details": "Prepare meals for the week, focusing on dishes that can be partially or fully prepared in advance.",
-                                "due_date": "2024-09-29",
-                                "assistant": "false"
-                            },
-                            {
-                                "name": "Weekday Dinner Preparation",
-                                "details": "Finalize dinner preparations using pre-prepped ingredients and quick cooking methods.",
-                                "due_date": "2024-09-30",
-                                "assistant": "false"
-                            },
-                            {
-                                "name": "Weekly Meal Plan Review",
-                                "details": "Review the success of the previous week's meal plan and gather feedback for improvements.",
-                                "due_date": "2024-10-06",
-                                "assistant": "true"
-                            }
-                        ]
-                    }
-                }
-            ]
+            "content": "{\"content\":\"Tool create_tasks_tool complete\",\"role\":\"tool\",\"user_id\":null,\"created_at\":\"2024-09-23T22:53:45.000000Z\",\"updated_at\":\"2024-09-23T22:53:45.000000Z\",\"tool_id\":\"toolu_01JcavWuYYjJSxi313LUCM5T\",\"tool_name\":\"create_tasks_tool\",\"tool_args\":{\"tasks\":[{\"name\":\"Review campaign performance metrics\",\"details\":\"Analyze key performance indicators (KPIs) for ongoing digital marketing campaigns\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"},{\"name\":\"Update social media content calendar\",\"details\":\"Refresh the content calendar for the next two weeks across all social media platforms\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"},{\"name\":\"Optimize landing page for upcoming promotion\",\"details\":\"Improve the landing page design and copy for the upcoming fall promotion\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"},{\"name\":\"Conduct A\\\/B test on email subject lines\",\"details\":\"Set up and launch A\\\/B test for email subject lines to improve open rates\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"}]},\"project_id\":1,\"id\":130}"
         },
         {
             "role": "user",
-            "content": [
-                {
-                    "type": "tool_result",
-                    "tool_use_id": "toolu_01X9UhQMfxoHMm3PBJkTeZnw",
-                    "content": "Tool create_tasks_tool complete"
-                }
-            ]
+            "content": "Using the surrounding context to continue this response thread"
         }
     ],
-    "system": "You are assisting with a digital marketing campaign. Before responding to any query, consider the following:\n\n1. Project Objective: The primary goal of the campaign (e.g., brand awareness, lead generation, sales).\n2. Target Audience: The specific demographic, psychographic, and behavioral characteristics of the intended audience.\n3. Marketing Channels: The platforms and methods being used (e.g., social media, email, PPC, content marketing).\n4. Budget: The financial resources allocated to the campaign.\n5. Timeline: The duration and key milestones of the campaign.\n6. Key Performance Indicators (KPIs): The metrics used to measure the campaign's success.\n7. Brand Voice: The tone and style of communication that aligns with the brand's identity.\n8. Compliance: Relevant industry regulations and ethical considerations.\n9. Task List: The tasks that need to be completed for the campaign\n\nYour role is to provide expert guidance, taking into account these campaign elements. Tailor your responses to align with the campaign's specific context and goals. If any of this information is unclear or unavailable, seek clarification when necessary to provide the most relevant and effective assistance.\n\nNow, please proceed with addressing the user's query:\n",
+    "system": "You are an AI assistant specialized in digital marketing campaigns. Your primary goals are:\n\nToday's date is 2024-09-12T11:29:08.543777Z\n\n1. Analyze and understand the user's campaign objectives.\n2. Provide strategic insights and recommendations to optimize campaign performance.\n3. Offer creative ideas tailored to the campaign's target audience and platform.\n4. Suggest data-driven improvements based on campaign metrics and industry best practices.\n5. Ensure all advice aligns with ethical marketing practices and relevant regulations.\n6. If there are tasks them make sure to use the create task tool to make them\n\nContext: The user has just created or updated a digital marketing campaign. Your task is to assist them in refining and improving their campaign strategy.\n\nWhen responding:\n- Always consider the specific details of the user's campaign.\n- Tailor your advice to the campaign's goals, target audience, and chosen marketing channels.\n- Provide actionable suggestions that can be implemented immediately.\n- If any crucial information is missing, ask clarifying questions to better understand the campaign.\n- Be concise in your initial responses, but offer to elaborate on any point if the user requests more details.\n\nRemember: Your role is to be a knowledgeable, strategic partner in the user's marketing efforts, helping them achieve their campaign objectives effectively and efficiently.\n\nIf there are Tools to use but not need to use them and just reply to the prompt.",
     "tools": [
         {
             "name": "create_tasks_tool",

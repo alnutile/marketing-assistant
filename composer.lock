@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "960df67dd136304f1dd8d352f26ae717",
+    "content-hash": "e1ae4095b4d063007fe24c26ef93ff04",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1492,118 +1492,6 @@
                 }
             ],
             "time": "2023-08-10T19:36:49+00:00"
-        },
-        {
-            "name": "echolabs/sparkle",
-            "version": "dev-api-v4",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:echolabsdev/sparkle-dev.git",
-                "reference": "67a22d298ebaae512e41242d57f3696cb1fa75f3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/echolabsdev/sparkle-dev/zipball/67a22d298ebaae512e41242d57f3696cb1fa75f3",
-                "reference": "67a22d298ebaae512e41242d57f3696cb1fa75f3",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^11.0",
-                "openai-php/client": "^0.10.1"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.14",
-                "mockery/mockery": "^1.6",
-                "orchestra/testbench": "^9.2",
-                "pestphp/pest": "^3.0",
-                "pestphp/pest-plugin-arch": "^3.0",
-                "pestphp/pest-plugin-laravel": "^3.0",
-                "phpstan/extension-installer": "^1.3",
-                "phpstan/phpstan": "^1.11",
-                "phpstan/phpstan-deprecation-rules": "^1.2",
-                "projektgopher/whisky": "^0.7.0",
-                "rector/rector": "^1.1",
-                "spatie/ray": "^1.41"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "EchoLabs\\Sparkle\\SparkleProvider"
-                    ],
-                    "aliases": {
-                        "SparkleServer": "EchoLabs\\Sparkle\\Facades\\SparkleServer"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "EchoLabs\\Sparkle\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests/",
-                    "Workbench\\App\\": "workbench/app/",
-                    "Workbench\\Database\\Factories\\": "workbench/database/factories/",
-                    "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
-                }
-            },
-            "scripts": {
-                "post-autoload-dump": [
-                    "@clear",
-                    "@prepare"
-                ],
-                "post-install-cmd": [
-                    "whisky update"
-                ],
-                "post-update-cmd": [
-                    "whisky update"
-                ],
-                "phpstan": [
-                    "phpstan analyse -c phpstan.neon.dist"
-                ],
-                "format": [
-                    "pint",
-                    "rector process --no-diffs"
-                ],
-                "clear": [
-                    "@php vendor/bin/testbench package:purge-skeleton --ansi"
-                ],
-                "prepare": [
-                    "@php vendor/bin/testbench package:discover --ansi"
-                ],
-                "build": [
-                    "@php vendor/bin/testbench workbench:build --ansi"
-                ],
-                "serve": [
-                    "Composer\\Config::disableProcessTimeout",
-                    "@build",
-                    "@php vendor/bin/testbench serve"
-                ],
-                "test": [
-                    "@php vendor/bin/pest"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "TJ Miller",
-                    "email": "hello@echolabs.dev"
-                }
-            ],
-            "description": "GenAI Agents for Laravel",
-            "support": {
-                "source": "https://github.com/echolabsdev/sparkle-dev/tree/api-v4",
-                "issues": "https://github.com/echolabsdev/sparkle-dev/issues"
-            },
-            "time": "2024-09-17T23:12:52+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -11335,9 +11223,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "echolabs/sparkle": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

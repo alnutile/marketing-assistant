@@ -1,0 +1,10 @@
+[
+    {
+        "role": "assistant",
+        "content": "{\"content\":\"Tool create_tasks_tool complete\",\"role\":\"tool\",\"user_id\":null,\"created_at\":\"2024-09-23T21:23:57.000000Z\",\"updated_at\":\"2024-09-23T21:23:57.000000Z\",\"tool_id\":\"toolu_01GcMqfwpTaVn2t43gf5ZcoM\",\"tool_name\":\"create_tasks_tool\",\"tool_args\":{\"tasks\":[{\"name\":\"Review campaign performance metrics\",\"details\":\"Analyze key performance indicators (KPIs) for the current digital marketing campaign and prepare a summary report.\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"},{\"name\":\"Optimize ad creatives\",\"details\":\"Based on performance data, revise and improve the ad creatives for better engagement and conversion rates.\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"},{\"name\":\"Update social media content calendar\",\"details\":\"Refresh the content calendar for the next two weeks, aligning with campaign goals and recent performance insights.\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"}]},\"project_id\":1,\"id\":126}"
+    },
+    {
+        "role": "user",
+        "content": "Get a list of tasks done today\nIf more tasks are need please make them\nSend team notice about any tasks made today and done today with a sense of how they are doing"
+    }
+]

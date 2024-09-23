@@ -13,7 +13,7 @@ abstract class FunctionContract
     protected string $type = 'object';
 
     abstract public function handle(
-        Project $campaign,
+        Project $project,
         array $args = []
     ): FunctionResponse;
 

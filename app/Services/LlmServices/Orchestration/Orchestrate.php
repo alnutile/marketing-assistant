@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 
 class Orchestrate
 {
+
+
     public function handle(Project $campaign, string $prompt): void
     {
         $campaign->addInput(

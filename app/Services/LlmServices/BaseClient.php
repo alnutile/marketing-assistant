@@ -6,6 +6,7 @@ use App\Services\LlmServices\Functions\CreateTasksTool;
 use App\Services\LlmServices\Functions\FunctionContract;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\CompletionResponse;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -34,7 +35,7 @@ abstract class BaseClient
     /**
      * @param  MessageInDto[]  $messages
      */
-    public function chat(array $messages): CompletionResponse
+    public function chat(array|Collection $messages): CompletionResponse
     {
         if (! app()->environment('testing')) {
             sleep(2);
@@ -107,7 +108,7 @@ abstract class BaseClient
     /**
      * @param  MessageInDto[]  $messages
      */
-    public function remapMessages(array $messages): array
+    public function remapMessages(array|Collection $messages): array
     {
         return $messages;
     }

@@ -56,7 +56,7 @@ const props = defineProps({
                                 </thead>
                                 <tbody>
                                 <!-- row 1 -->
-                                <tr class="bg-base-200" v-for="campaign in projects.data" :key="project.id">
+                                <tr class="bg-base-200" v-for="project in projects.data" :key="project.id">
                                     <td>{{ project.id }}</td>
                                     <td>
                                         <div class="avatar">

@@ -15,6 +15,10 @@ class OrchestrateScheduler
         //see if actions from that
         //sse if actions based on main prompt
         //make sure to include time and day
+        $prompt = $project->scheduler_prompt;
+        $systemPrompt = $project->system_prompt;
+
+
 
     }
 }

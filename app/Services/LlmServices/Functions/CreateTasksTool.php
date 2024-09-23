@@ -13,7 +13,7 @@ class CreateTasksTool extends FunctionContract
     protected string $description = 'If the Project needs to have tasks created or the users prompt requires it you can use this tool to make multiple tasks';
 
     public function handle(
-        Project $campaign,
+        Project $project,
         array $args = []): FunctionResponse
     {
         Log::info('TaskTool called');
@@ -27,7 +27,7 @@ class CreateTasksTool extends FunctionContract
 
             Task::updateOrCreate([
                 'name' => $name,
-                'project_id' => $campaign->id,
+                'project_id' => $project->id,
             ],
                 [
                     'details' => $details,

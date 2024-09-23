@@ -22,6 +22,8 @@ const form = useForm({
     end_date: '',
     status: 'draft',
     content: props.content_start,
+    system_prompt: '',
+    scheduler_prompt: '',
     product_or_service: '',
     target_audience: '',
     budget: '',

@@ -29,6 +29,8 @@ class ProjectFactory extends Factory
             'status' => StatusEnum::Draft,
             'team_id' => Team::factory(),
             'chat_status' => ChatStatusEnum::Complete,
+            'system_prompt' => $this->faker->paragraph(),
+            'scheduler_prompt' => $this->faker->paragraph(),
             'content' => $this->faker->paragraph(),
             'product_or_service' => ProductServiceEnum::PhysicalProduct,
             'target_audience' => $this->faker->paragraph(),

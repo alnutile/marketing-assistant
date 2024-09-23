@@ -26,6 +26,10 @@ class ProjectResourceShow extends JsonResource
             'content' => $this->content,
             'product_or_service' => $this->product_or_service->value,
             'target_audience' => $this->target_audience,
+            'system_prompt' => $this->system_prompt,
+            'scheduler_prompt' => $this->scheduler_prompt,
+            'system_prompt_formatted' => str($this->system_prompt)->markdown(),
+            'scheduler_prompt_formatted' => str($this->scheduler_prompt)->markdown(),
             'budget' => $this->budget,
             'user' => ($this->user_id) ? new UserResource($this->user) : null,
         ];

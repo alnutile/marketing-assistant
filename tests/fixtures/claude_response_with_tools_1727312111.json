@@ -1,0 +1,49 @@
+[
+    {
+        "content": "You are a home meal cooking assistant that will help us plan meals based on recipes and data we send you. Ideally we will not have too many repeat meals a week so keep that in mind as you go. We like to shop on Sundays and cook a lot that day to use for lunch during the week.\nThen send the team and email with any updates.Help me make a weekly meal plan, with breakfast, lunch, dinner\nIdeally there are left overs for lunch so those recipes should be enough for 2 and that \n\nThen as the weeks go on ideally meals will change based on our feedback and not repeating all the time\n\nOut meal plan ideally is based on the following core ingredients\nfresh vegetables ideally seasonal.\nWe live in Massachusetts [TIME_OF_YEAR]\n\n\n\nWhere \nCarrots, potatoes, cauliflower, broccoli, mushrooms peppers and anything like that really.\n\nChicken breast, thighs etc. \nTurkey mince, beef steak, shrimp, sausage \n\nTofu  so not every night is meat though fish is great \n\nstir-fry is great, Dumplings, pesto etc.\n\nTacos nights a great with fish, pickled onions.\n\nSo as you can see mixes of fresh cooked foods.\n\nBreakfast can be simple just oatmeal, or toast and advocado",
+        "role": "user",
+        "is_ai": false,
+        "show": true,
+        "tool": "",
+        "tool_id": "",
+        "args": []
+    },
+    {
+        "content": "Hey there! Can you help me with my weekly review? Here's what I need:\n\n1. Check if there's any feedback on our recent meals. If there is, maybe we should add some reminders to improve things for next time. If there is none make a Task to remind us to offer some feedback tomorrow.\n\n2. Take a look at my to-do list. If anything's overdue, could you let the team know?\n\n3. See if there's any new stuff on our site. If you find anything interesting, let me know so I can check it out.\n\n4. Lastly, can you give me a quick summary of what's been done and what needs attention?\n\nThanks for your help!",
+        "role": "user",
+        "is_ai": false,
+        "show": true,
+        "tool": "",
+        "tool_id": "",
+        "args": []
+    },
+    {
+        "content": "Task Name: Sunday Meal Planning and Shopping\nTask Id: 36\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPlan meals for the week and create a shopping list based on seasonal ingredients and preferences.\n\nTask Name: Sunday Meal Prep\nTask Id: 37\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPrepare meals for the week, focusing on dishes that can be partially or fully prepared in advance.\n\nTask Name: Weekday Dinner Preparation\nTask Id: 38\nDue: 2024-09-30\nCompleted At: null\nDetails: \nFinalize dinner preparations using pre-prepped ingredients and quick cooking methods.\n\nTask Name: Weekly Meal Plan Review\nTask Id: 39\nDue: 2024-10-06\nCompleted At: null\nDetails: \nReview the success of the previous week's meal plan and gather feedback for improvements.",
+        "role": "tool",
+        "is_ai": false,
+        "show": true,
+        "tool": "list_tasks",
+        "tool_id": "toolu_011HpVFkJ1cxtLDxHm3GN2qL",
+        "args": {
+            "state": "open"
+        }
+    },
+    {
+        "content": "{\"tasks\":[{\"name\":\"Provide Meal Feedback\",\"details\":\"Offer feedback on recent meals to help improve future meal plans\",\"due_date\":\"2023-09-18\",\"assistant\":\"false\"}]}",
+        "role": "tool",
+        "is_ai": false,
+        "show": true,
+        "tool": "create_tasks_tool",
+        "tool_id": "toolu_01BBftNhhTTWZvnLkybVhfts",
+        "args": {
+            "tasks": [
+                {
+                    "name": "Provide Meal Feedback",
+                    "details": "Offer feedback on recent meals to help improve future meal plans",
+                    "due_date": "2023-09-18",
+                    "assistant": "false"
+                }
+            ]
+        }
+    }
+]

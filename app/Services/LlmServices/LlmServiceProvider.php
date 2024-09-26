@@ -3,6 +3,8 @@
 namespace App\Services\LlmServices;
 
 use App\Services\LlmServices\Functions\CreateTasksTool;
+use App\Services\LlmServices\Functions\SendEmailToTeam;
+use App\Services\LlmServices\Functions\TaskList;
 use Illuminate\Support\ServiceProvider;
 
 class LlmServiceProvider extends ServiceProvider
@@ -28,5 +30,12 @@ class LlmServiceProvider extends ServiceProvider
             return new CreateTasksTool;
         });
 
+        $this->app->bind('send_email_to_team', function () {
+            return new SendEmailToTeam;
+        });
+
+        $this->app->bind('list_tasks', function () {
+            return new TaskList();
+        });
     }
 }

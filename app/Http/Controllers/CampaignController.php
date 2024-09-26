@@ -99,7 +99,9 @@ DEFAULT_CONTENT;
             'project' => new ProjectResourceShow($project),
             'messages' => MessageResource::collection($project->messages()
                 ->notSystem()
-                ->latest()->paginate(3)),
+                ->notTool()
+                ->latest()
+                ->paginate(3)),
         ]);
     }
 

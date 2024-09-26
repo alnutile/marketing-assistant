@@ -5,6 +5,7 @@ namespace App\Services\LlmServices;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\CompletionResponse;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -17,7 +18,7 @@ class OllamaClient extends BaseClient
      *
      * @throws BindingResolutionException
      */
-    public function chat(array $messages): CompletionResponse
+    public function chat(array|Collection $messages): CompletionResponse
     {
         Log::info('LlmDriver::OllamaClient::completion');
 
@@ -113,7 +114,7 @@ class OllamaClient extends BaseClient
         return 'ollama';
     }
 
-    public function remapMessages(array $messages): array
+    public function remapMessages(array|Collection $messages): array
     {
         $messages = collect($messages)->map(function ($message) {
             return $message->toArray();

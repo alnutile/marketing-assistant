@@ -6,22 +6,29 @@ use App\Models\Project;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\RoleEnum;
 use Illuminate\Support\Facades\Log;
+use Facades\App\Services\LlmServices\Orchestration\Orchestrate as OrchestrateFacade;
 
 class Orchestrate
 {
-
-
-    public function handle(Project $campaign, string $prompt): void
+    public function handle(Project $project, string $prompt = '', RoleEnum $role = RoleEnum::User): void
     {
-        $campaign->addInput(
-            message: $prompt,
-            role: RoleEnum::User,
-            user: auth()->user());
+        if(!empty($prompt)) {
+            $project->addInput(
+                message: $prompt,
+                role: $role,
+                user: (auth()->check()) ? auth()->user() : $project->user
+            );
+        }
 
-        $messages = $campaign->getMessageThread();
+        $systemPrompt = $project->system_prompt;
+
+        $messages = $project->getMessageThread();
 
         $response = LlmDriverFacade::driver(config('llmdriver.driver'))
+            ->setSystem($systemPrompt)
             ->chat($messages);
+
+        put_fixture("claude_response_with_tools_" . now()->timestamp . ".json", $messages);
 
         if (! empty($response->tool_calls)) {
             Log::info('Orchestration Tools Found', [
@@ -37,9 +44,10 @@ class Orchestrate
                 ]);
 
                 $tool = app()->make($tool_call->name);
-                $tool->handle($campaign, $tool_call->arguments);
 
-                $campaign->addInput(
+                $functionResponse = $tool->handle($project, $tool_call->arguments);
+
+                $project->addInput(
                     message: sprintf('Tool %s complete', $tool_call->name),
                     role: RoleEnum::Tool,
                     tool_id: $tool_call->id,
@@ -52,24 +60,11 @@ class Orchestrate
 
             Log::info('Tools Complete doing final chat');
 
-            $messages = $campaign->getMessageThread();
-
-            /**
-             * @NOTE
-             * I have to continue to pass in tools once used above
-             * Since Claude needs them.
-             */
-            $response = LlmDriverFacade::driver(config('llmdriver.driver'))
-                ->chat($messages);
-
-            $campaign->addInput(
-                message: $response->content,
-                role: RoleEnum::Assistant,
-            );
+            OrchestrateFacade::handle($project);
 
         } else {
             Log::info('[LaraChain] - No Tools found just gonna chat');
-            $campaign->addInput(
+            $project->addInput(
                 message: $response->content ?? 'Calling Tools', //ollama, openai blank but claude needs this :(
                 role: RoleEnum::Assistant
             );

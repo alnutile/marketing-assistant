@@ -22,12 +22,7 @@ class ClaudeClient extends BaseClient
 
     protected string $driver = 'claude';
 
-    public function setSystem(string $system): self
-    {
-        $this->system = $system;
 
-        return $this;
-    }
 
     /**
      * @param  MessageInDto[]  $messages
@@ -45,14 +40,19 @@ class ClaudeClient extends BaseClient
             'model' => $model,
             'max_tokens' => $maxTokens,
             'messages' => $messages,
-            'system' => CampaignSystemPrompt::handle(),
         ];
+
+        if($this->system) {
+            $payload['system'] = $this->system;
+        }
 
         $payload = $this->modifyPayload($payload);
 
-        put_fixture('claude_chat_payload_debug.json', $payload);
+        put_fixture("claude_chat_payload_" . now()->timestamp . ".json", $payload);
 
         $results = $this->getClient()->post('/messages', $payload);
+
+        put_fixture("claude_raw_results_" . now()->timestamp . ".json", $results->json());
 
         if (! $results->ok()) {
             $error = $results->json()['error']['type'];
@@ -292,8 +292,6 @@ class ClaudeClient extends BaseClient
                 ];
             }
         }
-
-        put_fixture("claude_messages_after_v2.json", $newMessagesArray);
 
         return $newMessagesArray;
     }

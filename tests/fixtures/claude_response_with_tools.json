@@ -1,0 +1,99 @@
+[
+    {
+        "content": "You are a home meal cooking assistant that will help us plan meals based on recipes and data we send you. Ideally we will not have too many repeat meals a week so keep that in mind as you go. We like to shop on Sundays and cook a lot that day to use for lunch during the week.\nThen send the team and email with any updates.Help me make a weekly meal plan, with breakfast, lunch, dinner\nIdeally there are left overs for lunch so those recipes should be enough for 2 and that \n\nThen as the weeks go on ideally meals will change based on our feedback and not repeating all the time\n\nOut meal plan ideally is based on the following core ingredients\nfresh vegetables ideally seasonal.\nWe live in Massachusetts [TIME_OF_YEAR]\n\n\n\nWhere \nCarrots, potatoes, cauliflower, broccoli, mushrooms peppers and anything like that really.\n\nChicken breast, thighs etc. \nTurkey mince, beef steak, shrimp, sausage \n\nTofu  so not every night is meat though fish is great \n\nstir-fry is great, Dumplings, pesto etc.\n\nTacos nights a great with fish, pickled onions.\n\nSo as you can see mixes of fresh cooked foods.\n\nBreakfast can be simple just oatmeal, or toast and advocado",
+        "role": "user",
+        "is_ai": false,
+        "show": true,
+        "tool": "",
+        "tool_id": "",
+        "args": []
+    },
+    {
+        "content": "Review meals and any updates in the chat thread. Consider adding items to the meal list todo.\nFor example \"Feedback about Mondays Chicken Dinner\" so the user remembers to do these things.\nAlso get a list of tasks and if some are past due email the team those updates.\nOr if new content has come into the site consider using that as a message to the user.",
+        "role": "user",
+        "is_ai": false,
+        "show": true,
+        "tool": "",
+        "tool_id": "",
+        "args": []
+    },
+    {
+        "content": "Task Name: Sunday Meal Planning and Shopping\nTask Id: 36\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPlan meals for the week and create a shopping list based on seasonal ingredients and preferences.\n\nTask Name: Sunday Meal Prep\nTask Id: 37\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPrepare meals for the week, focusing on dishes that can be partially or fully prepared in advance.\n\nTask Name: Weekday Dinner Preparation\nTask Id: 38\nDue: 2024-09-30\nCompleted At: null\nDetails: \nFinalize dinner preparations using pre-prepped ingredients and quick cooking methods.\n\nTask Name: Weekly Meal Plan Review\nTask Id: 39\nDue: 2024-10-06\nCompleted At: null\nDetails: \nReview the success of the previous week's meal plan and gather feedback for improvements.",
+        "role": "tool",
+        "is_ai": false,
+        "show": true,
+        "tool": "list_tasks",
+        "tool_id": "toolu_012B9Hs77GeHTgwLM9nzB5yL",
+        "args": {
+            "state": "open"
+        }
+    },
+    {
+        "content": "Task Name: Sunday Meal Planning and Shopping\nTask Id: 36\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPlan meals for the week and create a shopping list based on seasonal ingredients and preferences.\n\nTask Name: Sunday Meal Prep\nTask Id: 37\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPrepare meals for the week, focusing on dishes that can be partially or fully prepared in advance.\n\nTask Name: Weekday Dinner Preparation\nTask Id: 38\nDue: 2024-09-30\nCompleted At: null\nDetails: \nFinalize dinner preparations using pre-prepped ingredients and quick cooking methods.\n\nTask Name: Weekly Meal Plan Review\nTask Id: 39\nDue: 2024-10-06\nCompleted At: null\nDetails: \nReview the success of the previous week's meal plan and gather feedback for improvements.",
+        "role": "user",
+        "is_ai": false,
+        "show": true,
+        "tool": "",
+        "tool_id": "",
+        "args": []
+    },
+    {
+        "content": "{\"message\":\"Subject: Urgent: Past Due Meal Planning Tasks and Next Steps\\n\\nDear Team,\\n\\nI hope this email finds you well. I wanted to bring to your attention some past due tasks related to our meal planning process:\\n\\n1. Sunday Meal Planning and Shopping (Due: Sep 29, 2024)\\n2. Sunday Meal Prep (Due: Sep 29, 2024)\\n3. Weekday Dinner Preparation (Due: Sep 30, 2024)\\n\\nThese tasks are crucial for maintaining our weekly meal planning routine. To get back on track, I suggest the following:\\n\\n1. Let's schedule an emergency meal planning session today or tomorrow to catch up on these tasks.\\n2. Create a quick shopping list based on easily available seasonal ingredients.\\n3. Plan for some simple, quick-to-prepare meals for the next couple of days until we can do a full week's planning.\\n4. Allocate some time for meal prep as soon as possible, even if it's just for a few days ahead.\\n\\nRemember, our next Weekly Meal Plan Review is due on October 6, 2024. Let's ensure we're back on track by then.\\n\\nPlease respond with your availability for the emergency planning session. If you have any questions or concerns, don't hesitate to reach out.\\n\\nBest regards,\\nYour Meal Planning Assistant\"}",
+        "role": "tool",
+        "is_ai": false,
+        "show": true,
+        "tool": "send_email_to_team",
+        "tool_id": "toolu_012S9wxrH3GJscyyX7sQ3S3d",
+        "args": {
+            "message": "Subject: Urgent: Past Due Meal Planning Tasks and Next Steps\n\nDear Team,\n\nI hope this email finds you well. I wanted to bring to your attention some past due tasks related to our meal planning process:\n\n1. Sunday Meal Planning and Shopping (Due: Sep 29, 2024)\n2. Sunday Meal Prep (Due: Sep 29, 2024)\n3. Weekday Dinner Preparation (Due: Sep 30, 2024)\n\nThese tasks are crucial for maintaining our weekly meal planning routine. To get back on track, I suggest the following:\n\n1. Let's schedule an emergency meal planning session today or tomorrow to catch up on these tasks.\n2. Create a quick shopping list based on easily available seasonal ingredients.\n3. Plan for some simple, quick-to-prepare meals for the next couple of days until we can do a full week's planning.\n4. Allocate some time for meal prep as soon as possible, even if it's just for a few days ahead.\n\nRemember, our next Weekly Meal Plan Review is due on October 6, 2024. Let's ensure we're back on track by then.\n\nPlease respond with your availability for the emergency planning session. If you have any questions or concerns, don't hesitate to reach out.\n\nBest regards,\nYour Meal Planning Assistant"
+        }
+    },
+    {
+        "content": "{\"message\":\"Subject: Urgent: Past Due Meal Planning Tasks and Next Steps\\n\\nDear Team,\\n\\nI hope this email finds you well. I wanted to bring to your attention some past due tasks related to our meal planning process:\\n\\n1. Sunday Meal Planning and Shopping (Due: Sep 29, 2024)\\n2. Sunday Meal Prep (Due: Sep 29, 2024)\\n3. Weekday Dinner Preparation (Due: Sep 30, 2024)\\n\\nThese tasks are crucial for maintaining our weekly meal planning routine. To get back on track, I suggest the following:\\n\\n1. Let's schedule an emergency meal planning session today or tomorrow to catch up on these tasks.\\n2. Create a quick shopping list based on easily available seasonal ingredients.\\n3. Plan for some simple, quick-to-prepare meals for the next couple of days until we can do a full week's planning.\\n4. Allocate some time for meal prep as soon as possible, even if it's just for a few days ahead.\\n\\nRemember, our next Weekly Meal Plan Review is due on October 6, 2024. Let's ensure we're back on track by then.\\n\\nPlease respond with your availability for the emergency planning session. If you have any questions or concerns, don't hesitate to reach out.\\n\\nBest regards,\\nYour Meal Planning Assistant\"}",
+        "role": "user",
+        "is_ai": false,
+        "show": true,
+        "tool": "",
+        "tool_id": "",
+        "args": []
+    },
+    {
+        "content": "{\"tasks\":[{\"name\":\"Emergency Meal Planning Session\",\"details\":\"Hold an emergency meal planning session to catch up on past due tasks and plan for the week ahead.\",\"due_date\":\"2024-10-01\",\"assistant\":\"true\"},{\"name\":\"Quick 3-Day Meal Prep\",\"details\":\"Prepare meals for the next 3 days based on the emergency plan: One-Pan Chicken and Fall Vegetable Roast, Shrimp Stir-Fry, and Turkey and Sweet Potato Chili.\",\"due_date\":\"2024-10-01\",\"assistant\":\"false\"},{\"name\":\"Full Week Meal Plan\",\"details\":\"Create a full week's meal plan, incorporating feedback from the emergency plan and preparing for the upcoming Weekly Meal Plan Review.\",\"due_date\":\"2024-10-03\",\"assistant\":\"true\"}]}",
+        "role": "tool",
+        "is_ai": false,
+        "show": true,
+        "tool": "create_tasks_tool",
+        "tool_id": "toolu_01WanZxVRhqrvvXNYAwqcEXt",
+        "args": {
+            "tasks": [
+                {
+                    "name": "Emergency Meal Planning Session",
+                    "details": "Hold an emergency meal planning session to catch up on past due tasks and plan for the week ahead.",
+                    "due_date": "2024-10-01",
+                    "assistant": "true"
+                },
+                {
+                    "name": "Quick 3-Day Meal Prep",
+                    "details": "Prepare meals for the next 3 days based on the emergency plan: One-Pan Chicken and Fall Vegetable Roast, Shrimp Stir-Fry, and Turkey and Sweet Potato Chili.",
+                    "due_date": "2024-10-01",
+                    "assistant": "false"
+                },
+                {
+                    "name": "Full Week Meal Plan",
+                    "details": "Create a full week's meal plan, incorporating feedback from the emergency plan and preparing for the upcoming Weekly Meal Plan Review.",
+                    "due_date": "2024-10-03",
+                    "assistant": "true"
+                }
+            ]
+        }
+    },
+    {
+        "content": "{\"tasks\":[{\"name\":\"Emergency Meal Planning Session\",\"details\":\"Hold an emergency meal planning session to catch up on past due tasks and plan for the week ahead.\",\"due_date\":\"2024-10-01\",\"assistant\":\"true\"},{\"name\":\"Quick 3-Day Meal Prep\",\"details\":\"Prepare meals for the next 3 days based on the emergency plan: One-Pan Chicken and Fall Vegetable Roast, Shrimp Stir-Fry, and Turkey and Sweet Potato Chili.\",\"due_date\":\"2024-10-01\",\"assistant\":\"false\"},{\"name\":\"Full Week Meal Plan\",\"details\":\"Create a full week's meal plan, incorporating feedback from the emergency plan and preparing for the upcoming Weekly Meal Plan Review.\",\"due_date\":\"2024-10-03\",\"assistant\":\"true\"}]}",
+        "role": "user",
+        "is_ai": false,
+        "show": true,
+        "tool": "",
+        "tool_id": "",
+        "args": []
+    }
+]

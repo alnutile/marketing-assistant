@@ -47,9 +47,21 @@ class Orchestrate
 
                 $functionResponse = $tool->handle($project, $tool_call->arguments);
 
+//                $project->addInput(
+//                    message: $functionResponse->content,
+//                    role: RoleEnum::User,
+//                );
+
+                /**
+                 * If I do this alone the loop never ends
+                 * @see https://docs.anthropic.com/en/docs/build-with-claude/tool-use#example-of-successful-tool-result
+                 */
                 $project->addInput(
                     message: $functionResponse->content,
-                    role: RoleEnum::Assistant,
+                    role: RoleEnum::User,
+                    tool_id: $tool_call->id,
+                    tool_name: $tool_call->name,
+                    tool_args: $tool_call->arguments,
                 );
 
                 $project->addInput(

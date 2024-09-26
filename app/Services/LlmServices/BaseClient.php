@@ -92,8 +92,8 @@ abstract class BaseClient
         $functions = collect(
             [
                 new CreateTasksTool,
-                new SendEmailToTeam(),
-                new TaskList(),
+                new SendEmailToTeam,
+                new TaskList,
             ]
         );
 

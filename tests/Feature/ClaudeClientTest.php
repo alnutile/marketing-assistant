@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use App\Services\LlmServices\ClaudeClient;
 use App\Services\LlmServices\Requests\MessageInDto;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ClaudeClientTest extends TestCase
@@ -17,10 +15,10 @@ class ClaudeClientTest extends TestCase
     {
 
         $messages = collect([
-               MessageInDto::from([
-                   'content' => 'Test Content System',
-                   'role' => 'system',
-               ]),
+            MessageInDto::from([
+                'content' => 'Test Content System',
+                'role' => 'system',
+            ]),
             MessageInDto::from([
                 'content' => 'Test Content User',
                 'role' => 'user',
@@ -30,7 +28,7 @@ class ClaudeClientTest extends TestCase
                 'role' => 'assistant',
             ]),
         ]);
-        $results = (new ClaudeClient())->remapMessages($messages);
+        $results = (new ClaudeClient)->remapMessages($messages);
 
         $this->assertCount(3, $results);
         $this->assertEquals('user', $results[0]['role']);

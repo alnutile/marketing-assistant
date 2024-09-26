@@ -4,16 +4,13 @@ namespace App\Domains\Scheduler;
 
 use App\Models\Project;
 use App\Services\LlmServices\LlmDriverFacade;
-use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\RoleEnum;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate as OrchestrateFacade;
+use Illuminate\Support\Facades\Log;
 
 class OrchestrateScheduler
 {
-
-    public function handle(Project $project) : void
+    public function handle(Project $project): void
     {
         Log::info('Scheduler called');
 
@@ -37,7 +34,7 @@ class OrchestrateScheduler
                     ->pluck('name')->toArray(),
             ]);
 
-            put_fixture("response_with_tools_" . now()->timestamp . ".json", $response->toArray());
+            put_fixture('response_with_tools_'.now()->timestamp.'.json', $response->toArray());
 
             $count = 1;
             foreach ($response->tool_calls as $tool_call) {

@@ -2,7 +2,6 @@
 
 namespace App\Services\LlmServices;
 
-use App\Models\Setting;
 use App\Services\LlmServices\Functions\FunctionDto;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\CompletionResponse;
@@ -54,8 +53,6 @@ class OpenAiClient extends BaseClient
 
         return new CompletionResponse($response->json());
     }
-
-
 
     public function modifyPayload(array $payload, bool $noTools = false): array
     {
@@ -250,5 +247,4 @@ class OpenAiClient extends BaseClient
 
         return new CompletionResponse($results);
     }
-
 }

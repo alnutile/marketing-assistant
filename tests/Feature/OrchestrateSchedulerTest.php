@@ -6,8 +6,6 @@ use App\Domains\Scheduler\OrchestrateScheduler;
 use App\Models\Project;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\Responses\CompletionResponse;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class OrchestrateSchedulerTest extends TestCase
@@ -27,6 +25,6 @@ class OrchestrateSchedulerTest extends TestCase
 
         $project = Project::factory()->create();
 
-        (new OrchestrateScheduler())->handle($project);
+        (new OrchestrateScheduler)->handle($project);
     }
 }

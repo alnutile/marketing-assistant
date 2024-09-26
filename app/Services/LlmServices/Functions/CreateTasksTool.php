@@ -31,7 +31,7 @@ class CreateTasksTool extends FunctionContract
                 [
                     'details' => $details,
                     'due_date' => $due_date,
-                    'assistant' => $assistant
+                    'assistant' => $assistant,
                 ]);
         }
 

@@ -2,7 +2,6 @@
 
 namespace App\Services\LlmServices;
 
-use App\Domains\Campaigns\CampaignSystemPrompt;
 use App\Services\LlmServices\Functions\FunctionDto;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\ClaudeCompletionResponse;
@@ -22,8 +21,6 @@ class ClaudeClient extends BaseClient
 
     protected string $driver = 'claude';
 
-
-
     /**
      * @param  MessageInDto[]  $messages
      */
@@ -42,17 +39,13 @@ class ClaudeClient extends BaseClient
             'messages' => $messages,
         ];
 
-        if($this->system) {
+        if ($this->system) {
             $payload['system'] = $this->system;
         }
 
         $payload = $this->modifyPayload($payload);
 
-        put_fixture("claude_chat_payload_" . now()->timestamp . ".json", $payload);
-
         $results = $this->getClient()->post('/messages', $payload);
-
-        put_fixture("claude_raw_results_" . now()->timestamp . ".json", $results->json());
 
         if (! $results->ok()) {
             $error = $results->json()['error']['type'];

@@ -35,7 +35,7 @@ class LlmServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('list_tasks', function () {
-            return new TaskList();
+            return new TaskList;
         });
     }
 }

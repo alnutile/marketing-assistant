@@ -5,14 +5,14 @@ namespace App\Services\LlmServices\Orchestration;
 use App\Models\Project;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\RoleEnum;
-use Illuminate\Support\Facades\Log;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate as OrchestrateFacade;
+use Illuminate\Support\Facades\Log;
 
 class Orchestrate
 {
     public function handle(Project $project, string $prompt = '', RoleEnum $role = RoleEnum::User): void
     {
-        if(!empty($prompt)) {
+        if (! empty($prompt)) {
             $project->addInput(
                 message: $prompt,
                 role: $role,
@@ -28,7 +28,7 @@ class Orchestrate
             ->setSystem($systemPrompt)
             ->chat($messages);
 
-        put_fixture("claude_response_with_tools_" . now()->timestamp . ".json", $messages);
+        put_fixture('claude_response_with_tools_'.now()->timestamp.'.json', $messages);
 
         if (! empty($response->tool_calls)) {
             Log::info('Orchestration Tools Found', [
@@ -46,6 +46,11 @@ class Orchestrate
                 $tool = app()->make($tool_call->name);
 
                 $functionResponse = $tool->handle($project, $tool_call->arguments);
+
+                $project->addInput(
+                    message: $functionResponse->content,
+                    role: RoleEnum::Assistant,
+                );
 
                 $project->addInput(
                     message: sprintf('Tool %s complete', $tool_call->name),

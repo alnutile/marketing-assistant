@@ -28,10 +28,10 @@ class TaskList extends FunctionContract
 
         $formattedTasks = $tasks->map(function ($task) {
             return sprintf(
-                "Task Name: %s\n" .
-                "Task Id: %d\n" .
-                "Due: %s\n" .
-                "Completed At: %s\n" .
+                "Task Name: %s\n".
+                "Task Id: %d\n".
+                "Due: %s\n".
+                "Completed At: %s\n".
                 "Details: \n%s\n",
                 $task->name,
                 $task->id,

@@ -58,7 +58,7 @@ class DailyReportService
             'results' => $results->content,
         ]);
 
-        foreach($project->team->users as $user) {
+        foreach ($project->team->users as $user) {
             Notification::send($user, new DailyReport($results->content, $project));
         }
     }

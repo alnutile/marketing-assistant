@@ -29,12 +29,12 @@ class OrchestrateScheduler
             ->chat($messages);
 
         if (! empty($response->tool_calls)) {
+            $functionResponse = null;
+
             Log::info('Orchestration Tools Found', [
                 'tool_calls' => collect($response->tool_calls)
                     ->pluck('name')->toArray(),
             ]);
-
-            put_fixture('response_with_tools_'.now()->timestamp.'.json', $response->toArray());
 
             $count = 1;
             foreach ($response->tool_calls as $tool_call) {
@@ -59,7 +59,7 @@ class OrchestrateScheduler
 
             Log::info('Tools Complete doing final chat');
 
-            OrchestrateFacade::handle($project, $functionResponse->content);
+            OrchestrateFacade::handle($project, $functionResponse?->content);
 
         } else {
             Log::info('[LaraChain] - No Tools found just gonna chat');

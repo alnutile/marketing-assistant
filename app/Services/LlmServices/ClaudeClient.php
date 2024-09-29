@@ -174,6 +174,7 @@ class ClaudeClient extends BaseClient
          */
         $messages = collect($messages)
             ->filter(function ($item) {
+                /** @phpstan-ignore-next-line */
                 if ($item->role === 'system' || $item->role === RoleEnum::System) {
                     $this->system = $item->content;
 
@@ -182,7 +183,6 @@ class ClaudeClient extends BaseClient
 
                 return true;
             })
-            /** @phpstan-ignore-next-line */
             ->transform(function (MessageInDto $item) {
 
                 $item->content = str($item->content)->replaceEnd("\n", '')->trim()->toString();

@@ -36,7 +36,7 @@ class TaskList extends FunctionContract
                 $task->name,
                 $task->id,
                 $task->due_date ? $task->due_date->format('Y-m-d') : 'N/A',
-                $task->completed ? $task->completed->format('Y-m-d') : 'null',
+                $task->completed_at ? $task->completed_at->format('Y-m-d') : 'null',
                 $task->details
             );
         })->join("\n");

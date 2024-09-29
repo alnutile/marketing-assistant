@@ -24,7 +24,7 @@ class Orchestrate
 
         $systemPrompt = $project->system_prompt;
 
-        $currentDateTime = sprintf("Current date and time: %s", now()->toDateTimeString());
+        $currentDateTime = sprintf('Current date and time: %s', now()->toDateTimeString());
 
         $systemPrompt = <<<SYSTEM_PROMPT
 Current date and time: {$currentDateTime}

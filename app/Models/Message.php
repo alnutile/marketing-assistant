@@ -16,6 +16,7 @@ class Message extends Model
     protected $casts = [
         'role' => RoleEnum::class,
         'tool_args' => 'array',
+        'created_by_tool' => 'boolean',
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

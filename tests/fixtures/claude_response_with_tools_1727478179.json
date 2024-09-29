@@ -1,0 +1,13 @@
+{
+    "content": "Great! I've created the tasks for meal planning and feedback. Now, let's move on to the next steps.\n\n2. Checking the to-do list for overdue items:\nI'll use the list_tasks tool to check for any overdue tasks.",
+    "stop_reason": "tool_use",
+    "tool_calls": {
+        "1": {
+            "name": "list_tasks",
+            "arguments": {
+                "state": "open"
+            },
+            "id": "toolu_01RbjdMNVhDAvVoHJ7svciXw"
+        }
+    }
+}

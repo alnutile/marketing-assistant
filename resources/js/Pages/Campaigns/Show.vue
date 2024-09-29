@@ -126,7 +126,7 @@ const sendDailyReport = () => {
                                                 <div class="w-8 rounded-full">
 
                                                     <img
-                                                        v-if="message.user_id"
+                                                        v-if="message.user?.id"
                                                         :src="message.user?.profile_photo_url" />
                                                     <div
                                                         v-else

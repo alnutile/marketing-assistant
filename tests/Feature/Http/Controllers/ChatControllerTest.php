@@ -13,10 +13,10 @@ class ChatControllerTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_chat(): void
     {
         $user = User::factory()->create();
-        LlmDriverFacade::shouldReceive('driver->chat')
+        LlmDriverFacade::shouldReceive('driver->setSystem->chat')
             ->once()
             ->andReturn(
                 CompletionResponse::from([

@@ -108,7 +108,8 @@ CAMPAIGN_CONTEXT;
         ?string $tool_name = '',
         ?array $tool_args = [],
         ?string $systemPrompt = null,
-        ?User $user = null): Message
+        ?User $user = null,
+        bool $created_by_tool = false): Message
     {
 
         return DB::transaction(function () use (
@@ -118,7 +119,8 @@ CAMPAIGN_CONTEXT;
             $tool_name,
             $tool_args,
             $systemPrompt,
-            $user) {
+            $user,
+            $created_by_tool) {
 
             if ($systemPrompt) {
                 $this->createSystemMessageIfNeeded($systemPrompt);
@@ -134,6 +136,7 @@ CAMPAIGN_CONTEXT;
                     'tool_id' => $tool_id,
                     'tool_name' => $tool_name,
                     'tool_args' => $tool_args,
+                    'created_by_tool' => $created_by_tool,
                 ]);
         });
 

@@ -17,7 +17,6 @@ class WebhookReplyTool extends FunctionContract
         array $args = []): FunctionResponse
     {
 
-
         $url = data_get($args, 'url', null);
 
         $payload = data_get($args, 'payload', []);

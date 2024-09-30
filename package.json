@@ -12,6 +12,7 @@
         "@vitejs/plugin-vue": "^5.0.0",
         "autoprefixer": "^10.4.16",
         "axios": "^1.6.4",
+        "chokidar": "^4.0.1",
         "daisyui": "^4.12.10",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.32",
@@ -23,6 +24,7 @@
         "@formkit/auto-animate": "^0.8.2",
         "@headlessui/vue": "^1.7.22",
         "clipboard": "^2.0.11",
+        "puppeteer": "^23.4.1",
         "vue-toastification": "^2.0.0-rc.5"
     }
 }

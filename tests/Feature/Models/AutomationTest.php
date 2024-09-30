@@ -3,8 +3,6 @@
 namespace Tests\Feature\Models;
 
 use App\Models\Automation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AutomationTest extends TestCase
@@ -15,7 +13,7 @@ class AutomationTest extends TestCase
     public function test_model(): void
     {
         $automation = Automation::factory()->create([
-            'slug' => null
+            'slug' => null,
         ]);
 
         $this->assertNotNull($automation->id);

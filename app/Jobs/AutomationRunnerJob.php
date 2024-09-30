@@ -4,17 +4,13 @@ namespace App\Jobs;
 
 use Illuminate\Bus\Batchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class AutomationRunnerJob implements ShouldQueue
 {
-    use Queueable, Batchable;
+    use Batchable, Queueable;
 
-
-    public function onQueue($queue) : string
+    public function onQueue($queue): string
     {
         return 'automations';
     }

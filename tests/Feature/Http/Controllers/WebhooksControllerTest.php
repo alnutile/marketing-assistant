@@ -3,8 +3,6 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Models\Automation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class WebhooksControllerTest extends TestCase

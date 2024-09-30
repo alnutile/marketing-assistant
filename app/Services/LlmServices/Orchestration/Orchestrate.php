@@ -37,8 +37,6 @@ SYSTEM_PROMPT;
             ->setSystem($systemPrompt)
             ->chat($messages);
 
-        //put_fixture('claude_response_before_tools_'.now()->timestamp.'.json', $response->toArray());
-
         $project->addInput(
             message: $response->content,
             role: RoleEnum::Assistant,
@@ -50,8 +48,6 @@ SYSTEM_PROMPT;
                 'tool_calls' => collect($response->tool_calls)
                     ->pluck('name')->toArray(),
             ]);
-
-            //put_fixture('claude_response_with_tools_'.now()->timestamp.'.json', $response->toArray());
 
             $count = 1;
             foreach ($response->tool_calls as $tool_call) {

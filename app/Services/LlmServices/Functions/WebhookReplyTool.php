@@ -16,11 +16,16 @@ class WebhookReplyTool extends FunctionContract
         Project $project,
         array $args = []): FunctionResponse
     {
-        Log::info('WebhookReplyTool called');
+
 
         $url = data_get($args, 'url', null);
 
         $payload = data_get($args, 'payload', []);
+
+        Log::info('WebhookReplyTool called', [
+            'url' => $url,
+            'payload' => $payload,
+        ]);
 
         if (! $url) {
             Log::info('No url provided');

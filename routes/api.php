@@ -6,7 +6,7 @@ Route::post(
     '/signed', [\App\Http\Controllers\SignedUrlAuth::class, 'create']
 )->name('signed_url.create');
 
-Route::post('/webhooks/{automation}', [
+Route::post('/webhooks/{automation:slug}', [
     \App\Http\Controllers\WebhooksController::class, 'trigger',
 ])
     ->name('webhooks.show');

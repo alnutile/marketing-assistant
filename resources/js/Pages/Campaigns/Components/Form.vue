@@ -11,6 +11,7 @@ defineEmits(['update:modelValue']);
 
 defineProps({
     modelValue: String,
+    statuses: Array,
 });
 
 

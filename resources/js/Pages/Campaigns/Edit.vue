@@ -52,7 +52,9 @@ const save = () => {
         </template>
 
         <template #form>
-            <Form :modelValue="form"/>
+            <Form
+                :statuses="statuses"
+                :modelValue="form"/>
 
         </template>
 

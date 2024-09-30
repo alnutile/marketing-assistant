@@ -19,7 +19,7 @@ class AutomationRunnerJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(Automation $automation)
+    public function __construct(Automation $automation, string $payload)
     {
         if ($this->batch()?->cancelled()) {
             // Determine if the batch has been cancelled...
@@ -27,7 +27,7 @@ class AutomationRunnerJob implements ShouldQueue
             return;
         }
 
-        $automation->run();
+        $automation->run($payload);
     }
 
     /**

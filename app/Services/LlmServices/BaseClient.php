@@ -4,8 +4,10 @@ namespace App\Services\LlmServices;
 
 use App\Services\LlmServices\Functions\CreateTasksTool;
 use App\Services\LlmServices\Functions\FunctionContract;
+use App\Services\LlmServices\Functions\GetWebSiteFromUrlTool;
 use App\Services\LlmServices\Functions\SendEmailToTeam;
 use App\Services\LlmServices\Functions\TaskList;
+use App\Services\LlmServices\Functions\WebhookReplyTool;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\CompletionResponse;
 use Illuminate\Support\Collection;
@@ -94,6 +96,8 @@ abstract class BaseClient
                 new CreateTasksTool,
                 new SendEmailToTeam,
                 new TaskList,
+                new GetWebSiteFromUrlTool(),
+                new WebhookReplyTool(),
             ]
         );
 

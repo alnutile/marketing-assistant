@@ -44,14 +44,27 @@ class Automation extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function run(): void
+    public function run(string $payload): void
     {
         //create automation_runs but in a moment
         if ($this->enabled) {
 
+            $prompt = $this->prompt;
+            $context = $payload;
+
+            $prompt = <<<PROMPT
+Below is the prompt from an automation and the context if needed for the prompt
+
+<PROMPT FROM THE AUTOMATION>
+$prompt
+
+<CONTEXT FROM THE PAYLOAD IF ANY>
+$context
+PROMPT;
+
             Orchestrate::handle(
                 project: $this->project,
-                prompt: $this->prompt
+                prompt: $prompt
             );
 
         } else {

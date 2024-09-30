@@ -8,16 +8,14 @@ use Illuminate\Support\Facades\Bus;
 
 class WebhooksController extends Controller
 {
-    public function show(Automation $automation)
+    public function trigger(Automation $automation)
     {
         Bus::batch([
-            new AutomationRunnerJob($automation),
+            new AutomationRunnerJob($automation, json_encode(request()->all())),
         ])
             ->allowFailures()
             ->dispatch();
 
-        return response()->json([
-            'message' => 'Hello World',
-        ]);
+        return response()->json("ok");
     }
 }

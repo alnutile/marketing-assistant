@@ -5,7 +5,7 @@ namespace Feature\Models;
 use App\Models\User;
 use Tests\TestCase;
 
-class UserTest extends TestCase
+class OpenAiClientTest.pUserTest extends TestCase
 {
     /**
      * A basic feature test example.

@@ -13,6 +13,12 @@ class AutomationRunnerJob implements ShouldQueue
 {
     use Queueable, Batchable;
 
+
+    public function onQueue($queue) : string
+    {
+        return 'automations';
+    }
+
     /**
      * Create a new job instance.
      */

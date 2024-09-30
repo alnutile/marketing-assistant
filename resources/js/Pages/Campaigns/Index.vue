@@ -59,9 +59,11 @@ const props = defineProps({
                                 <tr class="bg-base-200" v-for="project in projects.data" :key="project.id">
                                     <td>{{ project.id }}</td>
                                     <td>
-                                        <div class="avatar">
-                                            <div class="w-8 rounded-full">
-                                                <img :src="project.user?.profile_photo_url" />
+                                        <div class="avatar-group -space-x-6 rtl:space-x-reverse">
+                                            <div class="avatar" v-for="user in project.users" :key="user.id">
+                                                <div class="w-12">
+                                                    <img :src="user.profile_photo_url" />
+                                                </div>
                                             </div>
                                         </div>
                                     </td>

@@ -17,13 +17,8 @@ class CampaignController extends Controller
     {
 
         $projects = ProjectResource::collection(
-            Project::whereIn(
-                'team_id',
-                auth()->user()
-                    ->teams
-                    ->pluck('id')
-                    ->values()
-                    ->toArray()
+            Project::where(
+                'team_id', auth()->user()->current_team_id
             )->paginate()
         );
 
@@ -74,8 +69,8 @@ DEFAULT_CONTENT;
     {
         $validated = request()->validate([
             'name' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
+            'start_date' => 'nullable',
+            'end_date' => 'nullable',
             'status' => 'required',
             'system_prompt' => 'required',
             'scheduler_prompt' => 'required',

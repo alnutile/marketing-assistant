@@ -31,6 +31,8 @@ class ProjectResourceShow extends JsonResource
             'system_prompt_formatted' => str($this->system_prompt)->markdown(),
             'scheduler_prompt_formatted' => str($this->scheduler_prompt)->markdown(),
             'budget' => $this->budget,
+            'users' => $this->team->allUsers(),
+            'team' => TeamResource::make($this->team),
             'user' => ($this->user_id) ? new UserResource($this->user) : null,
         ];
     }

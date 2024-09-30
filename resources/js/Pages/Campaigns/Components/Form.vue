@@ -24,7 +24,6 @@ defineProps({
             v-model="modelValue.name"
             type="text"
             class="mt-1 block w-full"
-            required
             autocomplete="name"
         />
         <InputError :message="modelValue.errors.name" class="mt-2" />
@@ -92,7 +91,6 @@ defineProps({
             v-model="modelValue.start_date"
             type="date"
             class="mt-1 block w-full"
-            required
         />
         <InputError :message="modelValue.errors.email" class="mt-2" />
     </div>
@@ -104,7 +102,6 @@ defineProps({
             v-model="modelValue.end_date"
             type="date"
             class="mt-1 block w-full"
-            required
         />
         <InputError :message="modelValue.errors.email" class="mt-2" />
     </div>

@@ -17,8 +17,8 @@ class ProjectResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'start_date' => $this->start_date->format('Y-m-d'),
-            'end_date' => $this->end_date->format('Y-m-d'),
+            'start_date' => $this->start_date?->format('Y-m-d'),
+            'end_date' => $this->end_date?->format('Y-m-d'),
             'status' => $this->status->value,
             'status_formatted' => str($this->status->name)->headline(),
             'chat_status' => $this->chat_status->value,
@@ -29,6 +29,7 @@ class ProjectResource extends JsonResource
             'product_or_service' => $this->product_or_service?->value,
             'target_audience' => $this->target_audience,
             'budget' => $this->budget,
+            'users' => $this->team->allUsers(),
             'team' => new TeamResource($this->team),
             'user' => ($this->user_id) ? new UserResource($this->user) : null,
         ];

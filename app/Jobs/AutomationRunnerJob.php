@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Automation;
 use Illuminate\Bus\Batchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -18,14 +19,15 @@ class AutomationRunnerJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct(Automation $automation)
     {
-        if ($this->batch()->cancelled()) {
+        if ($this->batch()?->cancelled()) {
             // Determine if the batch has been cancelled...
 
             return;
         }
 
+        $automation->run();
     }
 
     /**

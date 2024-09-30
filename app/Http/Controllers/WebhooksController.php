@@ -10,7 +10,9 @@ class WebhooksController extends Controller
 {
     public function show(Automation $automation)
     {
-        Bus::dispatch(new AutomationRunnerJob)
+        Bus::batch([
+            new AutomationRunnerJob($automation),
+        ])
             ->allowFailures()
             ->dispatch();
 

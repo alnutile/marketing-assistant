@@ -15,7 +15,7 @@ class OrchestrateSchedulerTest extends TestCase
      */
     public function test_runs(): void
     {
-        LlmDriverFacade::shouldReceive('driver->chat')
+        LlmDriverFacade::shouldReceive('driver->setSystem->chat')
             ->once()
             ->andReturn(
                 CompletionResponse::from([

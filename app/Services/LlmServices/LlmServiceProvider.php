@@ -41,11 +41,11 @@ class LlmServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('get_web_site_from_url', function () {
-            return new GetWebSiteFromUrlTool();
+            return new GetWebSiteFromUrlTool;
         });
 
         $this->app->bind('reply_to_webhook', function () {
-            return new WebhookReplyTool();
+            return new WebhookReplyTool;
         });
     }
 }

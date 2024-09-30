@@ -16,6 +16,6 @@ class WebhooksController extends Controller
             ->allowFailures()
             ->dispatch();
 
-        return response()->json("ok");
+        return response()->json('ok');
     }
 }

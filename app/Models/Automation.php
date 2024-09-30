@@ -61,11 +61,21 @@ $prompt
 <CONTEXT FROM THE PAYLOAD IF ANY>
 $context
 PROMPT;
+            $automationRun = AutomationRun::create([
+                'automation_id' => $this->id,
+                'payload' => $payload,
+                'status' => 'pending',
+            ]);
 
             Orchestrate::handle(
                 project: $this->project,
                 prompt: $prompt
             );
+
+            $automationRun->update([
+                'status' => 'completed',
+                'completed_at' => now(),
+            ]);
 
         } else {
             Log::info('Automation not enabled', [

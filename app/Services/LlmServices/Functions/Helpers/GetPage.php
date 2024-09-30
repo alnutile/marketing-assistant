@@ -2,8 +2,6 @@
 
 namespace App\Services\LlmServices\Functions\Helpers;
 
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use League\HTMLToMarkdown\Converter\CodeConverter;
 use League\HTMLToMarkdown\Converter\PreformattedConverter;
 use League\HTMLToMarkdown\Converter\TableConverter;
@@ -14,7 +12,6 @@ use Spatie\Browsershot\Browsershot;
 
 class GetPage
 {
-
     public function handle(string $url, bool $parseHtml = true): string
     {
         $results = Browsershot::url($url)
@@ -34,10 +31,10 @@ class GetPage
             'strip_placeholder_links' => true,
             'remove_nodes' => 'nav footer header script style meta',
         ]);
-        $environment->addConverter(new TableConverter());
-        $environment->addConverter(new CodeConverter());
-        $environment->addConverter(new PreformattedConverter());
-        $environment->addConverter(new TextConverter());
+        $environment->addConverter(new TableConverter);
+        $environment->addConverter(new CodeConverter);
+        $environment->addConverter(new PreformattedConverter);
+        $environment->addConverter(new TextConverter);
 
         $converter = new HtmlConverter($environment);
 

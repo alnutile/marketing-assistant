@@ -3,10 +3,8 @@
 namespace App\Services\LlmServices\Functions;
 
 use App\Models\Project;
-use App\Notifications\DailyReport;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Notification;
 
 class WebhookReplyTool extends FunctionContract
 {

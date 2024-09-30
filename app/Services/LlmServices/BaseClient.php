@@ -96,8 +96,8 @@ abstract class BaseClient
                 new CreateTasksTool,
                 new SendEmailToTeam,
                 new TaskList,
-                new GetWebSiteFromUrlTool(),
-                new WebhookReplyTool(),
+                new GetWebSiteFromUrlTool,
+                new WebhookReplyTool,
             ]
         );
 

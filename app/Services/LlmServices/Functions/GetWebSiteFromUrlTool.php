@@ -2,14 +2,12 @@
 
 namespace App\Services\LlmServices\Functions;
 
-use App\Models\Message;
 use App\Models\Project;
 use Facades\App\Services\LlmServices\Functions\Helpers\GetPage;
 use Illuminate\Support\Facades\Log;
 
 class GetWebSiteFromUrlTool extends \App\Services\LlmServices\Functions\FunctionContract
 {
-
     protected string $name = 'get_web_site_from_url';
 
     protected string $description = 'If the prompt requires content from a url or urls and has a url then you can pass them one at a time here and it will return the markdown of that page ';
@@ -39,7 +37,7 @@ class GetWebSiteFromUrlTool extends \App\Services\LlmServices\Functions\Function
         CONTENT;
 
         return FunctionResponse::from([
-            'content' => $results
+            'content' => $results,
         ]);
     }
 

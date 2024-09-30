@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('automation_runs', function (Blueprint $table) {
             $table->id();
+            $table->timestamp('completed_at')->nullable();
+            $table->string('status')->default('pending');
+            $table->foreignIdFor(\App\Models\Automation::class)->constrained();
+            $table->longText('payload')->nullable();
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Automation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class AutomationRunFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'automation_id' => Automation::factory(),
+            'payload' => $this->faker->paragraph(), // longText
+            'status' => $this->faker->randomElement(['pending', 'running', 'completed']),
+            'completed_at' => $this->faker->date(),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Models;
 
+use App\Models\AutomationRun;
 use Tests\TestCase;
 
 class AutomationRunTest extends TestCase
@@ -9,11 +10,15 @@ class AutomationRunTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_model(): void
     {
-        $this->markTestSkipped('Not implemented yet');
-        $response = $this->get('/');
+        $automationRun = AutomationRun::factory()->create();
 
-        $response->assertStatus(200);
+        $this->assertNotNull($automationRun->id);
+        $this->assertNotNull($automationRun->automation->id);
+        $this->assertNotNull($automationRun->payload);
+        $this->assertNotNull($automationRun->completed_at); // nullable
+        $this->assertNotNull($automationRun->status);
+
     }
 }

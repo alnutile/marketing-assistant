@@ -26,6 +26,7 @@ class AutomationFactory extends Factory
             'scheduled' => false,
             'user_id' => User::factory(),
             'project_id' => Project::factory(),
+
         ];
     }
 }

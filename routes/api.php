@@ -11,10 +11,10 @@ Route::post('/webhooks/{automation}', [
 ])
     ->name('webhooks.show');
 
-
-Route::post("/testing/webhooks", function () {
+Route::post('/testing/webhooks', function () {
     \Illuminate\Support\Facades\Log::info('Testing webhooks', [
         'payload' => request()->all(),
     ]);
-    return response()->json("ok");
+
+    return response()->json('ok');
 });

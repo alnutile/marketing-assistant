@@ -4,8 +4,11 @@ namespace App\Services\LlmServices;
 
 use App\Services\LlmServices\Functions\CreateTasksTool;
 use App\Services\LlmServices\Functions\FunctionContract;
+use App\Services\LlmServices\Functions\SendEmailToTeam;
+use App\Services\LlmServices\Functions\TaskList;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\CompletionResponse;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -16,6 +19,13 @@ abstract class BaseClient
     protected ?string $format = null;
 
     protected ?string $system = null;
+
+    public function setSystem(string $system): self
+    {
+        $this->system = $system;
+
+        return $this;
+    }
 
     public function setFormat(string $format): self
     {
@@ -34,7 +44,7 @@ abstract class BaseClient
     /**
      * @param  MessageInDto[]  $messages
      */
-    public function chat(array $messages): CompletionResponse
+    public function chat(array|Collection $messages): CompletionResponse
     {
         if (! app()->environment('testing')) {
             sleep(2);
@@ -82,6 +92,8 @@ abstract class BaseClient
         $functions = collect(
             [
                 new CreateTasksTool,
+                new SendEmailToTeam,
+                new TaskList,
             ]
         );
 
@@ -107,7 +119,7 @@ abstract class BaseClient
     /**
      * @param  MessageInDto[]  $messages
      */
-    public function remapMessages(array $messages): array
+    public function remapMessages(array|Collection $messages): array
     {
         return $messages;
     }
@@ -122,5 +134,10 @@ abstract class BaseClient
         $driver = config("llmdriver.drivers.$driver");
 
         return data_get($driver, 'max_tokens', 8192);
+    }
+
+    public function addJsonFormat(array $payload): array
+    {
+        return $payload;
     }
 }

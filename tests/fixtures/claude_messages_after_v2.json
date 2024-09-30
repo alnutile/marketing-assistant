@@ -1,0 +1,14 @@
+[
+    {
+        "role": "user",
+        "content": "Get a list of tasks done today\nIf more tasks are need please make them\nSend team notice about any tasks made today and done today with a sense of how they are doing"
+    },
+    {
+        "role": "assistant",
+        "content": "{\"content\":\"Tool create_tasks_tool complete\",\"role\":\"tool\",\"user_id\":null,\"created_at\":\"2024-09-23T22:53:45.000000Z\",\"updated_at\":\"2024-09-23T22:53:45.000000Z\",\"tool_id\":\"toolu_01JcavWuYYjJSxi313LUCM5T\",\"tool_name\":\"create_tasks_tool\",\"tool_args\":{\"tasks\":[{\"name\":\"Review campaign performance metrics\",\"details\":\"Analyze key performance indicators (KPIs) for ongoing digital marketing campaigns\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"},{\"name\":\"Update social media content calendar\",\"details\":\"Refresh the content calendar for the next two weeks across all social media platforms\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"},{\"name\":\"Optimize landing page for upcoming promotion\",\"details\":\"Improve the landing page design and copy for the upcoming fall promotion\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"},{\"name\":\"Conduct A\\\/B test on email subject lines\",\"details\":\"Set up and launch A\\\/B test for email subject lines to improve open rates\",\"due_date\":\"2024-09-12\",\"assistant\":\"false\",\"user_id\":\"\"}]},\"project_id\":1,\"id\":130}"
+    },
+    {
+        "role": "user",
+        "content": "Using the surrounding context to continue this response thread"
+    }
+]

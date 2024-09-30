@@ -77,6 +77,8 @@ class CampaignControllerTest extends TestCase
                 'start_date' => '2023-01-01',
                 'end_date' => '2023-01-01',
                 'content' => 'Test Description',
+                'system_prompt' => 'Test System Prompt',
+                'scheduler_prompt' => 'Test Scheduler Prompt',
                 'status' => StatusEnum::Draft->value,
                 'product_or_service' => ProductServiceEnum::PhysicalProduct->value,
                 'target_audience' => 'Test Audience',

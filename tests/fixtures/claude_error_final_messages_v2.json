@@ -1,0 +1,96 @@
+[
+    {
+        "content": "You are an AI assistant specialized in digital marketing campaigns. Your primary goals are:\n\nToday's date is 2024-09-12T11:29:08.543777Z\n\n1. Analyze and understand the user's campaign objectives.\n2. Provide strategic insights and recommendations to optimize campaign performance.\n3. Offer creative ideas tailored to the campaign's target audience and platform.\n4. Suggest data-driven improvements based on campaign metrics and industry best practices.\n5. Ensure all advice aligns with ethical marketing practices and relevant regulations.\n6. If there are tasks them make sure to use the create task tool to make them\n\nContext: The user has just created or updated a digital marketing campaign. Your task is to assist them in refining and improving their campaign strategy.\n\nWhen responding:\n- Always consider the specific details of the user's campaign.\n- Tailor your advice to the campaign's goals, target audience, and chosen marketing channels.\n- Provide actionable suggestions that can be implemented immediately.\n- If any crucial information is missing, ask clarifying questions to better understand the campaign.\n- Be concise in your initial responses, but offer to elaborate on any point if the user requests more details.\n\nRemember: Your role is to be a knowledgeable, strategic partner in the user's marketing efforts, helping them achieve their campaign objectives effectively and efficiently.\n\nIf there are Tools to use but not need to use them and just reply to the prompt.",
+        "role": "system",
+        "tool_id": "",
+        "tool": "",
+        "args": []
+    },
+    {
+        "content": "Get a list of tasks done today\nIf more tasks are need please make them\nSend team notice about any tasks made today and done today with a sense of how they are doing",
+        "role": "user",
+        "tool_id": "",
+        "tool": "",
+        "args": []
+    },
+    {
+        "content": {
+            "content": "Tool create_tasks_tool complete",
+            "role": "tool",
+            "user_id": null,
+            "created_at": "2024-09-23T22:53:45.000000Z",
+            "updated_at": "2024-09-23T22:53:45.000000Z",
+            "tool_id": "toolu_01JcavWuYYjJSxi313LUCM5T",
+            "tool_name": "create_tasks_tool",
+            "tool_args": {
+                "tasks": [
+                    {
+                        "name": "Review campaign performance metrics",
+                        "details": "Analyze key performance indicators (KPIs) for ongoing digital marketing campaigns",
+                        "due_date": "2024-09-12",
+                        "assistant": "false",
+                        "user_id": ""
+                    },
+                    {
+                        "name": "Update social media content calendar",
+                        "details": "Refresh the content calendar for the next two weeks across all social media platforms",
+                        "due_date": "2024-09-12",
+                        "assistant": "false",
+                        "user_id": ""
+                    },
+                    {
+                        "name": "Optimize landing page for upcoming promotion",
+                        "details": "Improve the landing page design and copy for the upcoming fall promotion",
+                        "due_date": "2024-09-12",
+                        "assistant": "false",
+                        "user_id": ""
+                    },
+                    {
+                        "name": "Conduct A\/B test on email subject lines",
+                        "details": "Set up and launch A\/B test for email subject lines to improve open rates",
+                        "due_date": "2024-09-12",
+                        "assistant": "false",
+                        "user_id": ""
+                    }
+                ]
+            },
+            "project_id": 1,
+            "id": 130
+        },
+        "role": "assistant",
+        "tool_id": "toolu_01JcavWuYYjJSxi313LUCM5T",
+        "tool": "create_tasks_tool",
+        "args": {
+            "tasks": [
+                {
+                    "name": "Review campaign performance metrics",
+                    "details": "Analyze key performance indicators (KPIs) for ongoing digital marketing campaigns",
+                    "due_date": "2024-09-12",
+                    "assistant": "false",
+                    "user_id": ""
+                },
+                {
+                    "name": "Update social media content calendar",
+                    "details": "Refresh the content calendar for the next two weeks across all social media platforms",
+                    "due_date": "2024-09-12",
+                    "assistant": "false",
+                    "user_id": ""
+                },
+                {
+                    "name": "Optimize landing page for upcoming promotion",
+                    "details": "Improve the landing page design and copy for the upcoming fall promotion",
+                    "due_date": "2024-09-12",
+                    "assistant": "false",
+                    "user_id": ""
+                },
+                {
+                    "name": "Conduct A\/B test on email subject lines",
+                    "details": "Set up and launch A\/B test for email subject lines to improve open rates",
+                    "due_date": "2024-09-12",
+                    "assistant": "false",
+                    "user_id": ""
+                }
+            ]
+        }
+    }
+]

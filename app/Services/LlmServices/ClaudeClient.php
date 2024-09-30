@@ -2,13 +2,13 @@
 
 namespace App\Services\LlmServices;
 
-use App\Domains\Campaigns\CampaignSystemPrompt;
 use App\Services\LlmServices\Functions\FunctionDto;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\ClaudeCompletionResponse;
 use App\Services\LlmServices\Responses\CompletionResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -21,17 +21,10 @@ class ClaudeClient extends BaseClient
 
     protected string $driver = 'claude';
 
-    public function setSystem(string $system): self
-    {
-        $this->system = $system;
-
-        return $this;
-    }
-
     /**
      * @param  MessageInDto[]  $messages
      */
-    public function chat(array $messages): CompletionResponse
+    public function chat(array|Collection $messages): CompletionResponse
     {
         $model = $this->getConfig('claude')['models']['completion_model'];
         $maxTokens = $this->getConfig('claude')['max_tokens'];
@@ -44,12 +37,13 @@ class ClaudeClient extends BaseClient
             'model' => $model,
             'max_tokens' => $maxTokens,
             'messages' => $messages,
-            'system' => CampaignSystemPrompt::handle(),
         ];
 
-        $payload = $this->modifyPayload($payload);
+        if ($this->system) {
+            $payload['system'] = $this->system;
+        }
 
-        put_fixture('claude_chat_payload_debug.json', $payload);
+        $payload = $this->modifyPayload($payload);
 
         $results = $this->getClient()->post('/messages', $payload);
 
@@ -115,7 +109,7 @@ class ClaudeClient extends BaseClient
     /**
      * @param  FunctionDto[]  $functions
      */
-    public function remapFunctions(array $functions): array
+    public function remapFunctions(array|Collection $functions): array
     {
         return collect($functions)->map(function ($function) {
             $properties = [];
@@ -173,14 +167,15 @@ class ClaudeClient extends BaseClient
      *
      * @param  MessageInDto[]  $messages
      */
-    public function remapMessages(array $messages, bool $userLast = false): array
+    public function remapMessages(array|Collection $messages, bool $userLast = true): array
     {
         /**
          * Claude needs to not start with a system message
          */
         $messages = collect($messages)
             ->filter(function ($item) {
-                if ($item->role === 'system') {
+                /** @phpstan-ignore-next-line */
+                if ($item->role === 'system' || $item->role === RoleEnum::System) {
                     $this->system = $item->content;
 
                     return false;
@@ -188,7 +183,6 @@ class ClaudeClient extends BaseClient
 
                 return true;
             })
-            /** @phpstan-ignore-next-line */
             ->transform(function (MessageInDto $item) {
 
                 $item->content = str($item->content)->replaceEnd("\n", '')->trim()->toString();
@@ -278,6 +272,9 @@ class ClaudeClient extends BaseClient
 
         }
 
+        /**
+         * HMM why would I not want user last
+         */
         if ($userLast) {
             $last = Arr::last($newMessagesArray);
 

@@ -23,6 +23,7 @@ class MessageFactory extends Factory
             'content' => $this->faker->paragraph(),
             'role' => $this->faker->randomElement(['assistant', 'user']),
             'user_id' => User::factory(),
+            'created_by_tool' => false,
             'project_id' => Project::factory(),
             'tool_id' => Str::random(32),
             'tool_name' => 'create_tasks_tool',

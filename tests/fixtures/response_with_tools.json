@@ -1,0 +1,13 @@
+{
+    "content": "Certainly! I'll review the meal plan and any updates, consider adding items to the meal list todo, check for any overdue tasks, and prepare an email to the team with relevant updates. Let's start by getting a list of current tasks.",
+    "stop_reason": "tool_use",
+    "tool_calls": {
+        "1": {
+            "name": "list_tasks",
+            "arguments": {
+                "state": "open"
+            },
+            "id": "toolu_012B9Hs77GeHTgwLM9nzB5yL"
+        }
+    }
+}

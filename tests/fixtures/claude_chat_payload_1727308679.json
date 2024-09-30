@@ -1,0 +1,129 @@
+{
+    "model": "claude-3-5-sonnet-20240620",
+    "max_tokens": 4096,
+    "messages": [
+        {
+            "role": "user",
+            "content": "You are a home meal cooking assistant that will help us plan meals based on recipes and data we send you. Ideally we will not have too many repeat meals a week so keep that in mind as you go. We like to shop on Sundays and cook a lot that day to use for lunch during the week.\nThen send the team and email with any updates.Help me make a weekly meal plan, with breakfast, lunch, dinner\nIdeally there are left overs for lunch so those recipes should be enough for 2 and that \n\nThen as the weeks go on ideally meals will change based on our feedback and not repeating all the time\n\nOut meal plan ideally is based on the following core ingredients\nfresh vegetables ideally seasonal.\nWe live in Massachusetts [TIME_OF_YEAR]\n\n\n\nWhere \nCarrots, potatoes, cauliflower, broccoli, mushrooms peppers and anything like that really.\n\nChicken breast, thighs etc. \nTurkey mince, beef steak, shrimp, sausage \n\nTofu  so not every night is meat though fish is great \n\nstir-fry is great, Dumplings, pesto etc.\n\nTacos nights a great with fish, pickled onions.\n\nSo as you can see mixes of fresh cooked foods.\n\nBreakfast can be simple just oatmeal, or toast and advocado"
+        },
+        {
+            "role": "assistant",
+            "content": "Using the surrounding context to continue this response thread"
+        },
+        {
+            "role": "user",
+            "content": "Review meals and any updates in the chat thread. Consider adding items to the meal list todo.\nFor example \"Feedback about Mondays Chicken Dinner\" so the user remembers to do these things.\nAlso get a list of tasks and if some are past due email the team those updates.\nOr if new content has come into the site consider using that as a message to the user."
+        },
+        {
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "<thinking>Task Name: Sunday Meal Planning and Shopping\nTask Id: 36\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPlan meals for the week and create a shopping list based on seasonal ingredients and preferences.\n\nTask Name: Sunday Meal Prep\nTask Id: 37\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPrepare meals for the week, focusing on dishes that can be partially or fully prepared in advance.\n\nTask Name: Weekday Dinner Preparation\nTask Id: 38\nDue: 2024-09-30\nCompleted At: null\nDetails: \nFinalize dinner preparations using pre-prepped ingredients and quick cooking methods.\n\nTask Name: Weekly Meal Plan Review\nTask Id: 39\nDue: 2024-10-06\nCompleted At: null\nDetails: \nReview the success of the previous week's meal plan and gather feedback for improvements.<\/thinking>"
+                },
+                {
+                    "type": "tool_use",
+                    "id": "toolu_018S8c9bcRN3Ygb1EX7Wn12U",
+                    "name": "list_tasks",
+                    "input": {
+                        "state": "open"
+                    }
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_018S8c9bcRN3Ygb1EX7Wn12U",
+                    "content": "Task Name: Sunday Meal Planning and Shopping\nTask Id: 36\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPlan meals for the week and create a shopping list based on seasonal ingredients and preferences.\n\nTask Name: Sunday Meal Prep\nTask Id: 37\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPrepare meals for the week, focusing on dishes that can be partially or fully prepared in advance.\n\nTask Name: Weekday Dinner Preparation\nTask Id: 38\nDue: 2024-09-30\nCompleted At: null\nDetails: \nFinalize dinner preparations using pre-prepped ingredients and quick cooking methods.\n\nTask Name: Weekly Meal Plan Review\nTask Id: 39\nDue: 2024-10-06\nCompleted At: null\nDetails: \nReview the success of the previous week's meal plan and gather feedback for improvements."
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "content": "Using the surrounding context to continue this response thread"
+        },
+        {
+            "role": "user",
+            "content": "Task Name: Sunday Meal Planning and Shopping\nTask Id: 36\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPlan meals for the week and create a shopping list based on seasonal ingredients and preferences.\n\nTask Name: Sunday Meal Prep\nTask Id: 37\nDue: 2024-09-29\nCompleted At: null\nDetails: \nPrepare meals for the week, focusing on dishes that can be partially or fully prepared in advance.\n\nTask Name: Weekday Dinner Preparation\nTask Id: 38\nDue: 2024-09-30\nCompleted At: null\nDetails: \nFinalize dinner preparations using pre-prepped ingredients and quick cooking methods.\n\nTask Name: Weekly Meal Plan Review\nTask Id: 39\nDue: 2024-10-06\nCompleted At: null\nDetails: \nReview the success of the previous week's meal plan and gather feedback for improvements."
+        }
+    ],
+    "system": "You are a home meal cooking assistant that will help us plan meals based on recipes and data we send you. Ideally we will not have too many repeat meals a week so keep that in mind as you go. We like to shop on Sundays and cook a lot that day to use for lunch during the week.\nThen send the team and email with any updates.",
+    "tools": [
+        {
+            "name": "create_tasks_tool",
+            "description": "If the Project needs to have tasks created or the users prompt requires it you can use this tool to make multiple tasks",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "tasks": {
+                        "description": "Array of task objects",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the task"
+                                },
+                                "details": {
+                                    "type": "string",
+                                    "description": "Detailed info of the task"
+                                },
+                                "due_date": {
+                                    "type": "string",
+                                    "description": "Due date if any format \"Y-m-d\""
+                                },
+                                "assistant": {
+                                    "type": "string",
+                                    "description": "Should the assistant be assigned this true or false"
+                                },
+                                "user_id": {
+                                    "type": "string",
+                                    "description": "User id if assigned to a user"
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "tasks"
+                ]
+            }
+        },
+        {
+            "name": "send_email_to_team",
+            "description": "Send an email to the team",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "description": "The message for the body of the email",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "message"
+                ]
+            }
+        },
+        {
+            "name": "list_tasks",
+            "description": "This will list all tasks that are still open unless you request closed instead",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "description": "open or closed will be open by default",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "state"
+                ]
+            }
+        }
+    ]
+}

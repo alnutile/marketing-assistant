@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Domains\Campaigns\DailyReportService;
 use App\Models\Project;
 use App\Models\Task;
+use App\Models\Team;
 use App\Models\User;
 use App\Notifications\DailyReport;
 use App\Services\LlmServices\LlmDriverFacade;
@@ -24,6 +25,12 @@ class DailyReportServiceTest extends TestCase
 
         $user = User::factory()->create();
 
+        $team = Team::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $team->users()->attach($user, ['role' => 'admin']);
+
         LlmDriverFacade::shouldReceive('driver->chat')
             ->once()
             ->andReturn(
@@ -34,12 +41,14 @@ class DailyReportServiceTest extends TestCase
 
         $project = Project::factory()->create([
             'user_id' => $user->id,
+            'team_id' => $team->id,
             'end_date' => now()->addDays(7),
         ]);
 
         Task::factory()->create([
             'user_id' => $user->id,
             'project_id' => $project->id,
+            'completed_at' => null,
         ]);
 
         (new DailyReportService)->handle();

@@ -77,10 +77,12 @@ DEFAULT_CONTENT;
             'start_date' => 'required',
             'end_date' => 'required',
             'status' => 'required',
+            'system_prompt' => 'required',
+            'scheduler_prompt' => 'required',
             'content' => 'required',
-            'product_or_service' => 'required',
-            'target_audience' => 'required',
-            'budget' => 'required',
+            'product_or_service' => 'nullable',
+            'target_audience' => 'nullable',
+            'budget' => 'nullable',
         ]);
 
         $validated['chat_status'] = ChatStatusEnum::Pending->value;
@@ -97,7 +99,9 @@ DEFAULT_CONTENT;
             'project' => new ProjectResourceShow($project),
             'messages' => MessageResource::collection($project->messages()
                 ->notSystem()
-                ->latest()->paginate(3)),
+                ->notTool()
+                ->latest()
+                ->paginate(3)),
         ]);
     }
 
@@ -117,10 +121,12 @@ DEFAULT_CONTENT;
             'start_date' => 'required',
             'end_date' => 'required',
             'status' => 'required',
+            'system_prompt' => 'required',
+            'scheduler_prompt' => 'required',
             'content' => 'required',
-            'product_or_service' => 'required',
-            'target_audience' => 'required',
-            'budget' => 'required',
+            'product_or_service' => 'nullable',
+            'target_audience' => 'nullable',
+            'budget' => 'nullable',
         ]);
 
         $project->update($validated);

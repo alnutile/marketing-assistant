@@ -15,22 +15,28 @@ class OrchestrateTest extends TestCase
      */
     public function test_tools(): void
     {
-        $response = get_fixture('claude_chat_response.json', false);
+        $response1 = get_fixture('claude_response_with_tools_1727478177.json');
+        $response2 = get_fixture('claude_response_with_tools_1727478179.json');
+        $response3 = get_fixture('claude_response_with_tools_1727478189.json');
+        $response4 = get_fixture('claude_response_before_tools_1727478194.json');
 
         $project = Project::factory()->create();
 
         $this->assertDatabaseCount('messages', 0);
         $this->assertDatabaseCount('tasks', 0);
 
-        LlmDriverFacade::shouldReceive('driver->chat')
-            ->twice()
+        LlmDriverFacade::shouldReceive('driver->setSystem->chat')
+            ->times(4)
             ->andReturn(
-                CompletionResponse::from($response)
+                CompletionResponse::from($response1),
+                CompletionResponse::from($response2),
+                CompletionResponse::from($response3),
+                CompletionResponse::from($response4),
             );
 
         (new Orchestrate)->handle($project, 'Test Prompt');
 
-        $this->assertDatabaseCount('messages', 3);
-        $this->assertDatabaseCount('tasks', 5);
+        $this->assertDatabaseCount('messages', 8);
+        $this->assertDatabaseCount('tasks', 7);
     }
 }

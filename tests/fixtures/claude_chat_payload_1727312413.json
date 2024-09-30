@@ -1,0 +1,224 @@
+{
+    "model": "claude-3-5-sonnet-20240620",
+    "max_tokens": 4096,
+    "messages": [
+        {
+            "role": "user",
+            "content": "You are a home meal cooking assistant that will help us plan meals based on recipes and data we send you. Ideally we will not have too many repeat meals a week so keep that in mind as you go. We like to shop on Sundays and cook a lot that day to use for lunch during the week.\nThen send the team and email with any updates.Help me make a weekly meal plan, with breakfast, lunch, dinner\nIdeally there are left overs for lunch so those recipes should be enough for 2 and that \n\nThen as the weeks go on ideally meals will change based on our feedback and not repeating all the time\n\nOut meal plan ideally is based on the following core ingredients\nfresh vegetables ideally seasonal.\nWe live in Massachusetts [TIME_OF_YEAR]\n\n\n\nWhere \nCarrots, potatoes, cauliflower, broccoli, mushrooms peppers and anything like that really.\n\nChicken breast, thighs etc. \nTurkey mince, beef steak, shrimp, sausage \n\nTofu  so not every night is meat though fish is great \n\nstir-fry is great, Dumplings, pesto etc.\n\nTacos nights a great with fish, pickled onions.\n\nSo as you can see mixes of fresh cooked foods.\n\nBreakfast can be simple just oatmeal, or toast and advocado"
+        },
+        {
+            "role": "assistant",
+            "content": "Using the surrounding context to continue this response thread"
+        },
+        {
+            "role": "user",
+            "content": "Hey there! Can you help me with my weekly review? Here's what I need:\n\n1. Check if there's any feedback on our recent meals. If there is, maybe we should add some reminders to improve things for next time. If there is none make a Task to remind us to offer some feedback tomorrow. If there are Tasks to make like meal details for each day of the week make a task for each of those.\n\n2. Take a look at my to-do list. If anything's overdue, could you let the team know?\n\n3. See if there's any new stuff on our site. If you find anything interesting, let me know so I can check it out.\n\n4. Lastly, can you give me a quick summary of what's been done and what needs attention?\n\nThanks for your help!"
+        },
+        {
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "<thinking>Tool create_tasks_tool complete<\/thinking>"
+                },
+                {
+                    "type": "tool_use",
+                    "id": "toolu_01Ut7ajwRmXqM5FMFuQ6uq8K",
+                    "name": "create_tasks_tool",
+                    "input": {
+                        "tasks": [
+                            {
+                                "name": "Provide feedback on recent meals",
+                                "details": "Take a moment to reflect on the meals from the past week and provide feedback for improvements.",
+                                "due_date": "2023-05-15",
+                                "assistant": "false"
+                            },
+                            {
+                                "name": "Plan Monday's meals",
+                                "details": "Create a detailed meal plan for Monday, including breakfast, lunch, and dinner.",
+                                "due_date": "2023-05-14",
+                                "assistant": "false"
+                            },
+                            {
+                                "name": "Plan Tuesday's meals",
+                                "details": "Create a detailed meal plan for Tuesday, including breakfast, lunch, and dinner.",
+                                "due_date": "2023-05-14",
+                                "assistant": "false"
+                            },
+                            {
+                                "name": "Plan Wednesday's meals",
+                                "details": "Create a detailed meal plan for Wednesday, including breakfast, lunch, and dinner.",
+                                "due_date": "2023-05-14",
+                                "assistant": "false"
+                            },
+                            {
+                                "name": "Plan Thursday's meals",
+                                "details": "Create a detailed meal plan for Thursday, including breakfast, lunch, and dinner.",
+                                "due_date": "2023-05-14",
+                                "assistant": "false"
+                            },
+                            {
+                                "name": "Plan Friday's meals",
+                                "details": "Create a detailed meal plan for Friday, including breakfast, lunch, and dinner.",
+                                "due_date": "2023-05-14",
+                                "assistant": "false"
+                            },
+                            {
+                                "name": "Plan Saturday's meals",
+                                "details": "Create a detailed meal plan for Saturday, including breakfast, lunch, and dinner.",
+                                "due_date": "2023-05-14",
+                                "assistant": "false"
+                            },
+                            {
+                                "name": "Plan Sunday's meals",
+                                "details": "Create a detailed meal plan for Sunday, including breakfast, lunch, and dinner.",
+                                "due_date": "2023-05-14",
+                                "assistant": "false"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01Ut7ajwRmXqM5FMFuQ6uq8K",
+                    "content": "Tool create_tasks_tool complete"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "<thinking>Tool list_tasks complete<\/thinking>"
+                },
+                {
+                    "type": "tool_use",
+                    "id": "toolu_01MqiqVwHJs2PUCw8Q7EiX3L",
+                    "name": "list_tasks",
+                    "input": {
+                        "state": "open"
+                    }
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_01MqiqVwHJs2PUCw8Q7EiX3L",
+                    "content": "Tool list_tasks complete"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "<thinking>Tool send_email_to_team complete<\/thinking>"
+                },
+                {
+                    "type": "tool_use",
+                    "id": "toolu_019yHSN69ztJmNEdHUkGaE7H",
+                    "name": "send_email_to_team",
+                    "input": {
+                        "message": "Hello team,\n\nHere's a quick update on our weekly review:\n\n1. Meal Planning:\n   - A task has been created to provide feedback on recent meals (due tomorrow).\n   - Tasks for planning meals for each day of the next week have been set up (due Sunday).\n\n2. To-do List:\n   - We need to manually review our open tasks to identify any overdue items.\n\n3. Website Content:\n   - Please check the site for any new content that might be of interest.\n\n4. Action Items:\n   - Complete the meal planning tasks for each day of the week by Sunday.\n   - Provide feedback on recent meals tomorrow.\n   - Review open tasks and address any overdue items.\n\nLet's work together to stay on top of these tasks and continue improving our meal planning process.\n\nBest regards,\nYour Home Meal Cooking Assistant"
+                    }
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "tool_result",
+                    "tool_use_id": "toolu_019yHSN69ztJmNEdHUkGaE7H",
+                    "content": "Tool send_email_to_team complete"
+                }
+            ]
+        }
+    ],
+    "system": "You are a home meal cooking assistant that will help us plan meals based on recipes and data we send you. Ideally we will not have too many repeat meals a week so keep that in mind as you go. We like to shop on Sundays and cook a lot that day to use for lunch during the week.\nThen send the team and email with any updates.",
+    "tools": [
+        {
+            "name": "create_tasks_tool",
+            "description": "If the Project needs to have tasks created or the users prompt requires it you can use this tool to make multiple tasks",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "tasks": {
+                        "description": "Array of task objects",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the task"
+                                },
+                                "details": {
+                                    "type": "string",
+                                    "description": "Detailed info of the task"
+                                },
+                                "due_date": {
+                                    "type": "string",
+                                    "description": "Due date if any format \"Y-m-d\""
+                                },
+                                "assistant": {
+                                    "type": "string",
+                                    "description": "Should the assistant be assigned this true or false"
+                                },
+                                "user_id": {
+                                    "type": "string",
+                                    "description": "User id if assigned to a user"
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "tasks"
+                ]
+            }
+        },
+        {
+            "name": "send_email_to_team",
+            "description": "Send an email to the team",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "description": "The message for the body of the email",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "message"
+                ]
+            }
+        },
+        {
+            "name": "list_tasks",
+            "description": "This will list all tasks that are still open unless you request closed instead",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "description": "open or closed will be open by default",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "state"
+                ]
+            }
+        }
+    ]
+}

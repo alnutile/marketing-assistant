@@ -1,0 +1,50 @@
+{
+    "content": "Certainly! I'd be happy to help you with your weekly review. Let's go through each of your requests step by step.\n\n1. Checking for meal feedback and creating tasks:\nFirst, I'll check if there's any feedback on recent meals. Since I don't have access to previous feedback data, I'll create a task to remind you to offer feedback tomorrow. I'll also create tasks for meal planning for each day of the week.",
+    "stop_reason": "tool_use",
+    "tool_calls": {
+        "1": {
+            "name": "create_tasks_tool",
+            "arguments": {
+                "tasks": [
+                    {
+                        "name": "Provide feedback on recent meals",
+                        "details": "Take a moment to reflect on the meals from the past week and provide feedback for future improvements.",
+                        "due_date": "2024-09-28",
+                        "assistant": "false"
+                    },
+                    {
+                        "name": "Plan Monday's meals",
+                        "details": "Plan breakfast, lunch, and dinner for Monday, considering leftovers for lunch.",
+                        "due_date": "2024-09-30"
+                    },
+                    {
+                        "name": "Plan Tuesday's meals",
+                        "details": "Plan breakfast, lunch, and dinner for Tuesday, considering leftovers for lunch.",
+                        "due_date": "2024-10-01"
+                    },
+                    {
+                        "name": "Plan Wednesday's meals",
+                        "details": "Plan breakfast, lunch, and dinner for Wednesday, considering leftovers for lunch.",
+                        "due_date": "2024-10-02"
+                    },
+                    {
+                        "name": "Plan Thursday's meals",
+                        "details": "Plan breakfast, lunch, and dinner for Thursday, considering leftovers for lunch.",
+                        "due_date": "2024-10-03"
+                    },
+                    {
+                        "name": "Plan Friday's meals",
+                        "details": "Plan breakfast, lunch, and dinner for Friday, considering leftovers for lunch.",
+                        "due_date": "2024-10-04"
+                    },
+                    {
+                        "name": "Plan weekend meals",
+                        "details": "Plan meals for Saturday and Sunday, including grocery shopping list for the coming week.",
+                        "due_date": "2024-10-05"
+                    }
+                ]
+            },
+            "id": "toolu_01EY89vxGZBt6A558vunLfMi"
+        }
+    }
+}

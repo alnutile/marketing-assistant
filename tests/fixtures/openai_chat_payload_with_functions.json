@@ -1,0 +1,42 @@
+{
+    "model": "gpt-4",
+    "messages": [
+        {
+            "role": "user",
+            "content": "please make me a task for each day of the week with a good meal to cook"
+        }
+    ],
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "create_tasks_tool",
+                "description": "Create one or more tasks",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "tasks": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "details": {
+                                        "type": "string"
+                                    },
+                                    "due_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "required": ["name", "details", "due_date"]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

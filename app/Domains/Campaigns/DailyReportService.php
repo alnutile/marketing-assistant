@@ -14,14 +14,14 @@ class DailyReportService
 {
     public function handle(): void
     {
-        foreach (Project::active()->get() as $campaign) {
-            $this->sendReport($campaign);
+        foreach (Project::active()->get() as $project) {
+            $this->sendReport($project);
         }
     }
 
-    public function sendReport(Project $campaign)
+    public function sendReport(Project $project)
     {
-        $tasks = Task::where('project_id', $campaign->id)
+        $tasks = Task::where('project_id', $project->id)
             ->notCompleted()
             ->where('due_date', '>=', now()->addDays(7))
             ->get()
@@ -35,20 +35,20 @@ class DailyReportService
                 );
             })->implode(', ');
 
-        $prompt = CampaignDailyReportPrompt::getPrompt($campaign, $tasks);
+        $prompt = CampaignDailyReportPrompt::getPrompt($project, $tasks);
 
-        $campaign->addInput(
+        $project->addInput(
             message: $prompt,
             role: RoleEnum::User,
-            user: $campaign->user,
+            user: $project->user,
         );
 
-        $messages = $campaign->getMessageThread();
+        $messages = $project->getMessageThread();
 
         $results = LlmDriverFacade::driver(config('llmdriver.driver'))
             ->chat($messages);
 
-        $campaign->addInput(
+        $project->addInput(
             message: $results->content,
             role: RoleEnum::Assistant,
             user: null,
@@ -58,6 +58,8 @@ class DailyReportService
             'results' => $results->content,
         ]);
 
-        Notification::send($campaign->user, new DailyReport($results->content, $campaign));
+        foreach ($project->team->users as $user) {
+            Notification::send($user, new DailyReport($results->content, $project));
+        }
     }
 }

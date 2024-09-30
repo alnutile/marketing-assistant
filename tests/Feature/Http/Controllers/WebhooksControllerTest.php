@@ -22,7 +22,7 @@ class WebhooksControllerTest extends TestCase
             'enabled' => true,
         ]);
 
-        $this->get(route('webhooks.show', $automation))
+        $this->post(route('webhooks.show', $automation))
             ->assertStatus(200);
 
         Bus::assertBatchCount(1);

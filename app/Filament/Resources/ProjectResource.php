@@ -3,26 +3,16 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
-use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
-use Filament\Actions\EditAction;
-use Filament\Actions\ViewAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Actions;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\HtmlString;
 
 class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
-
-
 
     protected static ?string $navigationIcon = 'heroicon-o-bolt';
 
@@ -30,8 +20,8 @@ class ProjectResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make("Project Details")
-                    ->description("Project Details")
+                Forms\Components\Section::make('Project Details')
+                    ->description('Project Details')
                     ->columns(2)
                     ->schema([
                         Forms\Components\TextInput::make('name')
@@ -47,8 +37,8 @@ class ProjectResource extends Resource
                         Forms\Components\Textarea::make('target_audience')
                             ->columnSpanFull(),
                     ]),
-                Forms\Components\Section::make("Prompts")
-                    ->description("Prompts for the LLM to use")
+                Forms\Components\Section::make('Prompts')
+                    ->description('Prompts for the LLM to use')
                     ->columns(2)
                     ->schema([
                         Forms\Components\MarkdownEditor::make('system_prompt')
@@ -61,9 +51,9 @@ class ProjectResource extends Resource
                         Forms\Components\MarkdownEditor::make('scheduler_prompt')
                             ->columnSpanFull(),
                     ]),
-                Forms\Components\Section::make("System Level Information")
-                    ->label("System Level Information")
-                    ->description("General System Level Information")
+                Forms\Components\Section::make('System Level Information')
+                    ->label('System Level Information')
+                    ->description('General System Level Information')
                     ->columns(2)
                     ->schema([
                         Forms\Components\TextInput::make('status')
@@ -121,23 +111,23 @@ class ProjectResource extends Resource
                 //
             ])
             ->actions([
-                        Tables\Actions\ActionGroup::make([
-                            Tables\Actions\ViewAction::make(),
-                            Tables\Actions\EditAction::make(),
-                            Tables\Actions\Action::make('chat with project')
-                                ->color('secondary')
-                                ->icon('heroicon-m-chat-bubble-bottom-center-text')
-                                ->action(function (Project $project) {
-                                    return to_route('projects.show', $project);
-                                })
-                        ])
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\Action::make('chat with project')
+                        ->color('secondary')
+                        ->icon('heroicon-m-chat-bubble-bottom-center-text')
+                        ->action(function (Project $project) {
+                            return to_route('projects.show', $project);
+                        }),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort("created_at", "desc");
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array

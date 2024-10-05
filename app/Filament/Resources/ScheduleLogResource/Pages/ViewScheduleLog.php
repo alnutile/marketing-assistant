@@ -3,9 +3,7 @@
 namespace App\Filament\Resources\ScheduleLogResource\Pages;
 
 use App\Filament\Resources\ScheduleLogResource;
-use App\Models\Project;
 use Filament\Actions;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Resources\Pages\ViewRecord;
 
 class ViewScheduleLog extends ViewRecord

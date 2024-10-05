@@ -10,7 +10,7 @@ use Illuminate\Foundation\Queue\Queueable;
 
 class SchedulerProjectJob implements ShouldQueue
 {
-    use Queueable, Batchable;
+    use Batchable, Queueable;
 
     /**
      * Create a new job instance.

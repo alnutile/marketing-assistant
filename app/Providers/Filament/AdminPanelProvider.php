@@ -44,7 +44,7 @@ class AdminPanelProvider extends PanelProvider
             ->navigationItems([
                 NavigationItem::make('Horizon')
                     ->icon('heroicon-o-adjustments-horizontal')
-                    ->url("/horizon"),
+                    ->url('/horizon'),
             ])
             ->middleware([
                 EncryptCookies::class,

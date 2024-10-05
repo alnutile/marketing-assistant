@@ -31,24 +31,24 @@ class ListScheduleLogs extends ListRecords
                     });
 
                     Bus::batch($jobs)
-                        ->name("Scheduler ran manually")
-                        ->before(function(Batch $batch) {
+                        ->name('Scheduler ran manually')
+                        ->before(function (Batch $batch) {
                             Notification::make()
                                 ->title('Running Scheduler')
                                 ->success()
                                 ->send();
                         })
-                        ->finally(function(Batch $batch) {
+                        ->finally(function (Batch $batch) {
                             Notification::make()
                                 ->title('Done!')
                                 ->success()
                                 ->send();
                         })
-                        ->onQueue("scheduler")
+                        ->onQueue('scheduler')
                         ->allowFailures()
                         ->dispatch();
 
-                })
+                }),
         ];
     }
 }

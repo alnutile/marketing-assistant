@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ScheduleLogResource\Pages;
-use App\Filament\Resources\ScheduleLogResource\RelationManagers;
 use App\Models\Project;
 use App\Models\ScheduleLog;
 use Filament\Forms;
@@ -11,9 +10,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\HtmlString;
 
 class ScheduleLogResource extends Resource
 {
@@ -44,9 +40,9 @@ class ScheduleLogResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('loggable.name')
-                    ->label("View Loggable")
-                    ->url(function($record) {
-                        if(get_class($record->loggable) === Project::class) {
+                    ->label('View Loggable')
+                    ->url(function ($record) {
+                        if (get_class($record->loggable) === Project::class) {
                             return route('projects.show', $record->loggable);
                         }
                     })
@@ -64,14 +60,14 @@ class ScheduleLogResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            ->defaultSort("created_at", "desc");
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
@@ -86,7 +82,7 @@ class ScheduleLogResource extends Resource
         return [
             'index' => Pages\ListScheduleLogs::route('/'),
             'create' => Pages\CreateScheduleLog::route('/create'),
-            'view' => Pages\ViewScheduleLog::route('/{record}')
+            'view' => Pages\ViewScheduleLog::route('/{record}'),
         ];
     }
 }

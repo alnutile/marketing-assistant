@@ -4,7 +4,6 @@ namespace App\Services\LlmServices\Orchestration;
 
 use App\Events\ScheduleLogEvent;
 use App\Models\Project;
-use App\Models\ScheduleLog;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\RoleEnum;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate as OrchestrateFacade;

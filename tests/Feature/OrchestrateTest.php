@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Events\ScheduleLogEvent;
 use App\Models\Project;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\Orchestration\Orchestrate;
 use App\Services\LlmServices\Responses\CompletionResponse;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class OrchestrateTest extends TestCase
@@ -42,6 +44,7 @@ class OrchestrateTest extends TestCase
 
     public function test_tools_with_scheduler(): void
     {
+        Event::fake();
         $response1 = get_fixture('claude_response_with_tools_1727478177.json');
         $response2 = get_fixture('claude_response_with_tools_1727478179.json');
         $response3 = get_fixture('claude_response_with_tools_1727478189.json');
@@ -63,6 +66,6 @@ class OrchestrateTest extends TestCase
 
         (new Orchestrate)->setLogScheduler(true)->handle($project, 'Test Prompt');
 
-        $this->assertDatabaseCount('schedule_logs', 1);
+        Event::assertDispatched(ScheduleLogEvent::class);
     }
 }

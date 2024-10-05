@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\DB;
 
 class Project extends Model
@@ -29,6 +30,11 @@ class Project extends Model
         'chat_status' => ChatStatusEnum::class,
         'product_or_service' => ProductServiceEnum::class,
     ];
+
+    public function schedule_logs(): MorphMany
+    {
+        return $this->morphMany(ScheduleLog::class, 'loggable');
+    }
 
     public function users(): BelongsToMany
     {

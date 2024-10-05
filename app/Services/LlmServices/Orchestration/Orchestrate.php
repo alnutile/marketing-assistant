@@ -2,7 +2,9 @@
 
 namespace App\Services\LlmServices\Orchestration;
 
+use App\Events\ScheduleLogEvent;
 use App\Models\Project;
+use App\Models\ScheduleLog;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\RoleEnum;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate as OrchestrateFacade;
@@ -10,7 +12,18 @@ use Illuminate\Support\Facades\Log;
 
 class Orchestrate
 {
-    public function handle(Project $project, string $prompt = '', RoleEnum $role = RoleEnum::User): void
+    protected bool $logScheduler = false;
+
+    public function setLogScheduler(bool $logScheduler): self
+    {
+        $this->logScheduler = $logScheduler;
+
+        return $this;
+    }
+
+    public function handle(Project $project,
+        string $prompt = '',
+        RoleEnum $role = RoleEnum::User): void
     {
         if (! empty($prompt)) {
             $project->addInput(
@@ -42,6 +55,10 @@ SYSTEM_PROMPT;
             role: RoleEnum::Assistant,
         );
 
+        if ($this->logScheduler) {
+            ScheduleLogEvent::dispatch($project, $project->toArray());
+        }
+
         if (! empty($response->tool_calls)) {
 
             Log::info('Orchestration Tools Found', [
@@ -69,10 +86,14 @@ SYSTEM_PROMPT;
                     created_by_tool: true,
                 );
 
+                if ($this->logScheduler) {
+                    ScheduleLogEvent::dispatch($project, $project->toArray());
+                }
+
                 $count++;
             }
 
-            Log::info('Tools Complete doing final chat');
+            Log::info('This Tools Complete doing sending it through again');
 
             OrchestrateFacade::handle($project);
         }

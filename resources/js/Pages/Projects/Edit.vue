@@ -4,7 +4,7 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import FormSection from "@/Components/FormSection.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import ActionMessage from "@/Components/ActionMessage.vue";
-import Form from "@/Pages/Campaigns/Components/Form.vue";
+import Form from "@/Pages/Projects/Components/Form.vue";
 
 const props = defineProps({
     project: Object,

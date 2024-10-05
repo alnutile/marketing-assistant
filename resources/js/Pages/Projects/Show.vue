@@ -2,7 +2,7 @@
 import {Link, router, useForm} from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import {ref} from "vue";
-import Kickoff from "@/Pages/Campaigns/Components/Kickoff.vue";
+import Kickoff from "@/Pages/Projects/Components/Kickoff.vue";
 import InputError from "@/Components/InputError.vue";
 import Clipboard from "@/Components/Clipboard.vue";
 import Index from "@/Pages/Tasks/Index.vue";

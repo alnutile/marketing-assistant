@@ -7,23 +7,23 @@ use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
 
 class KickOffCampaign
 {
-    public function handle(Project $campaign)
+    public function handle(Project $project)
     {
-        $campaign->updateQuietly([
+        $project->updateQuietly([
             'chat_status' => ChatStatusEnum::InProgress,
         ]);
 
-        $campaign->messages()->delete();
+        $project->messages()->delete();
 
-        $campaign->tasks()->delete();
+        $project->tasks()->delete();
 
-        $campaignContext = $campaign->getContext();
+        $projectContext = $project->getContext();
 
-        $prompt = CampaignKickOffPrompt::getPrompt($campaignContext);
+        $prompt = CampaignKickOffPrompt::getPrompt($projectContext);
 
-        Orchestrate::handle($campaign, $prompt);
+        Orchestrate::handle($project, $prompt);
 
-        $campaign->updateQuietly([
+        $project->updateQuietly([
             'chat_status' => ChatStatusEnum::Complete,
         ]);
     }

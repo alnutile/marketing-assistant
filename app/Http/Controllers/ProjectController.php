@@ -11,7 +11,7 @@ use App\Http\Resources\ProjectResourceShow;
 use App\Models\Project;
 use Facades\App\Domains\Campaigns\KickOffCampaign;
 
-class CampaignController extends Controller
+class ProjectController extends Controller
 {
     public function index()
     {
@@ -22,7 +22,7 @@ class CampaignController extends Controller
             )->paginate()
         );
 
-        return inertia('Campaigns/Index', [
+        return inertia('Projects/Index', [
             'copy' => get_copy('projects.index'),
             'projects' => $projects,
         ]);
@@ -58,7 +58,7 @@ class CampaignController extends Controller
 
 DEFAULT_CONTENT;
 
-        return inertia('Campaigns/Create', [
+        return inertia('Projects/Create', [
             'content_start' => $defaultContent,
             'statuses' => StatusEnum::selectOptions(),
             'productServices' => ProductServiceEnum::selectOptions(),
@@ -90,7 +90,7 @@ DEFAULT_CONTENT;
 
     public function show(Project $project)
     {
-        return inertia('Campaigns/Show', [
+        return inertia('Projects/Show', [
             'project' => new ProjectResourceShow($project),
             'messages' => MessageResource::collection($project->messages()
                 ->notSystem()
@@ -102,7 +102,7 @@ DEFAULT_CONTENT;
 
     public function edit(Project $project)
     {
-        return inertia('Campaigns/Edit', [
+        return inertia('Projects/Edit', [
             'statuses' => StatusEnum::selectOptions(),
             'productServices' => ProductServiceEnum::selectOptions(),
             'project' => new ProjectResource($project),

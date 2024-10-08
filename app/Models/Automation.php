@@ -150,7 +150,7 @@ PROMPT;
 
             try {
                 /** @phpstan-ignore-next-line */
-                if($automationRun?->id) {
+                if ($automationRun?->id) {
                     $automationRun->update([
                         'status' => 'completed',
                         'completed_at' => now(),

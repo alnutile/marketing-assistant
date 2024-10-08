@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.9",
         "league/commonmark": "^2.5",
         "league/html-to-markdown": "^5.1",
+        "opcodesio/log-viewer": "^3.11",
         "openai-php/laravel": "^0.10.1",
         "spatie/browsershot": "^4.3",
         "spatie/laravel-data": "^4.8",

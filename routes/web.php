@@ -40,7 +40,7 @@ Route::middleware([
         }
     );
 
-    Route::controller(\App\Http\Controllers\CampaignController::class)->group(
+    Route::controller(\App\Http\Controllers\ProjectController::class)->group(
         function () {
             Route::get('/projects', 'index')->name('projects.index');
             Route::get('/projects/create', 'create')->name('projects.create');

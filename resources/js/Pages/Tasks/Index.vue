@@ -2,6 +2,7 @@
 
 import {computed, onMounted, ref, watch} from "vue";
 import {useForm} from "@inertiajs/vue3";
+import Hint from "@/Components/Hint.vue";
 
 const tasks = ref([])
 
@@ -64,6 +65,9 @@ watch(() => props.chatCompleted, (newValue) => {
             </button>
         </div>
 
+        <Hint v-if="tasks.length == 0">
+            No Tasks Yet? Just ask the LLM to make a task or tasks based on your prompt. For example "Create a task for each day of the week with a good meal to cook"
+        </Hint>
         <template v-for="task in tasks" :key="task.id">
             <div class="p-2 border border-gray-300 rounded-md my-2">
                 <div class="text-gray-600 text-md flex justify-between items-center">

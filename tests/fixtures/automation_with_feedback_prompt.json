@@ -1,0 +1,36 @@
+Date and time: 2024-10-07 02:07:21
+
+Below is the prompt from an automation and the context if needed for the prompt
+
+<PROMPT FROM THE AUTOMATION>
+When there is a book sale I would like to send a tweet like the ones below:
+
+"Yay, another sale of PHP and LLMs the Practical Guide 🚀!
+
+
+  * 👉Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
+  * 👉Join the NewsLetter https://sundance-solutions.mailcoach.app/php-and-llms
+
+#php #llm #laravel
+"
+
+<CONTEXT FROM THE PAYLOAD IF ANY>
+[]
+
+## Examples of results that got positive feedback
+Yay, another sale of PHP and LLMs the Practical Guide 🚀!
+
+  * 👉Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
+  * 👉Join the NewsLetter https://sundance-solutions.mailcoach.app/php-and-llms
+
+#php #llm #laravel
+Great another book sold thanks!
+
+👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
+👉🏻 Join the NewsLetter https://sundance-solutions.mailcoach.app/php-and-llms
+
+Another book sold of PHP and LLMs the Practical Guide 🎉
+👉🏻 Buy the book "PHP and LLMs - the practical guide" https://bit.ly/php_llms
+👉🏻 Join the NewsLetter https://sundance-solutions.mailcoach.app/php-and-llms
+
+(sent by n8n) and larallama.io

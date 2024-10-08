@@ -11,7 +11,7 @@ use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
-class CampaignControllerTest extends TestCase
+class ProjectControllerTest extends TestCase
 {
     /**
      * A basic feature test example.

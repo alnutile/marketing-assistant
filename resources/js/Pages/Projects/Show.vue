@@ -2,7 +2,7 @@
 import {Link, router, useForm} from "@inertiajs/vue3";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import {ref} from "vue";
-import Kickoff from "@/Pages/Campaigns/Components/Kickoff.vue";
+import Kickoff from "@/Pages/Projects/Components/Kickoff.vue";
 import InputError from "@/Components/InputError.vue";
 import Clipboard from "@/Components/Clipboard.vue";
 import Index from "@/Pages/Tasks/Index.vue";
@@ -85,9 +85,9 @@ const sendDailyReport = () => {
 
                         <div class="flex justify-end gap-2 items-center">
                             <Kickoff :project="project.data"/>
-                            <Link
-                                :href="route('projects.edit', project.data.id)"
-                                class="btn btn-primary rounded-none">Edit</Link>
+                            <a
+                                :href="route('filament.admin.resources.projects.edit', project.data.id)"
+                                class="btn btn-primary rounded-none">Edit</a>
                             <button @click="sendDailyReport"
                                     type="button"
                                     :disabled="dailyReportForm.processing"

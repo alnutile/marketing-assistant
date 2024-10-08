@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Domains\Campaigns\DailyReportService;
+use App\Domains\Campaigns\StatusEnum;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\Team;
@@ -40,9 +41,9 @@ class DailyReportServiceTest extends TestCase
             );
 
         $project = Project::factory()->create([
+            'status' => StatusEnum::Active,
             'user_id' => $user->id,
             'team_id' => $team->id,
-            'end_date' => now()->addDays(7),
         ]);
 
         Task::factory()->create([

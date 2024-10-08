@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\DB;
 
 class Project extends Model
@@ -30,6 +31,11 @@ class Project extends Model
         'product_or_service' => ProductServiceEnum::class,
     ];
 
+    public function schedule_logs(): MorphMany
+    {
+        return $this->morphMany(ScheduleLog::class, 'loggable');
+    }
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
@@ -42,8 +48,7 @@ class Project extends Model
 
     public function scopeActive(Builder $query): Builder
     {
-        return $query->where('end_date', '>=', now())
-            ->orWhere('end_date', null);
+        return $query->where('status', StatusEnum::Active);
     }
 
     public function team(): BelongsTo
@@ -72,7 +77,7 @@ class Project extends Model
         ## DETAILS
         {$this->content}
         ## Product of Service
-        {$this->product_or_service->value}
+        {$this->product_or_service?->value}
          ## Target Audience
         {$this->target_audience}
         ## Budget

@@ -20,7 +20,6 @@ class Orchestrate
         return $this;
     }
 
-
     public function handle(Project $project,
         string $prompt = '',
         RoleEnum $role = RoleEnum::User): void

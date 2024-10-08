@@ -73,8 +73,6 @@ class ProjectResource extends Resource
                             ]),
                     ]),
 
-
-
             ]);
     }
 

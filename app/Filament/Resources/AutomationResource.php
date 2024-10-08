@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AutomationResource\Pages;
-use App\Filament\Resources\AutomationResource\RelationManagers;
 use App\Models\Automation;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
 
 class AutomationResource extends Resource
@@ -28,12 +25,13 @@ class AutomationResource extends Resource
                     ->columns(6)
                     ->schema([
                         Forms\Components\Section::make('Details')
-                            ->description(function(Automation $automation) {
-                                if(!$automation?->id) {
-                                    return "Will show link here for webhook once saved";
+                            ->description(function (Automation $automation) {
+                                /** @phpstan-ignore-next-line */
+                                if (! $automation?->id) {
+                                    return 'Will show link here for webhook once saved';
                                 } else {
 
-                                    return new HtmlString(sprintf("The webhook for this automation is <br>%s</br> it takes a POST request.",
+                                    return new HtmlString(sprintf('The webhook for this automation is <br>%s</br> it takes a POST request.',
                                         route('webhooks.show', $automation)));
                                 }
                             })
@@ -57,19 +55,18 @@ class AutomationResource extends Resource
                                 Forms\Components\Toggle::make('feedback_required')
                                     ->columnSpanFull()
                                     ->default(fn () => false)
-                                    ->helperText(sprintf("Require %s positive feedback before it really runs!", config("assistant.feedback_count"))),
+                                    ->helperText(sprintf('Require %s positive feedback before it really runs!', config('assistant.feedback_count'))),
                                 Forms\Components\Select::make('project_id')
                                     ->columnSpanFull()
                                     ->relationship('project', 'name')->required(),
                                 Forms\Components\Toggle::make('enabled')
-                                    ->helperText("Hide from system automations, Pause")
+                                    ->helperText('Hide from system automations, Pause')
                                     ->required(),
                                 Forms\Components\Toggle::make('scheduled')
-                                    ->helperText("Should the system run this every hour?")
+                                    ->helperText('Should the system run this every hour?')
                                     ->required(),
                             ]),
                     ]),
-
 
             ]);
     }
@@ -84,10 +81,10 @@ class AutomationResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('project.name')
                     ->url(fn (Automation $automation) => route('projects.show', $automation->project))
-                    ->formatStateUsing(function(Automation $automation) {
+                    ->formatStateUsing(function (Automation $automation) {
                         return new HtmlString(sprintf("<a class='underline' href='%s'>%s</a>",
-                        route('projects.show', $automation->project),
-                        $automation->project->name
+                            route('projects.show', $automation->project),
+                            $automation->project->name
                         ));
                     })
                     ->numeric()

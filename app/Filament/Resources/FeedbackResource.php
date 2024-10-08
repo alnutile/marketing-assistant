@@ -3,18 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\FeedbackResource\Pages;
-use App\Filament\Resources\FeedbackResource\RelationManagers;
 use App\Models\Automation;
-use App\Models\Message;
-use Filament\Forms\Components\MorphToSelect;
 use App\Models\Feedback;
+use App\Models\Message;
 use Filament\Forms;
+use Filament\Forms\Components\MorphToSelect;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FeedbackResource extends Resource
 {
@@ -42,7 +39,7 @@ class FeedbackResource extends Resource
                                     ->titleAttribute('content'),
                             ]),
                         Forms\Components\Toggle::make('rating')
-                            ->helperText("Rate the feedback on for positive")
+                            ->helperText('Rate the feedback on for positive')
                             ->required(),
                     ]),
             ]);

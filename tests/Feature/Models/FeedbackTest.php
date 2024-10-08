@@ -3,8 +3,6 @@
 namespace Tests\Feature\Models;
 
 use App\Models\Feedback;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class FeedbackTest extends TestCase

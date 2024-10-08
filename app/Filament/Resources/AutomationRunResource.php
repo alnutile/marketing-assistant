@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AutomationRunResource\Pages;
-use App\Filament\Resources\AutomationRunResource\RelationManagers;
 use App\Models\AutomationRun;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AutomationRunResource extends Resource
 {
@@ -57,13 +54,13 @@ class AutomationRunResource extends Resource
                 Tables\Filters\SelectFilter::make('automation.name')
                     ->searchable()
                     ->preload()
-                    ->relationship('automation', 'name')
+                    ->relationship('automation', 'name'),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
-                ])
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

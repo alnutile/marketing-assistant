@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
+use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\RoleEnum;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Services\LlmServices\LlmDriverFacade;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
@@ -56,7 +54,8 @@ class Automation extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function passedFeedbackCount(): int {
+    public function passedFeedbackCount(): int
+    {
         return $this->feedback()
             ->latest()
             ->where('rating', true)
@@ -98,7 +97,7 @@ PROMPT;
                 ]);
             }
 
-            if($this->feedback_required && $this->passedFeedbackCount() < config('assistant.feedback_count')) {
+            if ($this->feedback_required && $this->passedFeedbackCount() < config('assistant.feedback_count')) {
                 Log::info('Automation enabled but count not met', [
                     'automation' => $this->name,
                     'count' => $this->passedFeedbackCount(),
@@ -127,13 +126,13 @@ PROMPT;
                 );
 
             } else {
-                if($this->feedback_required) {
+                if ($this->feedback_required) {
                     $feedback = $this->feedback()
                         ->limit(config('assistant.feedback_count'))
                         ->get()
-                        ->map(function($feedback) {
-                        return $feedback->comment;
-                    })->join("\n###### END EXAMPLE ######\n");
+                        ->map(function ($feedback) {
+                            return $feedback->comment;
+                        })->join("\n###### END EXAMPLE ######\n");
 
                     $prompt = <<<PROMPT
 $prompt
@@ -150,10 +149,13 @@ PROMPT;
             }
 
             try {
-                $automationRun->update([
-                    'status' => 'completed',
-                    'completed_at' => now(),
-                ]);
+                /** @phpstan-ignore-next-line */
+                if($automationRun?->id) {
+                    $automationRun->update([
+                        'status' => 'completed',
+                        'completed_at' => now(),
+                    ]);
+                }
             } catch (\Exception $e) {
                 Log::error('Automation run logging failed', [
                     'automation' => $this->name,

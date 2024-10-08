@@ -45,9 +45,8 @@ class LlmServiceProvider extends ServiceProvider
             return new GetWebSiteFromUrlTool;
         });
 
-
         $this->app->bind('tweet', function () {
-            return new Tweet();
+            return new Tweet;
         });
 
         $this->app->bind('reply_to_webhook', function () {

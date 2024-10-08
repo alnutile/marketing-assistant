@@ -2,12 +2,11 @@
 
 namespace Tests\Feature\Models;
 
+use App\Models\Automation;
 use App\Models\Feedback;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\Responses\CompletionResponse;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
-use App\Models\Automation;
-use http\Client\Curl\User;
 use Tests\TestCase;
 
 class AutomationTest extends TestCase
@@ -41,7 +40,8 @@ class AutomationTest extends TestCase
         $this->assertNotNull($automation->slug);
     }
 
-    public function test_feebback_count() {
+    public function test_feebback_count()
+    {
         $automation = Automation::factory()->create([
             'feedback_required' => true,
         ]);
@@ -72,7 +72,6 @@ class AutomationTest extends TestCase
         $automation = Automation::factory()->create([
             'feedback_required' => true,
         ]);
-
 
         $automation->run('Test Payload');
 

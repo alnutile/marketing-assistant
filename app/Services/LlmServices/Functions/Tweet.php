@@ -3,9 +3,7 @@
 namespace App\Services\LlmServices\Functions;
 
 use App\Models\Project;
-use App\Notifications\DailyReport;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Notification;
 
 class Tweet extends FunctionContract
 {

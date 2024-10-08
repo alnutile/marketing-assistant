@@ -3,8 +3,6 @@
 namespace App\Filament\Resources\ScheduleLogResource\Pages;
 
 use App\Filament\Resources\ScheduleLogResource;
-use App\Jobs\SchedulerProjectJob;
-use App\Models\Project;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 

@@ -38,6 +38,11 @@ class WebhookReplyTool extends FunctionContract
 
         $status = $response->status();
 
+        Log::info('WebhookResponse', [
+            'response' => $response,
+            'status' => $status,
+        ]);
+
         return FunctionResponse::from([
             'content' => sprintf('Reply sent to %s with payload %s status %s', $url, json_encode($payload), $status),
         ]);

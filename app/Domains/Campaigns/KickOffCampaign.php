@@ -18,8 +18,21 @@ class KickOffCampaign
         $project->tasks()->delete();
 
         $projectContext = $project->getContext();
+        $systemPrompt = $project->system_prompt;
+        $now = now()->toDateTimeString();
 
-        $prompt = CampaignKickOffPrompt::getPrompt($projectContext);
+        $prompt = <<<PROMPT
+Date and time: $now
+
+We are kicking off this project please use the prompts below to get it started as needed.
+
+## System Prompt
+$systemPrompt
+
+## Context Prompt
+$projectContext
+
+PROMPT;
 
         Orchestrate::handle($project, $prompt);
 

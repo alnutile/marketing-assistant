@@ -3,10 +3,16 @@
 namespace App\Domains\Campaigns;
 
 use App\Helpers\EnumHelperTrait;
+use Filament\Support\Contracts\HasLabel;
 
-enum ProductServiceEnum: string
+enum ProductServiceEnum: string implements HasLabel
 {
     use EnumHelperTrait;
+
+    public function getLabel(): ?string
+    {
+        return str($this->value);
+    }
 
     case PhysicalProduct = 'physical_product';
     case DigitalProduct = 'digital_product';

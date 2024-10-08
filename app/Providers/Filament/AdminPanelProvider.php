@@ -43,6 +43,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationItems([
                 NavigationItem::make('Horizon')
+                    ->group('System')
                     ->icon('heroicon-o-adjustments-horizontal')
                     ->url('/horizon'),
             ])

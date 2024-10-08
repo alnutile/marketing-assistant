@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Domains\Campaigns\StatusEnum;
+use App\Jobs\SchedulerProjectJob;
+use App\Models\Project;
+use Facades\App\Services\LlmServices\Orchestration\Orchestrate;
 use Tests\TestCase;
 
 class SchedulerProjectJobTest extends TestCase
@@ -11,10 +13,18 @@ class SchedulerProjectJobTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_gets_logs(): void
     {
-        $response = $this->get('/');
 
-        $response->assertStatus(200);
+        Orchestrate::shouldReceive('setLogScheduler->handle')->once();
+
+        $project = Project::factory()->create([
+            'status' => StatusEnum::Active,
+        ]);
+
+        [$job, $batch] = (new SchedulerProjectJob($project))->withFakeBatch();
+
+        $job->handle();
+
     }
 }

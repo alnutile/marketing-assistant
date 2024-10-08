@@ -20,6 +20,7 @@ class Orchestrate
         return $this;
     }
 
+
     public function handle(Project $project,
         string $prompt = '',
         RoleEnum $role = RoleEnum::User): void
@@ -34,14 +35,13 @@ class Orchestrate
 
         $messages = $project->getMessageThread();
 
-        $systemPrompt = $project->system_prompt;
-
         $currentDateTime = sprintf('Current date and time: %s', now()->toDateTimeString());
 
+        $systemPrompt = $project->system_prompt;
         $systemPrompt = <<<SYSTEM_PROMPT
-Current date and time: {$currentDateTime}
+## Current date and time: {$currentDateTime}
 
-System prompt:
+## System prompt:
 $systemPrompt
 SYSTEM_PROMPT;
 

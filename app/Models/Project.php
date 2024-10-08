@@ -48,8 +48,7 @@ class Project extends Model
 
     public function scopeActive(Builder $query): Builder
     {
-        return $query->where('end_date', '>=', now())
-            ->orWhere('end_date', null);
+        return $query->where('status', StatusEnum::Active);
     }
 
     public function team(): BelongsTo
@@ -78,7 +77,7 @@ class Project extends Model
         ## DETAILS
         {$this->content}
         ## Product of Service
-        {$this->product_or_service->value}
+        {$this->product_or_service?->value}
          ## Target Audience
         {$this->target_audience}
         ## Budget

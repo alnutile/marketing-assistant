@@ -25,6 +25,7 @@ class AutomationFactory extends Factory
             'enabled' => true,
             'scheduled' => false,
             'user_id' => User::factory(),
+            'feedback_required' => false,
             'project_id' => Project::factory(),
 
         ];

@@ -58,7 +58,7 @@ SYSTEM_PROMPT;
         }
 
         Log::info('Orchestration Tools Found', [
-            'tool_calls' => count($response->tool_calls)
+            'tool_calls' => count($response->tool_calls),
         ]);
 
         if (! empty($response->tool_calls)) {

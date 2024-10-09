@@ -150,6 +150,7 @@ CAMPAIGN_CONTEXT;
     public function getMessageThread(int $limit = 10): array
     {
         $latestMessages = $this->messages()
+            ->limit($limit)
             ->orderBy('id', 'desc')
             ->get();
 

@@ -1,0 +1,175 @@
+[
+    {
+        "name": "create_tasks_tool",
+        "description": "If the Project needs to have tasks created or the users prompt requires it you can use this tool to make multiple tasks",
+        "parameters": {
+            "type": "object",
+            "properties": [
+                {
+                    "name": "tasks",
+                    "description": "Array of task objects",
+                    "type": "array",
+                    "enum": [],
+                    "properties": [
+                        {
+                            "name": "items",
+                            "description": "Task object",
+                            "type": "object",
+                            "enum": [],
+                            "properties": [
+                                {
+                                    "name": "name",
+                                    "description": "Name of the task",
+                                    "type": "string",
+                                    "enum": [],
+                                    "properties": [],
+                                    "default": "",
+                                    "required": true
+                                },
+                                {
+                                    "name": "details",
+                                    "description": "Detailed info of the task",
+                                    "type": "string",
+                                    "enum": [],
+                                    "properties": [],
+                                    "default": "",
+                                    "required": true
+                                },
+                                {
+                                    "name": "due_date",
+                                    "description": "Due date if any format \"Y-m-d\"",
+                                    "type": "string",
+                                    "enum": [],
+                                    "properties": [],
+                                    "default": "",
+                                    "required": true
+                                },
+                                {
+                                    "name": "assistant",
+                                    "description": "Should the assistant be assigned this true or false",
+                                    "type": "string",
+                                    "enum": [],
+                                    "properties": [],
+                                    "default": "",
+                                    "required": false
+                                },
+                                {
+                                    "name": "user_id",
+                                    "description": "User id if assigned to a user",
+                                    "type": "string",
+                                    "enum": [],
+                                    "properties": [],
+                                    "default": "",
+                                    "required": false
+                                }
+                            ],
+                            "default": "",
+                            "required": true
+                        }
+                    ],
+                    "default": "",
+                    "required": true
+                }
+            ]
+        }
+    },
+    {
+        "name": "send_email_to_team",
+        "description": "Send an email to the team",
+        "parameters": {
+            "type": "object",
+            "properties": [
+                {
+                    "name": "message",
+                    "description": "The message for the body of the email",
+                    "type": "string",
+                    "enum": [],
+                    "properties": [],
+                    "default": "",
+                    "required": true
+                }
+            ]
+        }
+    },
+    {
+        "name": "list_tasks",
+        "description": "This will list all tasks that are still open unless you request closed instead",
+        "parameters": {
+            "type": "object",
+            "properties": [
+                {
+                    "name": "state",
+                    "description": "open or closed will be open by default",
+                    "type": "string",
+                    "enum": [],
+                    "properties": [],
+                    "default": "",
+                    "required": true
+                }
+            ]
+        }
+    },
+    {
+        "name": "get_web_site_from_url",
+        "description": "If the prompt requires content from a url or urls and has a url then you can pass them one at a time here and it will return the markdown of that page ",
+        "parameters": {
+            "type": "object",
+            "properties": [
+                {
+                    "name": "url",
+                    "description": "The URL To get",
+                    "type": "string",
+                    "enum": [],
+                    "properties": [],
+                    "default": "",
+                    "required": true
+                }
+            ]
+        }
+    },
+    {
+        "name": "tweet",
+        "description": "Send a twitter message.",
+        "parameters": {
+            "type": "object",
+            "properties": [
+                {
+                    "name": "message",
+                    "description": "The message that will be tweeted including the hashtag",
+                    "type": "string",
+                    "enum": [],
+                    "properties": [],
+                    "default": "",
+                    "required": true
+                }
+            ]
+        }
+    },
+    {
+        "name": "reply_to_webhook",
+        "description": "This tool can be used to reply to a webhook. So if a prompt ask to send a request back to a url this is the tool for that.",
+        "parameters": {
+            "type": "object",
+            "properties": [
+                {
+                    "name": "url",
+                    "description": "The url to send the reply to",
+                    "type": "string",
+                    "enum": [],
+                    "properties": [],
+                    "default": "",
+                    "required": true
+                },
+                {
+                    "name": "payload",
+                    "description": "The payload to send to that url",
+                    "type": "object",
+                    "enum": [],
+                    "properties": [],
+                    "default": "",
+                    "required": false
+                }
+            ]
+        }
+    }
+]

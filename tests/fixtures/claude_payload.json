@@ -1,0 +1,174 @@
+{
+    "model": "claude-3-5-sonnet-20240620",
+    "max_tokens": 8192,
+    "messages": [
+        {
+            "role": "assistant",
+            "content": "Certainly! I'll use the create_tasks_tool to add these tasks to your project. Here's what I'm going to do:"
+        },
+        {
+            "role": "user",
+            "content": "can you make these into tasks \n\n    Design professional book cover for advertising (Due: 2024-10-09)\n    Create full-page ad for PHP Magazine (Due: 2024-10-10)\n    Research and contact PHP Magazine for ad placement (Due: 2024-10-10)\n    Design half-page ad for Laravel News (Due: 2024-10-10)\n    Contact Laravel News for consulting ad placement (Due: 2024-10-10)"
+        },
+        {
+            "role": "assistant",
+            "content": "Certainly! I'll use the create_tasks_tool to add these tasks to your project. Here's what I'm going to do:"
+        },
+        {
+            "role": "user",
+            "content": "can you make these into tasks \n\n    Design professional book cover for advertising (Due: 2024-10-09)\n    Create full-page ad for PHP Magazine (Due: 2024-10-10)\n    Research and contact PHP Magazine for ad placement (Due: 2024-10-10)\n    Design half-page ad for Laravel News (Due: 2024-10-10)\n    Contact Laravel News for consulting ad placement (Due: 2024-10-10)"
+        },
+        {
+            "role": "assistant",
+            "content": "Certainly! I'll use the create_tasks_tool to add these tasks to your project. Here's how I'll structure the tasks:"
+        },
+        {
+            "role": "user",
+            "content": "Tool create_tasks_tool used with results {\"tasks\":[{\"name\":\"Design professional book cover for advertising\",\"details\":\"Create a visually appealing and professional book cover design suitable for advertising purposes.\",\"due_date\":\"2024-10-09\",\"assistant\":\"false\"},{\"name\":\"Create full-page ad for PHP Magazine\",\"details\":\"Design and develop a full-page advertisement for the book to be placed in PHP Magazine.\",\"due_date\":\"2024-10-10\",\"assistant\":\"false\"},{\"name\":\"Research and contact PHP Magazine for ad placement\",\"details\":\"Conduct research on PHP Magazine's ad placement options and reach out to their advertising department to discuss placement opportunities.\",\"due_date\":\"2024-10-10\",\"assistant\":\"false\"},{\"name\":\"Design half-page ad for Laravel News\",\"details\":\"Create a compelling half-page advertisement design for the book to be featured in Laravel News.\",\"due_date\":\"2024-10-10\",\"assistant\":\"false\"},{\"name\":\"Contact Laravel News for consulting ad placement\",\"details\":\"Reach out to Laravel News to discuss ad placement options and consult on the best strategy for featuring the book.\",\"due_date\":\"2024-10-10\",\"assistant\":\"false\"}]}"
+        },
+        {
+            "role": "assistant",
+            "content": "Great! I've successfully created the tasks using the create_tasks_tool. Here's a summary of the tasks that have been added to your project:\n\n1. Design professional book cover for advertising\n   Due: 2024-10-09\n\n2. Create full-page ad for PHP Magazine\n   Due: 2024-10-10\n\n3. Research and contact PHP Magazine for ad placement\n   Due: 2024-10-10\n\n4. Design half-page ad for Laravel News\n   Due: 2024-10-10\n\n5. Contact Laravel News for consulting ad placement\n   Due: 2024-10-10\n\nAll tasks have been created with detailed descriptions and assigned due dates. They are not assigned to the AI assistant, so they will be available for your team members to work on.\n\nThese tasks will help you manage your advertising campaign for the \"PHP and LLMs the Practical Guide\" book, ensuring that you have a professional book cover for advertising, create appropriate ads for both PHP Magazine and Laravel News, and establish contact with these publications for ad placement.\n\nIs there anything else you'd like me to do regarding these tasks or your advertising campaign?"
+        },
+        {
+            "role": "user",
+            "content": "Can you add 4 marketing tasks for this week like \"Post on Twitter\""
+        },
+        {
+            "role": "assistant",
+            "content": "Certainly! I'd be happy to add four marketing tasks focused on social media and online promotion for this week. I'll use the create_tasks_tool to add these tasks to your project. Here's what I'm going to do:"
+        },
+        {
+            "role": "user",
+            "content": "Tool create_tasks_tool used with results {\"tasks\":[{\"name\":\"Post on Twitter about book launch\",\"details\":\"Create and post a tweet announcing the launch of 'PHP and LLMs the Practical Guide'. Include key features and a link to purchase.\",\"due_date\":\"2024-10-11\",\"assistant\":\"false\"},{\"name\":\"Share book excerpt on LinkedIn\",\"details\":\"Post a compelling excerpt from the book on LinkedIn to generate interest among professional developers. Include a call-to-action to purchase or learn more.\",\"due_date\":\"2024-10-12\",\"assistant\":\"false\"},{\"name\":\"Create and post Instagram story\",\"details\":\"Design an eye-catching Instagram story showcasing the book cover and key selling points. Use interactive features like polls or questions to engage followers.\",\"due_date\":\"2024-10-13\",\"assistant\":\"false\"},{\"name\":\"Write and publish blog post\",\"details\":\"Write a blog post discussing the intersection of PHP and LLMs, teasing content from the book. Publish on your website or a popular tech blog platform.\",\"due_date\":\"2024-10-14\",\"assistant\":\"false\"}]}"
+        }
+    ],
+    "system": "## Current date and time: Current date and time: 2024-10-09 01:22:00\n\n## System prompt:\nYou are an AI assistant specialized in digital marketing campaigns. Your primary goals are:\n\n\n1. Analyze and understand the user's campaign objectives.\n2. Provide strategic insights and recommendations to optimize campaign performance.\n3. Offer creative ideas tailored to the campaign's target audience and platform.\n4. Suggest data-driven improvements based on campaign metrics and industry best practices.\n5. Ensure all advice aligns with ethical marketing practices and relevant regulations.\n6. If there are tasks them make sure to use the create task tool to make them\n\nWhen responding:\n- Always consider the specific details of the user's campaign.\n- Tailor your advice to the campaign's goals, target audience, and chosen marketing channels.\n- Provide actionable suggestions that can be implemented immediately.\n- If any crucial information is missing, ask clarifying questions to better understand the campaign.\n- Be concise in your initial responses, but offer to elaborate on any point if the user requests more details.\n\nRemember: Your role is to be a knowledgeable, strategic partner in the user's marketing efforts, helping them achieve their campaign objectives effectively and efficiently.\n\nIf there are Tools to use but not need to use them and just reply to the prompt otherwise use the tools without asking.",
+    "tools": [
+        {
+            "name": "create_tasks_tool",
+            "description": "If the Project needs to have tasks created or the users prompt requires it you can use this tool to make multiple tasks",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "tasks": {
+                        "description": "Array of task objects",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the task"
+                                },
+                                "details": {
+                                    "type": "string",
+                                    "description": "Detailed info of the task"
+                                },
+                                "due_date": {
+                                    "type": "string",
+                                    "description": "Due date if any format \"Y-m-d\""
+                                },
+                                "assistant": {
+                                    "type": "string",
+                                    "description": "Should the assistant be assigned this true or false"
+                                },
+                                "user_id": {
+                                    "type": "string",
+                                    "description": "User id if assigned to a user"
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "tasks"
+                ]
+            }
+        },
+        {
+            "name": "send_email_to_team",
+            "description": "Send an email to the team",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "description": "The message for the body of the email",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "message"
+                ]
+            }
+        },
+        {
+            "name": "list_tasks",
+            "description": "This will list all tasks that are still open unless you request closed instead",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "state": {
+                        "description": "open or closed will be open by default",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "state"
+                ]
+            }
+        },
+        {
+            "name": "get_web_site_from_url",
+            "description": "If the prompt requires content from a url or urls and has a url then you can pass them one at a time here and it will return the markdown of that page ",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "description": "The URL To get",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "url"
+                ]
+            }
+        },
+        {
+            "name": "tweet",
+            "description": "Send a twitter message.",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "description": "The message that will be tweeted including the hashtag",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "message"
+                ]
+            }
+        },
+        {
+            "name": "reply_to_webhook",
+            "description": "This tool can be used to reply to a webhook. So if a prompt ask to send a request back to a url this is the tool for that.",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "description": "The url to send the reply to",
+                        "type": "string"
+                    },
+                    "payload": {
+                        "description": "The payload to send to that url",
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "url"
+                ]
+            }
+        }
+    ]
+}

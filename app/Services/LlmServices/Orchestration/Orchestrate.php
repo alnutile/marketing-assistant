@@ -32,7 +32,7 @@ class Orchestrate
             );
         }
 
-        $messages = $project->getMessageThread();
+        $messages = $project->getMessageThread(limit: 10);
 
         $currentDateTime = sprintf('Current date and time: %s', now()->toDateTimeString());
 
@@ -56,6 +56,10 @@ SYSTEM_PROMPT;
         if ($this->logScheduler) {
             ScheduleLogEvent::dispatch($project, $project->toArray());
         }
+
+        Log::info('Orchestration Tools Found', [
+            'tool_calls' => count($response->tool_calls)
+        ]);
 
         if (! empty($response->tool_calls)) {
 

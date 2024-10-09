@@ -119,6 +119,7 @@ abstract class BaseClient
             $payload['system'] = $this->system;
         }
 
+        put_fixture('claude_payload.json', $payload);
         return $payload;
     }
 

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Actions\Jetstream\CreateTeam;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -12,10 +14,19 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::create([
-            'name' => 'Alfred',
+        $user = User::updateOrCreate([
             'email' => env('ADMIN_EMAIL'),
-            'password' => bcrypt(env('ADMIN_PASSWORD'))]);
+        ],
+            [
+                'password' => bcrypt(env('ADMIN_PASSWORD')),
+                'name' => 'Admin',
+            ]);
+
+        if (! Team::where('name', 'Admin Team')->exists()) {
+            (new CreateTeam)->create($user, [
+                'name' => 'Admin Team',
+            ]);
+        }
 
     }
 }

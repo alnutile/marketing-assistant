@@ -61,6 +61,7 @@ class UserResource extends Resource
                         ->afterStateUpdated(function (User $user, Forms\Set $set, ?string $state) {
                             Log::info('UserResource::afterStateUpdated', [
                                 'set' => $set,
+                                /** @phpstan-ignore-next-line */
                                 'user' => $user?->id,
                                 'state' => $state,
                             ]);

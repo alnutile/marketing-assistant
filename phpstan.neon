@@ -15,5 +15,4 @@ parameters:
         - vendor
         - app/Actions/*
         - app/Http/Resources/*
-        - app/Filament/*
 

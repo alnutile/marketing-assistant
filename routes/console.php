@@ -11,3 +11,5 @@ Artisan::command('inspire', function () {
 Schedule::call(function () {
     (new \App\Domains\Campaigns\DailyReportService)->handle();
 })->dailyAt('05:00');
+
+Schedule::command('telescope:prune')->daily();

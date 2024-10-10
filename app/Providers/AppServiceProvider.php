@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         LogViewer::auth(function ($request) {
-            return User::first()?->id === $request->user()?->id;
+            return $request->user()?->is_admin;
         });
     }
 }

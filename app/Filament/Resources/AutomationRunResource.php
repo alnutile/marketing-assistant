@@ -14,7 +14,7 @@ class AutomationRunResource extends Resource
 {
     protected static ?string $model = AutomationRun::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
 
     public static function form(Form $form): Form
     {

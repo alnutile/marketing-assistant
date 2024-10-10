@@ -2,16 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Domains\Accounts\AccountTypeEnum;
 use App\Filament\Resources\UserResource\Pages;
-use App\Models\Team;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Rawilk\FilamentPasswordInput\Password;
@@ -75,8 +72,6 @@ class UserResource extends Resource
                 ]),
             ]);
     }
-
-
 
     public static function table(Table $table): Table
     {

@@ -46,6 +46,15 @@ class AdminPanelProvider extends PanelProvider
                     ->group('System')
                     ->icon('heroicon-o-adjustments-horizontal')
                     ->url('/horizon'),
+                NavigationItem::make('Logs')
+                    ->group('System')
+                    ->icon('heroicon-o-academic-cap')
+                    ->url('/log-viewer'),
+                NavigationItem::make('Telescope')
+                    ->group('System')
+                    ->icon('heroicon-o-bolt')
+                    ->url('/telescope'),
+
             ])
             ->middleware([
                 EncryptCookies::class,

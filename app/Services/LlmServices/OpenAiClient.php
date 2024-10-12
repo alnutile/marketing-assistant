@@ -31,7 +31,7 @@ class OpenAiClient extends BaseClient
 
         $payload = $this->modifyPayload($payload);
 
-        put_fixture('openai_chat_payload_raw.json', $payload);
+        //put_fixture('openai_chat_payload_raw.json', $payload);
 
         $response = Http::withHeaders([
             'Content-type' => 'application/json',

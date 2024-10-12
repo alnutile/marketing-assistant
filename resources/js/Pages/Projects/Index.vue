@@ -48,9 +48,9 @@ const props = defineProps({
                                 <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Who</th>
+                                    <th class="hidden sm:table-cell">Who</th>
                                     <th>Name</th>
-                                    <th>Team</th>
+                                    <th class="hidden sm:table-cell">Team</th>
                                     <th>View</th>
                                 </tr>
                                 </thead>
@@ -58,7 +58,7 @@ const props = defineProps({
                                 <!-- row 1 -->
                                 <tr class="bg-base-200" v-for="project in projects.data" :key="project.id">
                                     <td>{{ project.id }}</td>
-                                    <td>
+                                    <td class="hidden sm:table-cell">
                                         <div class="avatar-group -space-x-6 rtl:space-x-reverse">
                                             <div class="avatar" v-for="user in project.users" :key="user.id">
                                                 <div class="w-12">
@@ -67,11 +67,11 @@ const props = defineProps({
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td >
                                         {{ project.name }}
                                     </td>
 
-                                    <td>
+                                    <td class="hidden sm:table-cell">
                                         {{ project.team?.name }}
                                     </td>
                                     <td>

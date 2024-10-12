@@ -1,0 +1,31 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Domains\Reports\CreateReport;
+use App\Models\Report;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
+
+class CreateReportTest extends TestCase
+{
+    /**
+     * A basic feature test example.
+     */
+    public function test_breaks_up_pdf(): void
+    {
+        Storage::copy(
+            base_path('tests/example-documents/MockRFP.pdf'),
+            __DIR__ . '../../app/reports/MockRFP.pdf'
+        );
+
+        $report = Report::factory()->create([
+            'file_name' => 'MockRFP.pdf',
+        ]);
+
+        (new CreateReport())->handle($report);
+        $this->assertDatabaseCount('report_pages', 3);
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\ReportPage;
 use App\Services\LlmServices\LlmDriverFacade;
 use Illuminate\Bus\Batchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,6 +13,12 @@ class ReviewReportPageJob implements ShouldQueue
     use Batchable, Queueable;
 
     protected int $tries = 1;
+
+
+    public function __construct(public ReportPage $reportPage)
+    {
+        //
+    }
 
     /**
      * Execute the job.
@@ -63,7 +70,13 @@ PROMPT;
 
             $review = $results->content;
 
+            $reportPageId = $this->reportPage->id;
+
             $prompt = <<<PROMPT
+## Report Page ID
+
+ID: $reportPageId
+
 ## Score Prompt
 Consider the following results of a review prompt.
 Return the score 1 - 5.

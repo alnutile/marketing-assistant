@@ -14,7 +14,6 @@ class ReviewReportPageJob implements ShouldQueue
 
     protected int $tries = 1;
 
-
     public function __construct(public ReportPage $reportPage)
     {
         //
@@ -109,7 +108,7 @@ PROMPT;
 
             $this->reportPage->updateQuietly([
                 'review' => $review,
-                'score' => ! is_int($results->content) ?? 0,
+                'score' => (is_int($results->content)) ? $results->content : 0,
                 'status' => \App\Domains\Reports\StatusEnum::Completed,
             ]);
 

@@ -40,6 +40,7 @@ class FinalizeReportJob implements ShouldQueue
 
         $count = ($count < 8) ? $count : 8;
         $results = collect($report->report_pages->random($count))
+            /** @phpstan-ignore-next-line */
             ->transform(function ($reportPage) {
                 return <<<OUTPUT
       Review: {$reportPage->review}

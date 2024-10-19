@@ -143,6 +143,7 @@ abstract class BaseClient
      */
     public function remapMessages(array $messages): array
     {
+        /** @phpstan-ignore-next-line */
         $messages = collect($messages)->transform(function (MessageInDto $message): array {
             return collect($message->toArray())
                 ->only(['content', 'role', 'tool_calls', 'tool_used', 'input_tokens', 'output_tokens', 'model'])

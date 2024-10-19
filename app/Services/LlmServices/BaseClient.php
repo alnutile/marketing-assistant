@@ -75,6 +75,21 @@ abstract class BaseClient
         ]);
     }
 
+
+    /**
+     * @return CompletionResponse[]
+     *
+     * @throws \Exception
+     */
+    public function completionPool(array $prompts, int $temperature = 0): array
+    {
+        Log::info('LlmDriver::MockClient::completionPool');
+
+        return [
+            $this->completion($prompts[0]),
+        ];
+    }
+
     protected function getConfig(string $driver): array
     {
         return config("llmdriver.drivers.$driver");
@@ -127,8 +142,14 @@ abstract class BaseClient
     /**
      * @param  MessageInDto[]  $messages
      */
-    public function remapMessages(array|Collection $messages): array
+    public function remapMessages(array $messages): array
     {
+        $messages = collect($messages)->transform(function (MessageInDto $message): array {
+            return collect($message->toArray())
+                ->only(['content', 'role', 'tool_calls', 'tool_used', 'input_tokens', 'output_tokens', 'model'])
+                ->toArray();
+        })->toArray();
+
         return $messages;
     }
 

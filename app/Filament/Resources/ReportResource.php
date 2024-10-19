@@ -33,12 +33,8 @@ class ReportResource extends Resource
                                 return new HtmlString(sprintf('Report for file: <span class="font-bold">%s</span>', $report->file_name));
                             })
                             ->schema([
-                                Forms\Components\FileUpload::make('file_name')
-                                    ->disk('reports')
-                                    ->preserveFilenames()
-                                    ->columnSpanFull()
-                                    ->required(),
                                 Forms\Components\MarkdownEditor::make('prompt')
+                                    ->helperText("Focus on the goal of the assistant. What to look for etc. The tool will take care of formatting and scoring")
                                     ->default(StandardsCheckingPromptTemplate::getPrompt())
                                     ->columnSpanFull(),
                                 Forms\Components\Select::make('report_type')
@@ -49,11 +45,21 @@ class ReportResource extends Resource
                                     ->label('Project')
                                     ->relationship('project', 'name')
                                     ->required(),
+                                Forms\Components\Select::make('user')
+                                    ->label('Owner')
+                                    ->relationship('user', 'name')
+                                    ->required(),
                             ]),
 
-                        Forms\Components\Section::make('Report Results')
+                        Forms\Components\Section::make('Report Assets and Results')
                             ->columnSpan(1)
                             ->schema([
+                                Forms\Components\FileUpload::make('file_name')
+                                    ->disk('reports')
+                                    ->preserveFilenames()
+                                    ->columnSpanFull()
+                                    ->required(),
+
                                 Forms\Components\Select::make('status')
                                     ->default(StatusEnum::Pending->value)
                                     ->options(StatusEnum::class),

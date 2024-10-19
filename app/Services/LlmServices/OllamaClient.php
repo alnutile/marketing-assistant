@@ -2,9 +2,11 @@
 
 namespace App\Services\LlmServices;
 
+use App\Models\Setting;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\CompletionResponse;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -55,6 +57,70 @@ class OllamaClient extends BaseClient
 
         return new CompletionResponse($results);
     }
+
+    /**
+     * @return CompletionResponse[]
+     *
+     * @throws \Exception
+     */
+    public function completionPool(array $prompts, int $temperature = 0): array
+    {
+        Log::info('LlmDriver::MockClient::completionPool');
+        Log::info('LlmDriver::Ollama::completionPool');
+
+        $api_token = $this->getConfig('ollama')['api_key'];
+        $baseUrl = $this->getConfig('ollama')['api_url'];
+        if (! $api_token || ! $baseUrl) {
+            throw new \Exception('Ollama API Base URL or Token not found');
+        }
+
+        $model = $this->getConfig('ollama')['models']['completion_model'];
+
+        $responses = Http::pool(function (Pool $pool) use (
+            $prompts,
+            $model,
+            $baseUrl
+        ) {
+            foreach ($prompts as $prompt) {
+                $payload = [
+                    'model' => $model,
+                    'prompt' => $prompt,
+                    'stream' => false,
+                ];
+
+                $payload = $this->modifyPayload($payload);
+
+                Log::info('Ollama Request', [
+                    'prompt' => $prompt,
+                    'payload' => $payload,
+                ]);
+
+                $pool->withHeaders([
+                    'content-type' => 'application/json',
+                ])->timeout(300)
+                    ->baseUrl($baseUrl)
+                    ->post('/generate', $payload);
+            }
+        });
+
+        $results = [];
+
+        foreach ($responses as $index => $response) {
+            if ($response->ok()) {
+                $results[] = CompletionResponse::from([
+                    'content' => $response->json()['response'],
+                ]);
+            } else {
+                Log::error('Ollama API Error ', [
+                    'index' => $index,
+                    'error' => $response->body(),
+                ]);
+            }
+        }
+
+        return $results;
+    }
+
 
     protected function getClient()
     {

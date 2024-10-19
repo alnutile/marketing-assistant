@@ -72,8 +72,8 @@ class Project extends Model
         ## Unique Selling Proposition (USP)
         {$this->name}
         ## Timeline
-        {$this->start_date->format('Y-m-d')}
-        {$this->end_date->format('Y-m-d')}
+        {$this->start_date?->format('Y-m-d')}
+        {$this->end_date?->format('Y-m-d')}
         ## DETAILS
         {$this->content}
         ## Product of Service

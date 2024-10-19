@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +24,7 @@ class ReportFactory extends Factory
             'summary_of_results' => $this->faker->sentence(3, true),
             'prompt' => $this->faker->sentence(3, true),
             'overall_score' => random_int(1, 5),
+            'user_id' => User::factory(),
             'status' => \App\Domains\Reports\StatusEnum::Pending->value,
         ];
     }

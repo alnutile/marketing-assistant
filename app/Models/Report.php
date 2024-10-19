@@ -8,12 +8,14 @@ use App\Domains\Reports\TemplatePrompts\StandardsCheckingPromptTemplate;
 use Filament\Forms;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\HtmlString;
 
 class Report extends Model
 {
     /** @use HasFactory<\Database\Factories\ReportFactory> */
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $guarded = [];
 
@@ -21,6 +23,11 @@ class Report extends Model
         'status' => StatusEnum::class,
         'report_type' => ReportTypes::class,
     ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public static function getForm(): array
     {
@@ -65,7 +72,7 @@ class Report extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function report_page(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function report_pages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(ReportPage::class);
     }

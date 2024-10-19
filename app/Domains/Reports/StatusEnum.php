@@ -8,6 +8,8 @@ enum StatusEnum: string implements HasLabel
 {
     case Pending = 'pending';
     case Running = 'running';
+
+    case InQueue = 'in_queue';
     case Completed = 'completed';
     case Failed = 'failed';
 

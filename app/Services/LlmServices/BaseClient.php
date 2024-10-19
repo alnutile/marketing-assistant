@@ -75,7 +75,6 @@ abstract class BaseClient
         ]);
     }
 
-
     /**
      * @return CompletionResponse[]
      *

@@ -6,8 +6,6 @@ use App\Jobs\ReviewReportPageJob;
 use App\Models\ReportPage;
 use App\Services\LlmServices\LlmDriverFacade;
 use App\Services\LlmServices\Responses\CompletionResponse;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ReviewReportPageJobTest extends TestCase

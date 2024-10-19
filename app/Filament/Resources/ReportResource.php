@@ -34,7 +34,7 @@ class ReportResource extends Resource
                             })
                             ->schema([
                                 Forms\Components\MarkdownEditor::make('prompt')
-                                    ->helperText("Focus on the goal of the assistant. What to look for etc. The tool will take care of formatting and scoring")
+                                    ->helperText('Focus on the goal of the assistant. What to look for etc. The tool will take care of formatting and scoring')
                                     ->default(StandardsCheckingPromptTemplate::getPrompt())
                                     ->columnSpanFull(),
                                 Forms\Components\Select::make('report_type')

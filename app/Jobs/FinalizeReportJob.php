@@ -10,7 +10,7 @@ use Illuminate\Foundation\Queue\Queueable;
 
 class FinalizeReportJob implements ShouldQueue
 {
-    use Queueable, Batchable;
+    use Batchable, Queueable;
 
     //tries
 
@@ -23,7 +23,6 @@ class FinalizeReportJob implements ShouldQueue
     {
         //
     }
-
 
     /**
      * Execute the job.
@@ -71,7 +70,6 @@ PROMPT;
             'status' => \App\Domains\Reports\StatusEnum::Completed,
             'overall_score' => $this->report->report_pages->sum('score'),
         ]);
-
 
         \Filament\Notifications\Notification::make()
             ->title('Report Completed')

@@ -6,8 +6,6 @@ use App\Jobs\FinalizeReportJob;
 use App\Models\Report;
 use App\Models\ReportPage;
 use App\Services\LlmServices\LlmDriverFacade;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class FinalizeReportJobTest extends TestCase

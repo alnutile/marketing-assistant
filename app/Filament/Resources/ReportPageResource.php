@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ReportPageResource\Pages;
-use App\Filament\Resources\ReportPageResource\RelationManagers;
 use App\Models\ReportPage;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ReportPageResource extends Resource
 {
@@ -23,27 +20,27 @@ class ReportPageResource extends Resource
     {
         return $form
             ->schema([
-               Forms\Components\Section::make('Review')
-                   ->columns(2)
-                   ->schema([
-                       Forms\Components\Select::make('report_id')
-                           ->relationship('report', 'id')
-                           ->required(),
-                       Forms\Components\TextInput::make('sort')
-                           ->required()
-                           ->numeric()
-                           ->default(0),
-                       Forms\Components\TextInput::make('score')
-                           ->required()
-                           ->numeric()
-                           ->default(0),
-                       Forms\Components\TextInput::make('status')
-                           ->maxLength(255),
-                       Forms\Components\MarkdownEditor::make('review')
-                           ->columnSpanFull(),
-                       Forms\Components\MarkdownEditor::make('content')
-                           ->columnSpanFull(),
-                       ])
+                Forms\Components\Section::make('Review')
+                    ->columns(2)
+                    ->schema([
+                        Forms\Components\Select::make('report_id')
+                            ->relationship('report', 'id')
+                            ->required(),
+                        Forms\Components\TextInput::make('sort')
+                            ->required()
+                            ->numeric()
+                            ->default(0),
+                        Forms\Components\TextInput::make('score')
+                            ->required()
+                            ->numeric()
+                            ->default(0),
+                        Forms\Components\TextInput::make('status')
+                            ->maxLength(255),
+                        Forms\Components\MarkdownEditor::make('review')
+                            ->columnSpanFull(),
+                        Forms\Components\MarkdownEditor::make('content')
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 
@@ -76,7 +73,7 @@ class ReportPageResource extends Resource
                         ->toggleable(isToggledHiddenByDefault: true),
                     Tables\Columns\TextColumn::make('status')
                         ->searchable(),
-                ])
+                ]),
             ])
             ->contentGrid([
                 'md' => 2,

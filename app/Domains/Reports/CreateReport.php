@@ -4,7 +4,6 @@ namespace App\Domains\Reports;
 
 use App\Jobs\FinalizeReportJob;
 use App\Jobs\ReviewReportPageJob;
-use App\Models\Project;
 use App\Models\Report;
 use App\Models\ReportPage;
 use Illuminate\Bus\Batch;
@@ -20,8 +19,8 @@ class CreateReport
 
         $report->report_pages()->delete();
 
-        $filePath = storage_path('app/reports/' . $report->file_name);
-        $parser = new Parser();
+        $filePath = storage_path('app/reports/'.$report->file_name);
+        $parser = new Parser;
         $pdf = $parser->parseFile($filePath);
         $pages = $pdf->getPages();
         $reportPages = [];
@@ -48,10 +47,10 @@ class CreateReport
             ->allowFailures()
             ->finally(function (Batch $batch) use ($report) {
                 $batch->add(new FinalizeReportJob($report));
-              \Filament\Notifications\Notification::make()
+                \Filament\Notifications\Notification::make()
                     ->title('Working on final parts of report')
                     ->sendToDatabase($report->user);
-              //@TODO trigger a job to wrap up the report
+                //@TODO trigger a job to wrap up the report
 
             })
             ->dispatch();

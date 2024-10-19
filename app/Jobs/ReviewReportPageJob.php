@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\ReportPage;
 use App\Services\LlmServices\LlmDriverFacade;
 use Illuminate\Bus\Batchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,8 +9,7 @@ use Illuminate\Foundation\Queue\Queueable;
 
 class ReviewReportPageJob implements ShouldQueue
 {
-    use Queueable, Batchable;
-
+    use Batchable, Queueable;
 
     protected int $tries = 1;
 
@@ -26,7 +24,6 @@ class ReviewReportPageJob implements ShouldQueue
 
             return;
         }
-
 
         //this could be a huge page lets assume not.
         try {
@@ -99,7 +96,7 @@ PROMPT;
 
             $this->reportPage->updateQuietly([
                 'review' => $review,
-                'score' => !is_int($results->content) ?? 0,
+                'score' => ! is_int($results->content) ?? 0,
                 'status' => \App\Domains\Reports\StatusEnum::Completed,
             ]);
 

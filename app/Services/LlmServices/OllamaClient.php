@@ -2,7 +2,6 @@
 
 namespace App\Services\LlmServices;
 
-use App\Models\Setting;
 use App\Services\LlmServices\Requests\MessageInDto;
 use App\Services\LlmServices\Responses\CompletionResponse;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -120,7 +119,6 @@ class OllamaClient extends BaseClient
 
         return $results;
     }
-
 
     protected function getClient()
     {

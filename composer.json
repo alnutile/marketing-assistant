@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "echolabsdev/prism": "^0.6.0",
         "filament/filament": "^3.2",
         "flowframe/laravel-trend": "^0.3.0",
         "inertiajs/inertia-laravel": "^1.0",

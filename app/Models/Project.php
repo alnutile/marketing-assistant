@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\DB;
+use EchoLabs\Prism\ValueObjects\Messages\UserMessage;
+use EchoLabs\Prism\ValueObjects\Messages\AssistantMessage;
 
 class Project extends Model
 {
@@ -146,6 +148,26 @@ CAMPAIGN_CONTEXT;
         });
 
     }
+
+    public function getPrismMessage(int $limit = 10): array
+    {
+        return $this->messages()
+            ->limit($limit)
+            ->whereIn("role", [
+                \App\Services\LlmServices\RoleEnum::User->value,
+                \App\Services\LlmServices\RoleEnum::Assistant->value,
+            ])
+            ->orderBy('id', 'desc')
+            ->get()
+            ->transform(function($message) {
+                if($message->role == \App\Services\LlmServices\RoleEnum::User) {
+                    return new UserMessage($message->content);
+                } else {
+                    return new AssistantMessage($message->content);
+                }
+            })->toArray();
+    }
+
 
     public function getMessageThread(int $limit = 10): array
     {

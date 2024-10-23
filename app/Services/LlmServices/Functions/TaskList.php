@@ -12,17 +12,20 @@ class TaskList extends FunctionContract
 
     protected string $description = 'This will list all tasks that are still open unless you request closed instead';
 
+
     public function handle(
         Project $project,
         array $args = []): FunctionResponse
     {
-        Log::info('List Tasks called');
+        Log::info('List Tasks called', [
+            'args' => $args,
+        ]);
 
         $state = data_get($args, 'state', 'open');
 
         $tasks = Task::where('project_id', $project->id)
             ->when($state === 'closed', function ($query) {
-                return $query->where('completed', true);
+                return $query->whereNotNull('completed_at');
             })
             ->get();
 

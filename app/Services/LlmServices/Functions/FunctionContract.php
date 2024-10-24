@@ -3,7 +3,6 @@
 namespace App\Services\LlmServices\Functions;
 
 use App\Models\Project;
-use EchoLabs\Prism\Tool;
 
 abstract class FunctionContract
 {

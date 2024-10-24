@@ -34,10 +34,10 @@ class ClearAllHorizonQueues extends Command
                 try {
                     $this->info("Clearing queue: $name");
                     Log::info("Clearing queue: $name");
-                    Artisan::call('queue:clear  --force --queue ' . $name);
+                    Artisan::call('queue:clear  --force --queue '.$name);
                 } catch (\Exception $e) {
                     $this->error($e->getMessage());
-                    Log::error($e->getMessage() . ' ' . $name);
+                    Log::error($e->getMessage().' '.$name);
                 }
             }
         }

@@ -12,7 +12,6 @@ class TaskList extends FunctionContract
 
     protected string $description = 'This will list all tasks that are still open unless you request closed instead';
 
-
     public function handle(
         Project $project,
         array $args = []): FunctionResponse

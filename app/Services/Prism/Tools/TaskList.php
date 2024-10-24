@@ -5,19 +5,16 @@ namespace App\Services\Prism\Tools;
 use App\Models\Project;
 use App\Models\Task;
 use EchoLabs\Prism\Tool;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class TaskList extends Tool
 {
-
-
     public function __construct(public Project $project)
     {
         $this
             ->as('list_tasks')
             ->for('This will list all tasks that are still open unless you request closed instead')
-            ->withStringParameter(name:'state', description: "open or closed will be open by default", required: false)
+            ->withStringParameter(name: 'state', description: 'open or closed will be open by default', required: false)
             ->using($this);
     }
 
@@ -48,5 +45,4 @@ class TaskList extends Tool
         return $tasks;
 
     }
-
 }

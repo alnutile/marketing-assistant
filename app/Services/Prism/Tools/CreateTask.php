@@ -8,12 +8,10 @@ use EchoLabs\Prism\Schema\ArraySchema;
 use EchoLabs\Prism\Schema\ObjectSchema;
 use EchoLabs\Prism\Schema\StringSchema;
 use EchoLabs\Prism\Tool;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class CreateTask extends Tool
 {
-
     public function __construct(public Project $project)
     {
         $taskSchema = new ObjectSchema(
@@ -67,9 +65,9 @@ class CreateTask extends Tool
         foreach ($tasks as $task) {
 
             $tasksCreated->add(Task::updateOrCreate([
-                    'name' => $task['name'],
-                    'project_id' => $this->project->id,
-                ],
+                'name' => $task['name'],
+                'project_id' => $this->project->id,
+            ],
                 [
                     'details' => $task['details'],
                     'due_date' => data_get($task, 'due_date'),
@@ -95,5 +93,4 @@ class CreateTask extends Tool
             })
             ->implode("\n");
     }
-
 }

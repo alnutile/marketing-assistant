@@ -5,8 +5,6 @@ namespace Tests\Feature;
 use App\Models\Project;
 use App\Models\Task;
 use App\Services\LlmServices\Orchestration\PrismOrchestrate;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class PrismOrchestrateTest extends TestCase
@@ -21,9 +19,9 @@ class PrismOrchestrateTest extends TestCase
         $task = Task::factory()->create([
             'project_id' => $project->id,
             'completed_at' => null,
-            'details' => "Go food shopping",
+            'details' => 'Go food shopping',
         ]);
 
-        (new PrismOrchestrate())->handle($project);
+        (new PrismOrchestrate)->handle($project);
     }
 }

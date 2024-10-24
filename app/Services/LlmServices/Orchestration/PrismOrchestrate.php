@@ -4,15 +4,13 @@ namespace App\Services\LlmServices\Orchestration;
 
 use App\Events\ScheduleLogEvent;
 use App\Models\Project;
+use App\Services\LlmServices\RoleEnum;
 use App\Services\Prism\Tools\CreateTask;
 use App\Services\Prism\Tools\SendEmailToTeam;
 use App\Services\Prism\Tools\TaskList;
+use EchoLabs\Prism\Facades\Tool;
 use EchoLabs\Prism\Prism;
 use EchoLabs\Prism\ValueObjects\Messages\AssistantMessage;
-use EchoLabs\Prism\ValueObjects\Messages\UserMessage;
-use App\Services\LlmServices\LlmDriverFacade;
-use App\Services\LlmServices\RoleEnum;
-use EchoLabs\Prism\Facades\Tool;
 use Facades\App\Services\LlmServices\Orchestration\Orchestrate as OrchestrateFacade;
 use Illuminate\Support\Facades\Log;
 
@@ -56,7 +54,7 @@ SYSTEM_PROMPT;
             ->withSystemPrompt($systemPrompt)
             ->withMessages($messages)
             ->using('anthropic', 'claude-3-5-sonnet-latest')
-            ->withPrompt("List out my open tasks")
+            ->withPrompt('List out my open tasks')
             ->withTools([
                 new TaskList($project),
                 new CreateTask($project),
@@ -73,57 +71,56 @@ SYSTEM_PROMPT;
             }
         }
 
-
-//        $project->addInput(
-//            message: $response->content,
-//            role: RoleEnum::Assistant,
-//        );
-//
-//        if ($this->logScheduler) {
-//            ScheduleLogEvent::dispatch($project, $project->toArray());
-//        }
-//
-//        Log::info('Orchestration Tools Found', [
-//            'tool_calls' => count($response->tool_calls),
-//        ]);
-//
-//        if (! empty($response->tool_calls)) {
-//
-//            Log::info('Orchestration Tools Found', [
-//                'tool_calls' => collect($response->tool_calls)
-//                    ->pluck('name')->toArray(),
-//            ]);
-//
-//            $count = 1;
-//            foreach ($response->tool_calls as $tool_call) {
-//                Log::info('[LaraChain] - Tool Call '.$count, [
-//                    'tool_call' => $tool_call->name,
-//                    'tool_count' => count($response->tool_calls),
-//                ]);
-//
-//                $tool = app()->make($tool_call->name);
-//
-//                $functionResponse = $tool->handle($project, $tool_call->arguments);
-//
-//                $project->addInput(
-//                    message: sprintf('Tool %s used with results %s', $tool_call->name, $functionResponse->content),
-//                    role: RoleEnum::User,
-//                    tool_id: $tool_call->id,
-//                    tool_name: $tool_call->name,
-//                    tool_args: $tool_call->arguments,
-//                    created_by_tool: true,
-//                );
-//
-//                if ($this->logScheduler) {
-//                    ScheduleLogEvent::dispatch($project, $project->toArray());
-//                }
-//
-//                $count++;
-//            }
-//
-//            Log::info('This Tools Complete doing sending it through again');
-//
-//            OrchestrateFacade::handle($project);
-//        }
+        //        $project->addInput(
+        //            message: $response->content,
+        //            role: RoleEnum::Assistant,
+        //        );
+        //
+        //        if ($this->logScheduler) {
+        //            ScheduleLogEvent::dispatch($project, $project->toArray());
+        //        }
+        //
+        //        Log::info('Orchestration Tools Found', [
+        //            'tool_calls' => count($response->tool_calls),
+        //        ]);
+        //
+        //        if (! empty($response->tool_calls)) {
+        //
+        //            Log::info('Orchestration Tools Found', [
+        //                'tool_calls' => collect($response->tool_calls)
+        //                    ->pluck('name')->toArray(),
+        //            ]);
+        //
+        //            $count = 1;
+        //            foreach ($response->tool_calls as $tool_call) {
+        //                Log::info('[LaraChain] - Tool Call '.$count, [
+        //                    'tool_call' => $tool_call->name,
+        //                    'tool_count' => count($response->tool_calls),
+        //                ]);
+        //
+        //                $tool = app()->make($tool_call->name);
+        //
+        //                $functionResponse = $tool->handle($project, $tool_call->arguments);
+        //
+        //                $project->addInput(
+        //                    message: sprintf('Tool %s used with results %s', $tool_call->name, $functionResponse->content),
+        //                    role: RoleEnum::User,
+        //                    tool_id: $tool_call->id,
+        //                    tool_name: $tool_call->name,
+        //                    tool_args: $tool_call->arguments,
+        //                    created_by_tool: true,
+        //                );
+        //
+        //                if ($this->logScheduler) {
+        //                    ScheduleLogEvent::dispatch($project, $project->toArray());
+        //                }
+        //
+        //                $count++;
+        //            }
+        //
+        //            Log::info('This Tools Complete doing sending it through again');
+        //
+        //            OrchestrateFacade::handle($project);
+        //        }
     }
 }

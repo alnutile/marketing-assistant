@@ -3,6 +3,11 @@
 
 This is the code used in the "PHP and LLMs" book long with [https://github.com/alnutile/php-llms](https://github.com/alnutile/php-llms)
 
+This is a full working system with Automations, Projects, Tasks and more!
+
+![CleanShot 2024-10-23 at 20 16 44@2x](https://github.com/user-attachments/assets/060135b6-57a1-4387-be4b-d49bcbd04852)
+
+
 
 ## Setup
 

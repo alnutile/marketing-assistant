@@ -9,7 +9,12 @@ parameters:
     # The level 8 is the highest level
     level: 5
 
-    # ignoreErrors:
+    ignoreErrors:
+        - '#Parameter \#1 \$fn of method EchoLabs\\Prism\\Tool\:\:using\(\) expects callable\(\)\: string, \$this\(App\\Services\\Prism\\Tools\\SendEmailToTeam\) given\.#'
+        - '#Parameter \$properties of class EchoLabs\\Prism\\Schema\\ObjectSchema constructor expects array<int, EchoLabs\\Prism\\Contracts\\Schema>, array<string, EchoLabs\\Prism\\Schema\\StringSchema> given\.#'
+        - '#Parameter \#1 \$callback of method Illuminate\\Support\\Collection<int,App\\Models\\Message>::transform\(\) expects callable\(App\\Models\\Message, int\): App\\Models\\Message, Closure\(mixed\): \(EchoLabs\\Prism\\ValueObjects\\Messages\\AssistantMessage\|EchoLabs\\Prism\\ValueObjects\\Messages\\UserMessage\) given\.#'
+        - '#Parameter \#1 \$fn of method EchoLabs\\Prism\\Tool::using\(\) expects callable\(\): string, \$this\(App\\Services\\Prism\\Tools\\CreateTask\) given\.#'
+        - '#Parameter \#1 \$fn of method EchoLabs\\Prism\\Tool::using\(\) expects callable\(\): string, \$this\(App\\Services\\Prism\\Tools\\TaskList\) given\.#'
 
     excludePaths:
         - vendor

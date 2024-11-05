@@ -52,4 +52,15 @@ class ProjectTest extends TestCase
 
         $this->assertCount(5, $messageThread);
     }
+
+    public function test_prism_message_thread(): void
+    {
+        $project = Project::factory()
+            ->has(Message::factory(5), 'messages')
+            ->create();
+
+        $messageThread = $project->getMessageThread();
+
+        $this->assertCount(5, $messageThread);
+    }
 }

@@ -1,6 +1,4 @@
 # Project Assistant 
-
-
 This is the code used in the "PHP and LLMs" book long with [https://github.com/alnutile/php-llms](https://github.com/alnutile/php-llms)
 
 This is a full working system with Automations, Projects, Tasks and more!

@@ -63,7 +63,7 @@ There are a few pages that might need some work.
 $results
 PROMPT;
 
-        $results = LlmDriverFacade::driver(config('llmdriver.driver'))
+        $results = LlmDriverFacade::driver('groq')
             ->completion($prompt);
 
         $this->report->updateQuietly([
